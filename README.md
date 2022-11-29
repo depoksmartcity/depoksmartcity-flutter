@@ -14,7 +14,7 @@
 Depok Smart City
 
 ### Fungsi Aplikasi
-Platform Depok Smart City merupakan platform yang bermanfaat sebagai kanal digital Kota Depok. Hal ini bertujuan untuk meningkatkan produktivitas penduduk kota depok dan memudahkan gaya hidup masyarakat dengan digitalisasi.
+Platform Depok Smart City merupakan platform yang bermanfaat sebagai kanal digital Kota Depok. Hal ini bertujuan untuk meningkatkan produktivitas penduduk kota depok dan memudahkan gaya hidup masyarakat dengan digitalisasi. Aplikasi ini merupakan aplikasi mobile yang diadaptasi dari aplikasi web Depok Smart City. Latar belakang pembuatan aplikasi ini adalah pengimplementasian dari tujuan Konferensi G20 mengenai digitalisasi dan inovasi. Fitur-fitur yang terdapat pada aplikasi ini adalah fitur kependudukan, aspirasi, kesehatan, restoran, dan perpustakaan. Fitur kependudukan berguna untuk melihat layanan pembuatan KTP yang tersedia dan membuat jadwal pembuatan KTP. Kemudian, fitur aspirasi memberikan pengguna untuk melihat aspirasi yang diberikan pengguna lain dan memberikan aspirasi sendiri. Selanjutnya, fitur kesehatan merupakan fitur untuk pengguna melihat list layanan kesehatan di Kota Depok dan membuat jadwal konsultasi dokter umum. Berikutnya, fitur restoran berguna untuk pengguna melihat list restoran yang ada pada Kota Depok dan memberikan ulasan serta rating pada restoran. Terakhir, fitur perpustakaan merupkan perpustakaan daring di mana pengguna dapat membaca artikel mengenai keperpustakaan dan melihat buku yang tersedia pada perpustakaan. Selain itu, fitur ini juga dapat dimanfaatkan pengguna untuk meminjam, mengembalikan, dan memberikan ulasan terhadap suatu buku. 
 
 ### Peran Pengguna Aplikasi
 **1. User yang tidak login**
@@ -65,7 +65,8 @@ Platform Depok Smart City merupakan platform yang bermanfaat sebagai kanal digit
 
 ## Alur Integrasi
 Integrasi dengan _web service_ yang telah dibuat sebelumnya dengan langkah sebagai berikut.
-1. Pembuatan _endpoint_ autentikasi dengan memanfaatkan JSON pada _web service_
-2. Pembuatan autentikasi pada aplikasi Flutter
-3. Penyimpanan _cookie session_ yang telah dikirim oleh _web service_
-4. Pembuatan aplikasi Flutter dengan memanfaatkan _cookie session_. Hal ini berguna untuk melakukan _request_.
+1. Pembuatan model sesuai modul yang diimplementasikan dan menyesuaikan response data dari _web service_.
+2. Pengambilan data dari _endpoint_ memanfaatkan JSON pada _web service_ yang telah di-_deploy_ dalam Railway.
+3. Menampilkan data tersebut pada aplikasi melalui FutureBuilder dengan memanfaatkan HTTP GET.
+4. Menampilkan data pada setiap halaman.
+
