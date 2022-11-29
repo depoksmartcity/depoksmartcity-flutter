@@ -20,9 +20,9 @@ Platform Depok Smart City merupakan platform yang bermanfaat sebagai kanal digit
 **1. Admin**
 - CRUD layanan pembuatan KTP
 - CRUD aspirasi masyarakat
-- CRUD restoran 
+- CRUD restoran dan ulasan restoran
 - CRUD layanan kesehatan
-- CRUD buku (perpustakaan)
+- CRUD buku (perpustakaan) dan ulasan buku
 
 **2. User yang tidak login**
 
