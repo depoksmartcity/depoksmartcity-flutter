@@ -75,7 +75,8 @@ Platform Depok Smart City merupakan platform yang bermanfaat sebagai kanal digit
 ## Alur Integrasi
 Integrasi dengan _web service_ yang telah dibuat sebelumnya dengan langkah sebagai berikut.
 1. Pembuatan model sesuai modul yang diimplementasikan dan menyesuaikan response data dari _web service_.
-2. Pengambilan data dari _endpoint_ memanfaatkan JSON pada _web service_ yang telah di-_deploy_ dalam Railway.
-3. Menampilkan data tersebut pada aplikasi melalui FutureBuilder dengan memanfaatkan HTTP GET.
-4. Menampilkan data pada setiap halaman.
+2. Implementasi _wrapper class_ melalui library http dan pbp_django_auth yang telah dibuat oleh tim asisten dosen untuk pemanfaatkan cookie, session, dan autentikasi.
+3. Pengambilan data dari _endpoint_ memanfaatkan JSON pada _web service_ yang telah di-_deploy_ dalam Railway.
+4. Menampilkan data tersebut pada aplikasi melalui FutureBuilder dengan memanfaatkan HTTP GET.
+5. Menampilkan data pada setiap halaman melalui dart object.
 
