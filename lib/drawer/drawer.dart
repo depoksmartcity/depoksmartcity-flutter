@@ -1,5 +1,6 @@
 import 'package:depoksmartcity/main.dart';
 import 'package:depoksmartcity/page/auth/login.dart';
+import 'package:depoksmartcity/page/kependudukan/kependudukan.dart';
 import 'package:flutter/material.dart';
 
 class DrawerClass extends StatefulWidget {
@@ -27,7 +28,9 @@ class _DrawerClassState extends State<DrawerClass> {
             onTap: () {
               Navigator.pushReplacement(
                 context,
-                MaterialPageRoute(builder: (context) => const MyHomePage(title: 'Flutter Demo Home Page')),
+                MaterialPageRoute(
+                    builder: (context) =>
+                        const MyHomePage(title: 'Flutter Demo Home Page')),
               );
             },
           ),
@@ -37,6 +40,16 @@ class _DrawerClassState extends State<DrawerClass> {
               Navigator.pushReplacement(
                 context,
                 MaterialPageRoute(builder: (context) => const LoginPage()),
+              );
+            },
+          ),
+          ListTile(
+            title: const Text("Kependudukan"),
+            onTap: () {
+              Navigator.pushReplacement(
+                context,
+                MaterialPageRoute(
+                    builder: (context) => const KependudukanPage()),
               );
             },
           ),
