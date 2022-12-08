@@ -1,4 +1,6 @@
 
+import 'package:depoksmartcity/drawer/drawer.dart';
+import 'package:depoksmartcity/main.dart';
 import 'package:flutter/material.dart';
 import 'package:http/http.dart' as http;
 import 'dart:convert';
@@ -23,6 +25,7 @@ class _LoginPageState extends State<LoginPage> {
         appBar: AppBar(
           title: const Text("Login Page"),
         ),
+        drawer: const DrawerClass(),
         body: Form(
             key: _loginFormKey,
             child: Center(
@@ -124,7 +127,7 @@ class _LoginPageState extends State<LoginPage> {
                             if (_loginFormKey.currentState!.validate()) {
                               final response = await http.post(
                                   Uri.parse(
-                                      "http://10.0.2.2:8000/login-flutter/"),
+                                      "https://web-production-1710.up.railway.app/login-flutter/"),
                                   headers: <String, String>{
                                     'Content-Type':
                                         'application/json;charset=UTF-8'
@@ -153,11 +156,11 @@ class _LoginPageState extends State<LoginPage> {
                                             color: Colors.white, fontSize: 20))
                                   ],
                                 )));
-                                // Navigator.push(
-                                //     context,
-                                //     MaterialPageRoute(
-                                //         builder: (context) =>
-                                //             const HomeScreen()));
+                                Navigator.push(
+                                    context,
+                                    MaterialPageRoute(
+                                        builder: (context) =>
+                                            const MyHomePage(title: 'Flutter Demo Home Page')));
                               } else {
                                 ScaffoldMessenger.of(context)
                                     .showSnackBar(SnackBar(
