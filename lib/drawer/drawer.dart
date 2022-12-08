@@ -1,5 +1,6 @@
 import 'package:depoksmartcity/main.dart';
 import 'package:depoksmartcity/page/auth/login.dart';
+import 'package:depoksmartcity/page/aspirasi.dart';
 import 'package:depoksmartcity/page/kependudukan/kependudukan.dart';
 import 'package:flutter/material.dart';
 
@@ -40,6 +41,15 @@ class _DrawerClassState extends State<DrawerClass> {
               Navigator.pushReplacement(
                 context,
                 MaterialPageRoute(builder: (context) => const LoginPage()),
+              );
+            },
+          ),
+          ListTile(
+            title: const Text("Aspirasi"),
+            onTap: () {
+              Navigator.pushReplacement(
+                context,
+                MaterialPageRoute(builder: (context) => const AspirasiPage()),
               );
             },
           ),
