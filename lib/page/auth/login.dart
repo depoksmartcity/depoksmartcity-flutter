@@ -1,9 +1,7 @@
-
-import 'package:depoksmartcity/drawer/drawer.dart';
-import 'package:depoksmartcity/main.dart';
 import 'package:flutter/material.dart';
 import 'package:http/http.dart' as http;
 import 'dart:convert';
+import 'package:depoksmartcity/drawer/drawer.dart';
 
 class LoginPage extends StatefulWidget {
   const LoginPage({Key? key}) : super(key: key);
@@ -20,7 +18,6 @@ class _LoginPageState extends State<LoginPage> {
 
   @override
   Widget build(BuildContext context) {
-
     return Scaffold(
         appBar: AppBar(
           title: const Text("Login Page"),
@@ -137,8 +134,7 @@ class _LoginPageState extends State<LoginPage> {
                                     'password': password
                                   }));
                               // print(response.body);
-                              bool status =
-                                  jsonDecode(response.body)['status'];
+                              bool status = jsonDecode(response.body)['status'];
                               // print(jsonDecode(response.body));
 
                               if (status) {
