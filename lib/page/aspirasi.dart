@@ -17,7 +17,7 @@ class _AspirasiPageState extends State<AspirasiPage> {
   Widget build(BuildContext context) {
     return Scaffold(
         appBar: AppBar(
-          title: const Text('My Watchlist'),
+          title: const Text('Aspirasi'),
         ),
         drawer: const DrawerClass(),
         body: FutureBuilder(
@@ -30,7 +30,7 @@ class _AspirasiPageState extends State<AspirasiPage> {
                   return Column(
                     children: const [
                       Text(
-                        "Tidak ada Watch List :(",
+                        "Tidak ada Aspirasi!",
                         style:
                             TextStyle(color: Color(0xff59A5D8), fontSize: 20),
                       ),
