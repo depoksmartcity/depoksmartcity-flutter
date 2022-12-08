@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:http/http.dart' as http;
 import 'dart:convert';
 import 'package:depoksmartcity/drawer/drawer.dart';
+import 'package:depoksmartcity/main.dart';
 
 class LoginPage extends StatefulWidget {
   const LoginPage({Key? key}) : super(key: key);
@@ -155,8 +156,8 @@ class _LoginPageState extends State<LoginPage> {
                                 Navigator.push(
                                     context,
                                     MaterialPageRoute(
-                                        builder: (context) =>
-                                            const MyHomePage(title: 'Flutter Demo Home Page')));
+                                        builder: (context) => const MyHomePage(
+                                            title: 'Flutter Demo Home Page')));
                               } else {
                                 ScaffoldMessenger.of(context)
                                     .showSnackBar(SnackBar(
