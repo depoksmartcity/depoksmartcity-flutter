@@ -16,6 +16,7 @@ class UseAspirasi {
     // melakukan decode response menjadi bentuk json
     var data = jsonDecode(utf8.decode(response.bodyBytes));
 
+
     // melakukan konversi data json menjadi object Aspirasi
     List<Aspirasi> listAspirasi = [];
     for (var d in data) {
