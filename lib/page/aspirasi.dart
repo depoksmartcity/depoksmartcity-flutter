@@ -17,10 +17,23 @@ class _AspirasiPageState extends State<AspirasiPage> {
   Widget build(BuildContext context) {
     return Scaffold(
         appBar: AppBar(
-          title: const Text('Aspirasi'),
+          backgroundColor: Colors.green,
+          centerTitle: true,
+          title: const Text('Aspirasi',),
         ),
+        // backgroundColor: Colors.pink,
         drawer: const DrawerClass(),
-        body: FutureBuilder(
+        body: Container(
+          width: double.infinity,
+          decoration: BoxDecoration(
+            image: DecorationImage(
+              image: const AssetImage("lib/assets/kota-depok-aspirasi.jpg"),
+              fit: BoxFit.cover,
+              colorFilter: ColorFilter.mode(
+                Colors.black.withOpacity(0.5), BlendMode.dstATop),
+              )
+            ),
+            child: FutureBuilder(
             future: useAspirasi.fetchAspirasi(),
             builder: (context, AsyncSnapshot snapshot) {
               if (snapshot.data == null) {
@@ -66,9 +79,15 @@ class _AspirasiPageState extends State<AspirasiPage> {
                                 
                               ],
                             ),
-                          ));
+                          )
+                    );
                 }
               }
-            }));
+            })
+
+          ),
+        
+          );
+            
   }
 }
