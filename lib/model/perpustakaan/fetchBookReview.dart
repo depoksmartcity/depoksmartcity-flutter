@@ -3,9 +3,9 @@ import 'dart:convert';
 import 'package:depoksmartcity/model/perpustakaan/bookReview.dart';
 
 
-Future<List<BookReview>> fetchMyWatchlist() async {
+Future<List<BookReview>> fetchBookReview(int bookPk) async {
   var url =
-      Uri.parse('http://tugas2pbpkiram.herokuapp.com/mywatchlist/json/');
+      Uri.parse('http://tugas2pbpkiram.herokuapp.com/mywatchlist/json/$bookPk');
   var response = await http.get(
     url,
     headers: {

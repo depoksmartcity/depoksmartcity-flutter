@@ -3,9 +3,9 @@ import 'dart:convert';
 import 'package:depoksmartcity/model/perpustakaan/publisher.dart';
 
 
-Future<List<Publisher>> fetchPublisher() async {
+Future<List<Publisher>> fetchPublisherById(int publisherId) async {
   var url =
-      Uri.parse('http://tugas2pbpkiram.herokuapp.com/mywatchlist/json/');
+      Uri.parse('http://tugas2pbpkiram.herokuapp.com/mywatchlist/json/$publisherId');
   var response = await http.get(
     url,
     headers: {

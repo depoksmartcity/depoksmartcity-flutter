@@ -78,7 +78,7 @@ class Fields {
         "publisher_id": publisherId,
         "edition": edition,
         "stock": stock,
-        "release_date": "${releaseDate.year.toString().padLeft(4, '0')}-${releaseDate.month.toString().padLeft(2, '0')}-${releaseDate.day.toString().padLeft(2, '0')}",
+        "publication_date": "${releaseDate.year.toString().padLeft(4, '0')}-${releaseDate.month.toString().padLeft(2, '0')}-${releaseDate.day.toString().padLeft(2, '0')}",
         "borrowed_times": borrowedTimes,
         "reviewed_times": reviewedTimes,
     };
