@@ -48,8 +48,11 @@ class Fields {
         required this.authorName,
         required this.publisherName,
         required this.edition,
-        required this.stock,
         required this.releaseDate,
+        required this.photoUrl,
+        required this.stock,
+        required this.isAvailable,
+        required this.rate,
         required this.borrowedTimes,
         required this.reviewedTimes,
         required this.isBorrowable,
@@ -67,8 +70,11 @@ class Fields {
     String publisherName;
     int publisherId;
     int edition;
-    int stock;
     DateTime releaseDate;
+    String photoUrl;
+    int stock;
+    bool isAvailable;
+    double rate;
     int borrowedTimes;
     int reviewedTimes;
     List<BookReview> listReview;

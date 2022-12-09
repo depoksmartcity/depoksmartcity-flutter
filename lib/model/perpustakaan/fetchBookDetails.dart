@@ -3,7 +3,7 @@ import 'dart:convert';
 import 'package:depoksmartcity/model/perpustakaan/book.dart';
 
 
-Future<List<Book>> fetchMyWatchlist() async {
+Future<List<Book>> fetchBookDetails() async {
   var url =
       Uri.parse('http://tugas2pbpkiram.herokuapp.com/mywatchlist/json/');
   var response = await http.get(
