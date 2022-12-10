@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:depoksmartcity/drawer/drawer.dart';
-import 'package:depoksmartcity/utils/aspirasiFunction.dart';
+import 'package:depoksmartcity/utils/aspirasi/aspirasiFunction.dart';
 
 class AspirasiPage extends StatefulWidget {
   const AspirasiPage({super.key});
