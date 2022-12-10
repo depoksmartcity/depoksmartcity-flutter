@@ -175,7 +175,7 @@ class RegisterPage extends StatelessWidget {
                       if (_registFormKey.currentState!.validate()) {
                         final response = await http.post(
                             Uri.parse(
-                                "http://pbp-c07.herokuapp.com/register-flutter"),
+                                "https://web-production-1710.up.railway.app/register-flutter/"),
                             headers: <String, String>{
                               'Content-Type': 'application/json;charset=UTF-8'
                             },
