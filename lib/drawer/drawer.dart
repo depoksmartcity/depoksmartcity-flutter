@@ -3,6 +3,7 @@ import 'package:depoksmartcity/page/auth/login.dart';
 import 'package:depoksmartcity/page/auth/register.dart';
 import 'package:depoksmartcity/page/aspirasi/aspirasi.dart';
 import 'package:depoksmartcity/page/kependudukan/kependudukan.dart';
+import 'package:depoksmartcity/page/perpustakaan/showBook.dart';
 import 'package:depoksmartcity/page/restaurant/restaurant.dart';
 import 'package:flutter/material.dart';
 
@@ -104,6 +105,16 @@ class _DrawerClassState extends State<DrawerClass> {
                 context,
                 MaterialPageRoute(
                     builder: (context) => const KependudukanPage()),
+              );
+            },
+          ),
+          ListTile(
+            title: const Text("Perpustakaan"),
+            onTap: () {
+              Navigator.pushReplacement(
+                context,
+                MaterialPageRoute(
+                    builder: (context) => const BooksPage()),
               );
             },
           ),

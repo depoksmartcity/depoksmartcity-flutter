@@ -6,53 +6,116 @@ import 'package:depoksmartcity/drawer/drawer.dart';
 class BookDetailsPage extends StatelessWidget {
   const BookDetailsPage(
       {super.key,
-        required this.title,
-        required this.isbn,
-        required this.synopsis,
-        required this.pages,
-        required this.authorId,
-        required this.publisherId,
-        required this.authorName,
-        required this.publisherName,
-        required this.edition,
-        required this.stock,
-        required this.releaseDate,
-        required this.borrowedTimes,
-        required this.reviewedTimes,
-        required this.isBorrowable,
-        required this.isReturnable,
-        required this.isReviewable,
-        required this.listReview});
+      required this.title,
+      required this.isbn,
+      required this.synopsis,
+      required this.pages,
+      required this.authorId,
+      required this.publisherId,
+      required this.authorName,
+      required this.publisherName,
+      required this.edition,
+      required this.releaseDate,
+      required this.photoUrl,
+      required this.stock,
+      required this.isAvailable,
+      required this.rate,
+      required this.borrowedTimes,
+      required this.reviewedTimes,
+      required this.isBorrowable,
+      required this.isReturnable,
+      required this.isReviewable,
+      required this.listReview});
 
-
-    String title;
-    String isbn;
-    String synopsis;
-    int pages;
-    int authorId;
-    String authorName;
-    String publisherName;
-    int publisherId;
-    int edition;
-    int stock;
-    DateTime releaseDate;
-    int borrowedTimes;
-    int reviewedTimes;
-    List<BookReview> listReview;
-    bool isReturnable;
-    bool isBorrowable;
-    bool isReviewable;
+  final String title;
+  final String isbn;
+  final String synopsis;
+  final int pages;
+  final int authorId;
+  final String authorName;
+  final String publisherName;
+  final int publisherId;
+  final int edition;
+  final DateTime releaseDate;
+  final String photoUrl;
+  final int stock;
+  final bool isAvailable;
+  final double rate;
+  final int borrowedTimes;
+  final int reviewedTimes;
+  final List<BookReview> listReview;
+  final bool isReturnable;
+  final bool isBorrowable;
+  final bool isReviewable;
 
   @override
   Widget build(BuildContext context) {
+    var pagesStr = pages.toString();
+    var editionStr = edition.toString();
+    var stockStr = stock.toString();
+    var borrowedTimesStr = borrowedTimes.toString();
+    var reviewedTimesStr = reviewedTimes.toString();
     var date = releaseDate.toString().substring(0, 10);
-    var ratingStr = rate.toString();
-    var watchedStr;
-    if (watched == 1) {
-      watchedStr = 'watched';
-    } 
-    else {
-      watchedStr = 'not watched';
+    var rateStr = rate.toString();
+    var buttonBorrow;
+    var buttonReturn;
+    var buttonReview;
+    if (isBorrowable) {
+      buttonBorrow = Container(
+                      margin:
+                          const EdgeInsets.symmetric(horizontal: 16, vertical: 12),
+                      child: Align(
+                          alignment: Alignment.bottomCenter,
+                          child: TextButton(
+                            onPressed: (() {
+                            
+                            }),
+                            child: Text(
+                              'Borrow',
+                              style: TextStyle(color: Colors.white),
+                            ),
+                            style: ButtonStyle(
+                                backgroundColor:
+                                    MaterialStateProperty.all(Colors.blue)),
+                          )));
+    }
+    if (isReturnable) {
+      buttonReturn = Container(
+                      margin:
+                          const EdgeInsets.symmetric(horizontal: 16, vertical: 12),
+                      child: Align(
+                          alignment: Alignment.bottomCenter,
+                          child: TextButton(
+                            onPressed: (() {
+                           
+                            }),
+                            child: Text(
+                              'Return',
+                              style: TextStyle(color: Colors.white),
+                            ),
+                            style: ButtonStyle(
+                                backgroundColor:
+                                    MaterialStateProperty.all(Colors.blue)),
+                          )));
+    }
+    if (isReviewable) {
+      buttonReview = Container(
+                      margin:
+                          const EdgeInsets.symmetric(horizontal: 16, vertical: 12),
+                      child: Align(
+                          alignment: Alignment.bottomCenter,
+                          child: TextButton(
+                            onPressed: (() {
+                              
+                            }),
+                            child: Text(
+                              'Review',
+                              style: TextStyle(color: Colors.white),
+                            ),
+                            style: ButtonStyle(
+                                backgroundColor:
+                                    MaterialStateProperty.all(Colors.blue)),
+                          )));
     }
     return Scaffold(
         appBar: AppBar(
@@ -60,8 +123,7 @@ class BookDetailsPage extends StatelessWidget {
         ),
 
         // Menambahkan drawer menu
-        drawer: DrawerClass(
-        ),
+        drawer: DrawerClass(),
         body: Column(
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
@@ -86,20 +148,55 @@ class BookDetailsPage extends StatelessWidget {
                 'Rating: ',
                 style: TextStyle(fontWeight: FontWeight.bold),
               ),
-              Text('$rating/5'),
+              Text('$rateStr/5'),
             ]),
             const SizedBox(height: 20.0),
             Row(children: [
               Text(
-                'Watched: ',
+                'Written By: ',
                 style: TextStyle(fontWeight: FontWeight.bold),
               ),
-              Text(watchedStr),
+              Text(authorName),
             ]),
             const SizedBox(height: 20.0),
-            Text('Review:', style: TextStyle(fontWeight: FontWeight.bold)),
-            Text(review),
+            Row(children: [
+              Text(
+                'Published By: ',
+                style: TextStyle(fontWeight: FontWeight.bold),
+              ),
+              Text(publisherName),
+            ]),
+            const SizedBox(height: 20.0),
+            Row(children: [
+              Text(
+                'Pages: ',
+                style: TextStyle(fontWeight: FontWeight.bold),
+              ),
+              Text(pagesStr),
+            ]),
+            const SizedBox(height: 20.0),
+            Row(children: [
+              Text(
+                'Edition: ',
+                style: TextStyle(fontWeight: FontWeight.bold),
+              ),
+              Text(editionStr),
+            ]),
+            const SizedBox(height: 20.0),
+            Row(children: [
+              Text(
+                'Stock: ',
+                style: TextStyle(fontWeight: FontWeight.bold),
+              ),
+              Text(stockStr),
+            ]),
+            const SizedBox(height: 20.0),
+            Text('Synopsis:', style: TextStyle(fontWeight: FontWeight.bold)),
+            Text(synopsis),
             Spacer(),
+            buttonBorrow,
+            buttonReturn,
+            buttonReview,
             Container(
                 margin:
                     const EdgeInsets.symmetric(horizontal: 16, vertical: 12),

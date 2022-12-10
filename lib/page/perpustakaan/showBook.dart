@@ -4,60 +4,33 @@ import 'package:depoksmartcity/model/perpustakaan/bookDetails.dart';
 import 'package:flutter/material.dart';
 import 'package:depoksmartcity/main.dart';
 import 'package:depoksmartcity/drawer/drawer.dart';
-import 'package:depoksmartcity/page/detailMywatchlist.dart';
-import 'package:depoksmartcity/model/fetch.dart';
+import 'package:depoksmartcity/page/perpustakaan/detailBook.dart';
+import 'package:depoksmartcity/model/perpustakaan/fetchBookDetails.dart';
 
-class MywatchlistPage extends StatefulWidget {
-  const MywatchlistPage(
-      {Key? key, required this.listBudget, required this.addBudget})
+class BooksPage extends StatefulWidget {
+  const BooksPage(
+      {Key? key})
       : super(key: key);
-  final List<Budget> listBudget;
-  final Function(Budget) addBudget;
+
 
   @override
-  _MywatchlistPageState createState() => _MywatchlistPageState();
+  _BooksPageState createState() => _BooksPageState();
 }
 
-class _MywatchlistPageState extends State<MywatchlistPage> {
-  Future<List<Mywatchlist>> fetchMywatchlist() async {
-    var url =
-        Uri.parse('http://tugas2pbpkiram.herokuapp.com/mywatchlist/json/');
-    var response = await http.get(
-      url,
-      headers: {
-        "Access-Control-Allow-Origin": "*",
-        "Content-Type": "application/json",
-      },
-    );
-
-    // melakukan decode response menjadi bentuk json
-    var data = jsonDecode(utf8.decode(response.bodyBytes));
-
-    // melakukan konversi data json menjadi object Mywatchlist
-    List<Mywatchlist> listMywatchlist = [];
-    for (var datum in data) {
-      if (datum != null) {
-        listMywatchlist.add(Mywatchlist.fromJson(datum));
-      }
-    }
-
-    return listMywatchlist;
-  }
-
+class _BooksPageState extends State<BooksPage> {
+  Future<List<BookDetails>> listBookDetails = fetchBookDetails();
   @override
   Widget build(BuildContext context) {
     return Scaffold(
         appBar: AppBar(
-          title: Text('My Watch List'),
+          title: Text('Books List'),
         ),
 
         // Menambahkan drawer menu
-        drawer: MyDrawer(
-          listBudget: widget.listBudget,
-          addBudget: widget.addBudget,
+        drawer: DrawerClass(
         ),
         body: FutureBuilder(
-            future: fetchMywatchlist(),
+            future: fetchBookDetails(),
             builder: (context, AsyncSnapshot snapshot) {
               if (snapshot.data == null) {
                 return const Center(child: CircularProgressIndicator());
@@ -79,15 +52,27 @@ class _MywatchlistPageState extends State<MywatchlistPage> {
                       itemBuilder: (_, index) => GestureDetector(
                           onTap: () {
                             Navigator.of(context).push(
-                              MaterialPageRoute(builder: (context) => MoviePage(
-                                listBudget: widget.listBudget,
-                                addBudget: widget.addBudget,
-                                watched: snapshot.data![index].fields.watched,
+                              MaterialPageRoute(builder: (context) => BookDetailsPage(
                                 title: snapshot.data![index].fields.title,
-                                rating: snapshot.data![index].fields.rating,
+                                isbn: snapshot.data![index].fields.isbn,
+                                synopsis: snapshot.data![index].fields.synopsis,
+                                pages: snapshot.data![index].fields.pages,
+                                authorId: snapshot.data![index].fields.authorId,
+                                publisherId: snapshot.data![index].fields.publisherId,
+                                authorName: snapshot.data![index].fields.authorName,
+                                publisherName: snapshot.data![index].fields.publisherName,
+                                edition: snapshot.data![index].fields.edition,
                                 releaseDate: snapshot.data![index].fields.releaseDate,
-                                review: snapshot.data![index].fields.review,
-
+                                photoUrl: snapshot.data![index].fields.photoUrl,
+                                stock: snapshot.data![index].fields.stock,
+                                isAvailable: snapshot.data![index].fields.isAvailable,
+                                rate: snapshot.data![index].fields.rate,
+                                borrowedTimes: snapshot.data![index].fields.borrowedTimes,
+                                reviewedTimes: snapshot.data![index].fields.reviewedTimes,
+                                isBorrowable: snapshot.data![index].fields.isBorrowable,
+                                isReturnable: snapshot.data![index].fields.isReturnable,
+                                isReviewable: snapshot.data![index].fields.isReviewable,
+                                listReview: snapshot.data![index].fields.listReview
                               ))
                             );
                           },

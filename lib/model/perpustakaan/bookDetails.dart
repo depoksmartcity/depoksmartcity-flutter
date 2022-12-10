@@ -9,12 +9,12 @@ import 'package:depoksmartcity/model/perpustakaan/bookHistory.dart';
 import 'package:depoksmartcity/model/perpustakaan/fetchBookHistory.dart';
 import 'dart:async';
 
-List<Book> bookJson(String str) => List<Book>.from(json.decode(str).map((x) => Book.fromJson(x)));
+List<BookDetails> bookJson(String str) => List<BookDetails>.from(json.decode(str).map((x) => BookDetails.fromJson(x)));
 
-String bookToJson(List<Book> data) => json.encode(List<dynamic>.from(data.map((x) => x.toJson())));
+String bookToJson(List<BookDetails> data) => json.encode(List<dynamic>.from(data.map((x) => x.toJson())));
 
-class Book {
-    Book({
+class BookDetails {
+    BookDetails({
         required this.model,
         required this.pk,
         required this.fields,
@@ -24,7 +24,7 @@ class Book {
     int pk;
     Fields fields;
 
-    factory Book.fromJson(Map<String, dynamic> json) => Book(
+    factory BookDetails.fromJson(Map<String, dynamic> json) => BookDetails(
         model: modelValues.map[json["model"]],
         pk: json["pk"],
         fields: Fields.fromJson(json["fields"], json["pk"]),
@@ -125,6 +125,9 @@ class Fields {
           edition: json["edition"],
           stock: json["stock"],
           releaseDate: DateTime.parse(json["publication_date"]),
+          photoUrl: json["photo"],
+          isAvailable: json["is_available"],
+          rate: double.parse(json["rate"]),
           borrowedTimes: json["borrowed_times"],
           reviewedTimes: json["reviewed_times"],
           isBorrowable: isBorrowable,
