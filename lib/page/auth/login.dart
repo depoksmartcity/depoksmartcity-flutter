@@ -12,7 +12,6 @@ class LoginPage extends StatefulWidget {
 }
 
 class _LoginPageState extends State<LoginPage> {
-  // static String routeName = '/login-page';
   String username = '';
   String password = '';
   final GlobalKey<FormState> _loginFormKey = GlobalKey<FormState>();
@@ -21,14 +20,26 @@ class _LoginPageState extends State<LoginPage> {
   Widget build(BuildContext context) {
     return Scaffold(
         appBar: AppBar(
-          title: const Text("Login Page"),
+          title: const Text("Welcome!"),
+          centerTitle: true,
         ),
         drawer: const DrawerClass(),
-        body: Form(
+        body: Container(
+          width: double.infinity,
+          decoration: BoxDecoration(
+            image: DecorationImage(
+              image: const AssetImage("lib/assets/kota-depok-login.jpg"),
+              fit: BoxFit.cover,
+              colorFilter: ColorFilter.mode(
+                Colors.black.withOpacity(0.5), BlendMode.dstATop),
+              )
+            ),
+            child: Form(
             key: _loginFormKey,
             child: Center(
               child: Container(
-                  height: MediaQuery.of(context).size.height / 2,
+                // Set height and weight of the container
+                  height: MediaQuery.of(context).size.height / 2.5,
                   width: MediaQuery.of(context).size.width,
                   margin: const EdgeInsets.all(10),
                   decoration: BoxDecoration(
@@ -61,7 +72,7 @@ class _LoginPageState extends State<LoginPage> {
                             }
                             return null;
                           },
-                          maxLength: 15,
+                          maxLength: 20,
                           decoration: InputDecoration(
                               prefixIcon: const Icon(
                                 Icons.alternate_email_rounded,
@@ -109,9 +120,12 @@ class _LoginPageState extends State<LoginPage> {
                       ),
                       Container(
                         // Button Login
+                        // Set width setengah dari box
+                        // color: Color.fromARGB(255, 7, 47, 80),
                         width: MediaQuery.of(context).size.width / 2,
                         child: OutlinedButton(
                           style: OutlinedButton.styleFrom(
+                            backgroundColor: Color.fromARGB(255, 20, 85, 138),
                             minimumSize: const Size(80, 50),
                             padding: const EdgeInsets.all(10),
                             shape: RoundedRectangleBorder(
@@ -178,12 +192,15 @@ class _LoginPageState extends State<LoginPage> {
                           },
                           child: const Text(
                             "LOGIN",
-                            style: TextStyle(letterSpacing: 2),
+                            style: TextStyle(letterSpacing: 2, fontWeight: FontWeight.bold, color: Colors.white),
                           ),
                         ),
                       ),
                     ],
                   )),
-            )));
+            )
+          )
+        )
+    );
   }
 }
