@@ -2,6 +2,8 @@ import 'package:flutter/material.dart';
 import 'package:depoksmartcity/drawer/drawer.dart';
 import 'package:depoksmartcity/page/kependudukan/request_ktp.dart';
 import 'package:depoksmartcity/utils/kependudukan/fetchKelurahan.dart';
+import 'package:provider/provider.dart';
+import 'package:pbp_django_auth/pbp_django_auth.dart';
 
 class KependudukanPage extends StatefulWidget {
   const KependudukanPage({super.key});
@@ -24,6 +26,9 @@ class _KependudukanPageState extends State<KependudukanPage> {
 
   @override
   Widget build(BuildContext context) {
+    final request = context.read<CookieRequest>();
+    print(request.loggedIn);
+    print(request.jsonData);
     return Scaffold(
       appBar: AppBar(
         title: Text('Kependudukan'),
