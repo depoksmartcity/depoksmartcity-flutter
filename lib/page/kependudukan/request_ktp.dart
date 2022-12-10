@@ -11,7 +11,16 @@ class RequestKTPPage extends StatefulWidget {
 class _RequestKTPPageState extends State<RequestKTPPage> {
   final _formKey = GlobalKey<FormState>();
   String _namaLengkap = "";
-  double umur = 0;
+  String _nomorKk = "";
+  String _nik = "";
+  String _alamat = "";
+  String _rt = "";
+  String _rw = "";
+  String _kodePos = "";
+  String _noHp = "";
+  String _scheduleDate = "";
+  String _scheduleTime = "";
+
   String kelasPBP = 'A';
   List<String> listKelasPBP = ['A', 'B', 'C', 'D', 'E', 'F', 'KI'];
   String permohonan = '---------';
@@ -114,7 +123,7 @@ class _RequestKTPPageState extends State<RequestKTPPage> {
                 // Permohonan option
                 ListTile(
                   title: const Text(
-                    'Kelurahan',
+                    'Permohonan',
                   ),
                   trailing: DropdownButton(
                     value: permohonan,
@@ -168,7 +177,41 @@ class _RequestKTPPageState extends State<RequestKTPPage> {
                     },
                   ),
                 ),
+
                 // nomor kk
+                Padding(
+                  // Menggunakan padding sebesar 8 pixels
+                  padding: const EdgeInsets.all(8.0),
+                  child: TextFormField(
+                    decoration: InputDecoration(
+                      hintText: "Contoh: 012345678910",
+                      labelText: "Nomor KK",
+                      // Menambahkan circular border agar lebih rapi
+                      border: OutlineInputBorder(
+                        borderRadius: BorderRadius.circular(5.0),
+                      ),
+                    ),
+                    // Menambahkan behavior saat nama diketik
+                    onChanged: (String? value) {
+                      setState(() {
+                        _namaLengkap = value!;
+                      });
+                    },
+                    // Menambahkan behavior saat data disimpan
+                    onSaved: (String? value) {
+                      setState(() {
+                        _namaLengkap = value!;
+                      });
+                    },
+                    // Validator sebagai validasi form
+                    validator: (String? value) {
+                      if (value == null || value.isEmpty) {
+                        return 'Nama lengkap tidak boleh kosong!';
+                      }
+                      return null;
+                    },
+                  ),
+                ),
                 // nik
                 // alamat
                 // rt
