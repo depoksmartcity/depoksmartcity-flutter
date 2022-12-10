@@ -22,7 +22,7 @@ class _LoginPageState extends State<LoginPage> {
 
   @override
   Widget build(BuildContext context) {
-    final request = context.watch<CookieRequest>();
+    final request = context.read<CookieRequest>();
 
     return Scaffold(
         appBar: AppBar(
@@ -144,7 +144,7 @@ class _LoginPageState extends State<LoginPage> {
                               ),
                               onPressed: () async {
                                 if (_loginFormKey.currentState!.validate()) {
-                                  final response = await request.post(
+                                  final response = await request.login(
                                       "https://web-production-1710.up.railway.app/login-flutter/",
                                       jsonEncode(<String, String>{
                                         'username': username,

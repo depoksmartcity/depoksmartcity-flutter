@@ -1,5 +1,7 @@
 import 'package:depoksmartcity/drawer/drawer.dart';
 import 'package:flutter/material.dart';
+import 'package:http/http.dart' as http;
+import 'dart:convert';
 
 class RequestKTPPage extends StatefulWidget {
   const RequestKTPPage({super.key});
@@ -525,8 +527,35 @@ class _RequestKTPPageState extends State<RequestKTPPage> {
                   style: ButtonStyle(
                     backgroundColor: MaterialStateProperty.all(Colors.blue),
                   ),
-                  onPressed: () {
+                  onPressed: () async {
                     if (_formKey.currentState!.validate()) {
+                      final response = await http.post(
+                          Uri.parse(
+                              "https://web-production-1710.up.railway.app/kependudukan/request-ktp/add-flutter"),
+                          headers: <String, String>{
+                            'Content-Type': 'application/json;charset=UTF-8'
+                          },
+                          body: jsonEncode(<String, String>{
+                            'kecamatan': kecamatan,
+                            'kelurahan': kelurahan,
+                            'permohonan': permohonan,
+                            'nama_lengkap': _namaLengkap,
+                            'nomor_kk': _nomorKk,
+                            'nik': _nik,
+                            'alamat': _alamat,
+                            'rt': _rt,
+                            'rw': _rw,
+                            'kode_pos': _kodePos,
+                            'nomor_hp': _noHp,
+                            'schedule_date': ("${_scheduleDate?.day}" +
+                                "-" +
+                                "${_scheduleDate?.month}" +
+                                "-" +
+                                "${_scheduleDate?.year}"),
+                            'schedule_time': _scheduleTime,
+                          }));
+                      print(response.body);
+                      var jsonData = jsonDecode(response.body);
                       showDialog(
                         context: context,
                         builder: (context) {
@@ -547,6 +576,7 @@ class _RequestKTPPageState extends State<RequestKTPPage> {
                                   // TODO: Munculkan informasi yang didapat dari form
                                   TextButton(
                                     onPressed: () {
+                                      Navigator.pop(context);
                                       Navigator.pop(context);
                                     },
                                     child: Text('Kembali'),
