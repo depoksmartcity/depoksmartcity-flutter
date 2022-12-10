@@ -4,16 +4,15 @@ import 'package:depoksmartcity/page/kependudukan/request_ktp.dart';
 import 'package:depoksmartcity/utils/kependudukan/fetchKelurahan.dart';
 import 'package:provider/provider.dart';
 import 'package:pbp_django_auth/pbp_django_auth.dart';
-import 'package:depoksmartcity/page/kependudukan/requests.dart';
 
-class KependudukanPage extends StatefulWidget {
-  const KependudukanPage({super.key});
+class RequestsPage extends StatefulWidget {
+  const RequestsPage({super.key});
 
   @override
-  State<KependudukanPage> createState() => _KependudukanPageState();
+  State<RequestsPage> createState() => _RequestsPageState();
 }
 
-class _KependudukanPageState extends State<KependudukanPage> {
+class _RequestsPageState extends State<RequestsPage> {
   final TextStyle h1 = TextStyle(
       fontSize: 24, fontWeight: FontWeight.w600, color: Colors.blueGrey);
   final TextStyle h2 = TextStyle(
@@ -42,10 +41,6 @@ class _KependudukanPageState extends State<KependudukanPage> {
             child: Column(
               mainAxisAlignment: MainAxisAlignment.center,
               children: <Widget>[
-                Text(
-                  'Layanan request bikin KTP dan penjadwalan sesi foto',
-                  style: h1,
-                ),
                 ElevatedButton(
                   style: ElevatedButton.styleFrom(
                       textStyle: const TextStyle(fontSize: 20)),
@@ -53,21 +48,17 @@ class _KependudukanPageState extends State<KependudukanPage> {
                     Navigator.push(
                       context,
                       MaterialPageRoute(
-                          builder: (context) => const RequestsPage()),
+                          builder: (context) => const RequestKTPPage()),
                     );
                   },
-                  child: const Text('Request KTP'),
+                  child: const Text('Buat Request KTP'),
                 ),
                 const SizedBox(height: 30),
                 Text(
-                  'Daftar Kelurahan',
+                  'Daftar Request KTP',
                   style: h1,
                 ),
                 const SizedBox(height: 30),
-                Text(
-                  'Kecamatan Beji',
-                  style: h2,
-                ),
                 FutureBuilder(
                   future: fetchKelurahan(),
                   builder: (context, AsyncSnapshot snapshot) {
@@ -127,56 +118,6 @@ class _KependudukanPageState extends State<KependudukanPage> {
                       }
                     }
                   },
-                ),
-                const SizedBox(height: 30),
-                Text(
-                  'Kecamatan Pancoran Mas',
-                  style: h2,
-                ),
-                const SizedBox(height: 30),
-                Text(
-                  'Kecamatan Cipayung',
-                  style: h2,
-                ),
-                const SizedBox(height: 30),
-                Text(
-                  'Kecamatan Sukmajaya',
-                  style: h2,
-                ),
-                const SizedBox(height: 30),
-                Text(
-                  'Kecamatan Cilodong',
-                  style: h2,
-                ),
-                const SizedBox(height: 30),
-                Text(
-                  'Kecamatan Limo',
-                  style: h2,
-                ),
-                const SizedBox(height: 30),
-                Text(
-                  'Kecamatan Cinere',
-                  style: h2,
-                ),
-                const SizedBox(height: 30),
-                Text(
-                  'Kecamatan Cimanggis',
-                  style: h2,
-                ),
-                const SizedBox(height: 30),
-                Text(
-                  'Kecamatan Tapos',
-                  style: h2,
-                ),
-                const SizedBox(height: 30),
-                Text(
-                  'Kecamatan Sawangan',
-                  style: h2,
-                ),
-                const SizedBox(height: 30),
-                Text(
-                  'Kecamatan Bojong Sari',
-                  style: h2,
                 ),
                 const SizedBox(height: 30),
               ],
