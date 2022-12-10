@@ -25,6 +25,15 @@ class _DrawerClassState extends State<DrawerClass> {
       child: ListView(
         padding: EdgeInsets.zero,
         children: [
+          UserAccountsDrawerHeader(
+            currentAccountPicture: CircleAvatar(
+              radius: 50,
+              backgroundImage: AssetImage("lib/assets/kota-depok-login.jpg"),
+            ),
+            accountName: Text("HELO"),
+            accountEmail: Text("TEST"),
+            
+          ),
           // Untuk yang menu counter_7
           ListTile(
             leading: Icon(Icons.home),
