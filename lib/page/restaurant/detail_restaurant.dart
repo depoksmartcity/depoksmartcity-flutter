@@ -71,43 +71,6 @@ class _DetailRestaurantPageState extends State<DetailRestaurantPage>{
               ],
             ),
             ),
-            
-        //    Padding(padding: const EdgeInsets.symmetric(vertical: 4.0),
-        //     child : Row(
-        //       children: [
-        //         const Text(
-        //           "Rating: ",
-        //           style: TextStyle(fontWeight: FontWeight.bold, fontSize: 16)
-        //         ),
-        //         const SizedBox(
-        //         //Use of SizedBox
-        //         width: 10,
-        //         ),
-        //         Text(
-        //           "${widget.data.fields.rating}/5",
-        //           style: const TextStyle(fontSize: 16)
-        //         )
-        //       ],
-        //     ),
-        //     ),
-        //    Padding(padding: const EdgeInsets.symmetric(vertical: 4.0),
-        //     child : Row(
-        //       children: [
-        //         const Text(
-        //           "Status: ",
-        //           style: TextStyle(fontWeight: FontWeight.bold, fontSize: 16)
-        //         ),
-        //         const SizedBox(
-        //         //Use of SizedBox
-        //         width: 10,
-        //         ),
-        //         Text(
-        //           widget.data.fields.watched ? "watched" : "not watched",
-        //           style: const TextStyle(fontSize: 16)
-        //         )
-        //       ],
-        //     ),
-        //     ),
             Column(
               children: [
                 const Align(
@@ -144,12 +107,28 @@ class _DetailRestaurantPageState extends State<DetailRestaurantPage>{
               child: const Align(
                 alignment: Alignment.center,
                 child :  Text(
-                  "kembali",
+                  "Lihat Ulasan",
+                  style: TextStyle(color : Colors.white)
+                )
+              )
+            )),
+            TextButton(
+            style: ButtonStyle(
+              backgroundColor: MaterialStateProperty.all( Colors.blue),
+              ),  
+            onPressed:(){
+              Navigator.pop(context);
+            }, 
+            child: SizedBox(
+              width: MediaQuery.of(context).size.width,
+              child: const Align(
+                alignment: Alignment.center,
+                child :  Text(
+                  "Kembali",
                   style: TextStyle(color : Colors.white)
                 )
               )
             ))
-
 
           ],
         ),

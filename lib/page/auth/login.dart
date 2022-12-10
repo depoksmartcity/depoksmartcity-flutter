@@ -4,6 +4,7 @@ import 'package:http/http.dart' as http;
 import 'dart:convert';
 import 'package:depoksmartcity/drawer/drawer.dart';
 import 'package:depoksmartcity/main.dart';
+
 import 'package:provider/provider.dart';
 import 'package:pbp_django_auth/pbp_django_auth.dart';
 
@@ -21,9 +22,8 @@ class _LoginPageState extends State<LoginPage> {
 
   @override
   Widget build(BuildContext context) {
-    final request = context.read<CookieRequest>();
-    print(request.loggedIn);
-    print(request.jsonData);
+    final request = context.watch<CookieRequest>();
+
     return Scaffold(
         appBar: AppBar(
           title: const Text("Welcome!"),
@@ -144,20 +144,14 @@ class _LoginPageState extends State<LoginPage> {
                               ),
                               onPressed: () async {
                                 if (_loginFormKey.currentState!.validate()) {
-                                  final response = await http.post(
-                                      Uri.parse(
-                                          "https://web-production-1710.up.railway.app/login-flutter/"),
-                                      headers: <String, String>{
-                                        'Content-Type':
-                                            'application/json;charset=UTF-8'
-                                      },
-                                      body: jsonEncode(<String, String>{
+                                  final response = await request.post(
+                                      "https://web-production-1710.up.railway.app/login-flutter/",
+                                      jsonEncode(<String, String>{
                                         'username': username,
                                         'password': password
                                       }));
                                   // print(response.body);
-                                  bool status =
-                                      jsonDecode(response.body)['status'];
+                                  bool status = response["status"];
                                   // print(jsonDecode(response.body));
 
                                   if (status) {
