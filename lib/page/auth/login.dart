@@ -3,6 +3,8 @@ import 'package:http/http.dart' as http;
 import 'dart:convert';
 import 'package:depoksmartcity/drawer/drawer.dart';
 import 'package:depoksmartcity/main.dart';
+import 'package:provider/provider.dart';
+import 'package:pbp_django_auth/pbp_django_auth.dart';
 
 class LoginPage extends StatefulWidget {
   const LoginPage({Key? key}) : super(key: key);
@@ -18,6 +20,9 @@ class _LoginPageState extends State<LoginPage> {
 
   @override
   Widget build(BuildContext context) {
+    final request = context.read<CookieRequest>();
+    print(request.loggedIn);
+    print(request.jsonData);
     return Scaffold(
         appBar: AppBar(
           title: const Text("Welcome!"),
