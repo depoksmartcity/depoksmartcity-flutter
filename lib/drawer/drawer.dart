@@ -85,6 +85,16 @@ class _DrawerClassState extends State<DrawerClass> {
               );
             },
           ),
+          ListTile(
+            title: const Text("Kesehatan"),
+            onTap: () {
+              Navigator.pushReplacement(
+                context,
+                MaterialPageRoute(
+                    builder: (context) => const KependudukanPage()),
+              );
+            },
+          ),
         ],
       ),
     );
