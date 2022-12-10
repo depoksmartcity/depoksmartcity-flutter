@@ -1,5 +1,6 @@
 import 'package:depoksmartcity/main.dart';
 import 'package:depoksmartcity/page/auth/login.dart';
+import 'package:depoksmartcity/page/auth/register.dart';
 import 'package:depoksmartcity/page/aspirasi.dart';
 import 'package:depoksmartcity/page/kependudukan/kependudukan.dart';
 import 'package:flutter/material.dart';
@@ -45,6 +46,15 @@ class _DrawerClassState extends State<DrawerClass> {
             },
           ),
           ListTile(
+            title: const Text("Register"),
+            onTap: () {
+              Navigator.pushReplacement(
+                context,
+                MaterialPageRoute(builder: (context) => RegisterPage()),
+              );
+            },
+          ),
+          ListTile(
             title: const Text("Aspirasi"),
             onTap: () {
               Navigator.pushReplacement(
@@ -55,6 +65,16 @@ class _DrawerClassState extends State<DrawerClass> {
           ),
           ListTile(
             title: const Text("Kependudukan"),
+            onTap: () {
+              Navigator.pushReplacement(
+                context,
+                MaterialPageRoute(
+                    builder: (context) => const KependudukanPage()),
+              );
+            },
+          ),
+          ListTile(
+            title: const Text("Kesehatan"),
             onTap: () {
               Navigator.pushReplacement(
                 context,
