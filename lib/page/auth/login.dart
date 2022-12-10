@@ -217,7 +217,7 @@ class _LoginPageState extends State<LoginPage> {
                                 MaterialPageRoute(
                                     builder: (context) => RegisterPage())),
                             child: const Text(
-                              "\nBelum Punya Acc?",
+                              "\nBelum Punya Akun?",
                               style: TextStyle(
                                 decoration: TextDecoration.underline,
                               ),
