@@ -3,7 +3,7 @@ import 'dart:convert';
 import 'package:depoksmartcity/model/restaurant/restaurant.dart';
 
 Future<List<Restaurants>> fetchRestaurant() async {
-        var url = Uri.parse('http://depoksmartcity.herokuapp.com/restaurants/json/');
+        var url = Uri.parse('https://web-production-1710.up.railway.app/restaurants/json/');
         var response = await http.get(
         url,
         headers: {
