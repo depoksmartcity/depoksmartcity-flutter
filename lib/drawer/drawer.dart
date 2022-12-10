@@ -1,5 +1,6 @@
 import 'package:depoksmartcity/main.dart';
 import 'package:depoksmartcity/page/auth/login.dart';
+import 'package:depoksmartcity/page/auth/register.dart';
 import 'package:depoksmartcity/page/aspirasi.dart';
 import 'package:depoksmartcity/page/kependudukan/kependudukan.dart';
 import 'package:depoksmartcity/page/restaurant/restaurant.dart';
@@ -36,15 +37,7 @@ class _DrawerClassState extends State<DrawerClass> {
               );
             },
           ),
-          ListTile(
-            title: const Text("Login"),
-            onTap: () {
-              Navigator.pushReplacement(
-                context,
-                MaterialPageRoute(builder: (context) => const LoginPage()),
-              );
-            },
-          ),
+
           ListTile(
             title: const Text("Aspirasi"),
             onTap: () {
@@ -61,6 +54,24 @@ class _DrawerClassState extends State<DrawerClass> {
                 context,
                 MaterialPageRoute(
                     builder: (context) => const KependudukanPage()),
+              );
+            },
+          ),
+          ListTile(
+            title: const Text("Login"),
+            onTap: () {
+              Navigator.pushReplacement(
+                context,
+                MaterialPageRoute(builder: (context) => const LoginPage()),
+              );
+            },
+          ),
+          ListTile(
+            title: const Text("Register"),
+            onTap: () {
+              Navigator.pushReplacement(
+                context,
+                MaterialPageRoute(builder: (context) => RegisterPage()),
               );
             },
           ),
