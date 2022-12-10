@@ -2,21 +2,12 @@ import 'package:depoksmartcity/model/aspirasi/aspirasiModel.dart';
 import 'package:http/http.dart' as http;
 import 'dart:convert';
 
-class UseAspirasi {
-  Future<List<Aspirasi>> fetchAspirasi() async {
-    var url = Uri.parse(
-        'https://web-production-1710.up.railway.app/aspirasi/json/');
-    var response = await http.get(
-      url,
-      headers: {
-        "Access-Control-Allow-Origin": "*",
-        "Content-Type": "application/json",
-      },
-    );
-    print(response);
+import 'package:pbp_django_auth/pbp_django_auth.dart';
 
-    // melakukan decode response menjadi bentuk json
-    var data = jsonDecode(utf8.decode(response.bodyBytes));
+class UseAspirasi {
+  Future<List<Aspirasi>> fetchAspirasi(CookieRequest request) async {
+    var data = await request
+        .get('https://web-production-1710.up.railway.app/aspirasi/json-user/');
 
     // melakukan konversi data json menjadi object Aspirasi
     List<Aspirasi> listAspirasi = [];
