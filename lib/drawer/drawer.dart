@@ -1,7 +1,7 @@
 import 'package:depoksmartcity/main.dart';
 import 'package:depoksmartcity/page/auth/login.dart';
 import 'package:depoksmartcity/page/auth/register.dart';
-import 'package:depoksmartcity/page/aspirasi.dart';
+import 'package:depoksmartcity/page/aspirasi/aspirasi.dart';
 import 'package:depoksmartcity/page/kependudukan/kependudukan.dart';
 import 'package:depoksmartcity/page/restaurant/restaurant.dart';
 import 'package:flutter/material.dart';
