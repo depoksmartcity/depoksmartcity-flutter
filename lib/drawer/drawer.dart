@@ -25,6 +25,7 @@ class _DrawerClassState extends State<DrawerClass> {
         children: [
           // Untuk yang menu counter_7
           ListTile(
+            leading: Icon(Icons.home),
             title: const Text("counter_7"),
             onTap: () {
               Navigator.pushReplacement(
@@ -36,6 +37,7 @@ class _DrawerClassState extends State<DrawerClass> {
             },
           ),
           ListTile(
+            leading: Icon(Icons.login),
             title: const Text("Login"),
             onTap: () {
               Navigator.pushReplacement(
@@ -45,6 +47,7 @@ class _DrawerClassState extends State<DrawerClass> {
             },
           ),
           ListTile(
+            leading: Icon(Icons.chat),
             title: const Text("Aspirasi"),
             onTap: () {
               Navigator.pushReplacement(
@@ -54,6 +57,7 @@ class _DrawerClassState extends State<DrawerClass> {
             },
           ),
           ListTile(
+            leading: Icon(Icons.people),
             title: const Text("Kependudukan"),
             onTap: () {
               Navigator.pushReplacement(
