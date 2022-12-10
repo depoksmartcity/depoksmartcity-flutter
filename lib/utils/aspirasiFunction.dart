@@ -1,4 +1,4 @@
-import 'package:depoksmartcity/models/aspirasiModel.dart';
+import 'package:depoksmartcity/model/aspirasi/aspirasiModel.dart';
 import 'package:http/http.dart' as http;
 import 'dart:convert';
 
