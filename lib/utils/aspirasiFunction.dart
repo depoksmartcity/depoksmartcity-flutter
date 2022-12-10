@@ -4,7 +4,8 @@ import 'dart:convert';
 
 class UseAspirasi {
   Future<List<Aspirasi>> fetchAspirasi() async {
-    var url = Uri.parse('https://web-production-1710.up.railway.app/aspirasi/json/');
+    var url = Uri.parse(
+        'https://web-production-1710.up.railway.app/aspirasi/json/');
     var response = await http.get(
       url,
       headers: {
@@ -12,10 +13,10 @@ class UseAspirasi {
         "Content-Type": "application/json",
       },
     );
+    print(response);
 
     // melakukan decode response menjadi bentuk json
     var data = jsonDecode(utf8.decode(response.bodyBytes));
-
 
     // melakukan konversi data json menjadi object Aspirasi
     List<Aspirasi> listAspirasi = [];
@@ -27,5 +28,4 @@ class UseAspirasi {
 
     return listAspirasi;
   }
-
 }
