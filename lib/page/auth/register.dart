@@ -78,7 +78,7 @@ class RegisterPage extends StatelessWidget {
                       }
                       return null;
                     },
-                    maxLength: 15,
+                    maxLength: 20,
                     decoration: InputDecoration(
                         prefixIcon: const Icon(
                           Icons.alternate_email_rounded,
