@@ -1,4 +1,5 @@
-import 'package:depoksmartcity/page/aspirasi/aspirasi_user.dart';
+import 'package:depoksmartcity/page/aspirasi/aspirasi.dart';
+import 'package:depoksmartcity/utils/aspirasi/aspirasiFunctionUser.dart';
 import 'package:flutter/material.dart';
 import 'package:depoksmartcity/drawer/drawer.dart';
 import 'package:depoksmartcity/utils/aspirasi/aspirasiFunction.dart';
@@ -6,15 +7,15 @@ import 'package:depoksmartcity/utils/aspirasi/aspirasiFunction.dart';
 import 'package:provider/provider.dart';
 import 'package:pbp_django_auth/pbp_django_auth.dart';
 
-class AspirasiPage extends StatefulWidget {
-  const AspirasiPage({super.key});
+class AspirasiPageUser extends StatefulWidget {
+  const AspirasiPageUser({super.key});
 
   @override
-  State<AspirasiPage> createState() => _AspirasiPageState();
+  State<AspirasiPageUser> createState() => _AspirasiPageUserState();
 }
 
-class _AspirasiPageState extends State<AspirasiPage> {
-  UseAspirasi useAspirasi = UseAspirasi();
+class _AspirasiPageUserState extends State<AspirasiPageUser> {
+  UseAspirasiUser useAspirasi = UseAspirasiUser();
 
   @override
   Widget build(BuildContext context) {
@@ -42,7 +43,7 @@ class _AspirasiPageState extends State<AspirasiPage> {
             children: [
               TextButton(
                 child: const Text(
-                  "Lihat Aspirasi Saya",
+                  "Kembali",
                   style: TextStyle(color: Colors.white),
                 ),
                 style: ButtonStyle(
@@ -52,11 +53,11 @@ class _AspirasiPageState extends State<AspirasiPage> {
                   Navigator.push(
                   context,
                   MaterialPageRoute(
-                      builder: (context) => const AspirasiPageUser()));
+                      builder: (context) => const AspirasiPage()));
                 }
               ),
               FutureBuilder(
-              future: useAspirasi.fetchAspirasi(request),
+              future: useAspirasi.fetchAspirasiUser(request),
               builder: (context, AsyncSnapshot snapshot) {
                 if (snapshot.data == null) {
                   return const Center(child: CircularProgressIndicator());
