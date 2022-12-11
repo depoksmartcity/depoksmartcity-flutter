@@ -8,28 +8,30 @@ import 'package:pbp_django_auth/pbp_django_auth.dart';
 import 'package:depoksmartcity/page/perpustakaan/detailBook.dart';
 
 
-class NewsSubmit extends StatefulWidget {
-  const NewsSubmit({super.key});
+class AddBookReview extends StatefulWidget {
+  const AddBookReview({super.key, required this.bookPk});
+
+  final int bookPk;
   @override
-  State<NewsSubmit> createState() => _NewsSubmitState();
+  State<AddBookReview> createState() => _AddBookReviewState();
 }
 
-class _NewsSubmitState extends State<NewsSubmit> {
+class _AddBookReviewState extends State<AddBookReview> {
   final _formKey = GlobalKey<FormState>();
-  String _judul = "";
-  String _deskripsi = "";
+  int _rate = 0;
+  String _review = "";
 
   @override
   Widget build(BuildContext context) {
     final request = context.watch<CookieRequest>();
     return Scaffold(
       appBar: AppBar(
-        title: Text('News Submit'),
+        title: Text('Add Review'),
         backgroundColor: Color(0xFF003320),
       ),
 
       // Menambahkan drawer menu
-      drawer: PublicDrawer(),
+      drawer: DrawerClass(),
 
       body: Form(
         key: _formKey,
@@ -45,31 +47,39 @@ class _NewsSubmitState extends State<NewsSubmit> {
                     children: [
                       TextFormField(
                         decoration: InputDecoration(
-                          hintText: "Title",
-                          labelText: "Title",
+                          hintText: "Rate (01 - 5)",
+                          labelText: "Rate",
                           // Menambahkan icon agar lebih intuitif
-                          icon: const Icon(Icons.title),
+                          icon: const Icon(Icons.numbers),
                           // Menambahkan circular border agar lebih rapi
                           border: OutlineInputBorder(
                             borderRadius: BorderRadius.circular(5.0),
                           ),
                         ),
                         // Menambahkan behavior saat nama diketik
-                        onChanged: (String? value) {
-                          setState(() {
-                            _judul = value!;
-                          });
-                        },
+                        onChanged: (String? value) {},
                         // Menambahkan behavior saat data disimpan
-                        onSaved: (String? value) {
-                          setState(() {
-                            _judul = value!;
-                          });
-                        },
+                        onSaved: (String? value) {},
                         // Validator sebagai validasi form
                         validator: (String? value) {
                           if (value == null || value.isEmpty) {
-                            return 'Title can not be empty!';
+                            return 'Rate can not be empty!';
+                          }
+                          else {
+                            try {
+                              int num = int.parse(value);
+                              if (num <= 0) {
+                                return 'Rate can not be lower than 1.';
+                              }
+                              else if (num > 5) {
+                                return 'Rate can not be higher than 5.';
+                              }
+
+                              setState(() => _rate = num);
+                            }
+                            on FormatException {
+                              return 'Rate must be a positive integer.';
+                            }
                           }
                           return null;
                         },
@@ -79,8 +89,8 @@ class _NewsSubmitState extends State<NewsSubmit> {
                         maxLines: null,
                         keyboardType: TextInputType.multiline,
                         decoration: InputDecoration(
-                          hintText: "Description",
-                          labelText: "Description",
+                          hintText: "Review",
+                          labelText: "Review",
                           // Menambahkan icon agar lebih intuitif
                           icon: const Icon(Icons.description),
                           // Menambahkan circular border agar lebih rapi
@@ -93,7 +103,7 @@ class _NewsSubmitState extends State<NewsSubmit> {
                           // String _nominal = _nominalController.text;
                           // int.parse(_nominal);
                           setState(() {
-                            _deskripsi = value!;
+                            _review = value!;
                           });
                         },
                         // Menambahkan behavior saat data disimpan
@@ -101,13 +111,13 @@ class _NewsSubmitState extends State<NewsSubmit> {
                           // String _nominal = _nominalController.text;
                           // int.parse(_nominal);
                           setState(() {
-                            _deskripsi = value!;
+                            _review = value!;
                           });
                         },
                         // Validator sebagai validasi form
                         validator: (String? value) {
                           if (value == null || value.isEmpty) {
-                            return 'Description can not be empty!';
+                            return 'Review can not be empty!';
                           }
                           return null;
                         },
@@ -124,7 +134,7 @@ class _NewsSubmitState extends State<NewsSubmit> {
                           child: Center(
                               child: TextButton(
                             child: Text(
-                              "Create Article",
+                              "Add Review",
                               style: TextStyle(
                                 color: Colors.white,
                                 fontWeight: FontWeight.bold,
@@ -136,26 +146,41 @@ class _NewsSubmitState extends State<NewsSubmit> {
                                   Size.fromHeight(40)),
                             ),
                             onPressed: () async {
+                              String msg = "";
+                              int bookPk = widget.bookPk;
                               final response = await request.post(
-                                "https://scrappy.up.railway.app/news/add/",
+                                "https://web-production-1710.up.railway.app/perpustakaan/book/review/$bookPk",
                                 {
-                                  'title': _judul,
-                                  'description': _deskripsi,
+                                  'rate': _rate,
+                                  'review': _review,
                                 },
                               );
 
                               // Code here will run if the login succeeded.
-                              Navigator.pushReplacement(
-                                  context,
-                                  MaterialPageRoute(
-                                      builder: (BuildContext context) =>
-                                          const NewsList()));
+                              Navigator.pop(context);
 
                               // Code here will run if the login failed (wrong username/password).
                             },
                           )),
                         ),
                       ),
+                      Container(
+                        margin:
+                            const EdgeInsets.symmetric(horizontal: 16, vertical: 12),
+                        child: Align(
+                            alignment: Alignment.bottomCenter,
+                            child: TextButton(
+                              onPressed: (() {
+                                Navigator.pop(context);
+                              }),
+                              child: Text(
+                                'Back',
+                                style: TextStyle(color: Colors.white),
+                              ),
+                              style: ButtonStyle(
+                                  backgroundColor:
+                                      MaterialStateProperty.all(Colors.blue)),
+                            ))),
                     ],
                   ),
                 ),
