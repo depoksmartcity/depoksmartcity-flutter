@@ -4,9 +4,8 @@ import 'package:depoksmartcity/model/perpustakaan/bookHistory.dart';
 
 
 Future<List<BookHistory>> fetchBookHistoryActive(int pkBook) async {
-  List<BookHistory> listBookHistory = [];
   var url =
-      Uri.parse('https://web-production-1710.up.railway.app/perpustakaan/book/history/active/$pkBook');
+      Uri.parse('https://web-production-1710.up.railway.app/book/history/active/$pkBook');
   var response = await http.get(
     url,
     headers: {
@@ -14,15 +13,12 @@ Future<List<BookHistory>> fetchBookHistoryActive(int pkBook) async {
       "Content-Type": "application/json",
     },
   );
-  var data;
-  try {
-    var data = jsonDecode(utf8.decode(response.bodyBytes));
-  }
-  catch (error){
-    return listBookHistory;
-  }
+
+  // melakukan decode response menjadi bentuk json
+  var data = jsonDecode(utf8.decode(response.bodyBytes));
 
   // melakukan konversi data json menjadi object MyWatchlist
+  List<BookHistory> listBookHistory = [];
   for (var datum in data) {
     if (datum != null) {
       listBookHistory.add(BookHistory.fromJson(datum));
@@ -33,9 +29,8 @@ Future<List<BookHistory>> fetchBookHistoryActive(int pkBook) async {
 }
 
 Future<List<BookHistory>> fetchBookHistoryDone(int pkBook) async {
-  List<BookHistory> listBookHistory = [];
   var url =
-      Uri.parse('https://web-production-1710.up.railway.app/perpustakaan/book/history/done/$pkBook');
+      Uri.parse('https://web-production-1710.up.railway.app/book/history/done/$pkBook');
   var response = await http.get(
     url,
     headers: {
@@ -45,15 +40,10 @@ Future<List<BookHistory>> fetchBookHistoryDone(int pkBook) async {
   );
 
   // melakukan decode response menjadi bentuk json
-  var data;
-  try {
-    var data = jsonDecode(utf8.decode(response.bodyBytes));
-  }
-  catch (error){
-    return listBookHistory;
-  }
+  var data = jsonDecode(utf8.decode(response.bodyBytes));
 
   // melakukan konversi data json menjadi object MyWatchlist
+  List<BookHistory> listBookHistory = [];
   for (var datum in data) {
     if (datum != null) {
       listBookHistory.add(BookHistory.fromJson(datum));

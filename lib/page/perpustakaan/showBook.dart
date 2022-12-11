@@ -92,18 +92,13 @@ class _BooksPageState extends State<BooksPage> {
                               mainAxisAlignment: MainAxisAlignment.start,
                               crossAxisAlignment: CrossAxisAlignment.start,
                               children: [
-                                Center(
-                                child: Image.network(snapshot.data![index].fields.photoUrl),
-                                ),
-                                Center(
-                                  child: Text(
+                                Text(
                                   "${snapshot.data![index].fields.title}",
                                   style: const TextStyle(
                                     fontSize: 18.0,
                                     fontWeight: FontWeight.bold,
                                   ),
-                                  ),
-                                )
+                                ),
                               ],
                             ),
                           )));

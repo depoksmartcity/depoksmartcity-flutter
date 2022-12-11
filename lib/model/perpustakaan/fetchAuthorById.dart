@@ -5,7 +5,7 @@ import 'package:depoksmartcity/model/perpustakaan/author.dart';
 
 Future<List<Author>> fetchAuthorById(int idAuthor) async {
   var url =
-      Uri.parse('https://web-production-1710.up.railway.app/perpustakaan/author/$idAuthor/json');
+      Uri.parse('https://web-production-1710.up.railway.app/author/$idAuthor/json');
   var response = await http.get(
     url,
     headers: {
@@ -24,5 +24,6 @@ Future<List<Author>> fetchAuthorById(int idAuthor) async {
       listAuthor.add(Author.fromJson(datum));
     }
   }
+
   return listAuthor;
 }
