@@ -163,67 +163,6 @@ class BookDetailsPage extends StatelessWidget {
                     ],
                   ),
             const SizedBox(height: 20.0),
-            FutureBuilder(
-              future: fetchBookReview(pk),
-              builder: (context, AsyncSnapshot snapshot) {
-                if (snapshot.data == null) {
-                return const Center(child: CircularProgressIndicator());
-              } else {
-                if (snapshot.data.length == 0) {
-                  return Column(
-                    children: const [
-                      Text(
-                        "No Review Yet",
-                        style:
-                            TextStyle(color: Colors.black, fontSize: 20),
-                      ),
-                      SizedBox(height: 8),
-                    ],
-                  );
-                } else {
-                  return ListView.builder(
-                      shrinkWrap: true,
-                      itemCount: snapshot.data!.length,
-                      itemBuilder: (_, index) => GestureDetector(
-                          child: Container(
-                            margin: const EdgeInsets.symmetric(
-                                horizontal: 16, vertical: 12),
-                            padding: const EdgeInsets.all(20.0),
-                            decoration: BoxDecoration(
-                                color: Colors.white,
-                                borderRadius: BorderRadius.circular(15.0),
-                                boxShadow: const [
-                                  BoxShadow(
-                                      color: Colors.black, blurRadius: 2.0)
-                                ]),
-                            child: Column(
-                              mainAxisAlignment: MainAxisAlignment.start,
-                              crossAxisAlignment: CrossAxisAlignment.start,
-                              children: [
-                                Center(
-                                child: Text(
-                                  "Rate: ${snapshot.data![index].fields.rate}",
-                                  style: const TextStyle(
-                                    fontSize: 14.0,
-                                    fontWeight: FontWeight.bold,
-                                  ),
-                                  ),
-                                ),
-                                Center(
-                                  child: Text(
-                                  "${snapshot.data![index].fields.review}",
-                                  style: const TextStyle(
-                                    fontSize: 12.0,
-                                  ),
-                                  ),
-                                )
-                              ],
-                            ),
-                          )));
-                }
-              }
-              }
-            ),
             Visibility(
               visible: request.loggedIn,
               child: FutureBuilder(
@@ -346,6 +285,67 @@ class BookDetailsPage extends StatelessWidget {
                           backgroundColor:
                               MaterialStateProperty.all(Colors.blue)),
                     ))),
+            FutureBuilder(
+              future: fetchBookReview(pk),
+              builder: (context, AsyncSnapshot snapshot) {
+                if (snapshot.data == null) {
+                return const Center(child: CircularProgressIndicator());
+              } else {
+                if (snapshot.data.length == 0) {
+                  return Column(
+                    children: const [
+                      Text(
+                        "No Review Yet",
+                        style:
+                            TextStyle(color: Colors.black, fontSize: 20),
+                      ),
+                      SizedBox(height: 8),
+                    ],
+                  );
+                } else {
+                  return ListView.builder(
+                      shrinkWrap: true,
+                      itemCount: snapshot.data!.length,
+                      itemBuilder: (_, index) => GestureDetector(
+                          child: Container(
+                            margin: const EdgeInsets.symmetric(
+                                horizontal: 16, vertical: 12),
+                            padding: const EdgeInsets.all(20.0),
+                            decoration: BoxDecoration(
+                                color: Colors.white,
+                                borderRadius: BorderRadius.circular(15.0),
+                                boxShadow: const [
+                                  BoxShadow(
+                                      color: Colors.black, blurRadius: 2.0)
+                                ]),
+                            child: Column(
+                              mainAxisAlignment: MainAxisAlignment.start,
+                              crossAxisAlignment: CrossAxisAlignment.start,
+                              children: [
+                                Center(
+                                child: Text(
+                                  "Rate: ${snapshot.data![index].fields.rate}",
+                                  style: const TextStyle(
+                                    fontSize: 14.0,
+                                    fontWeight: FontWeight.bold,
+                                  ),
+                                  ),
+                                ),
+                                Center(
+                                  child: Text(
+                                  "${snapshot.data![index].fields.review}",
+                                  style: const TextStyle(
+                                    fontSize: 12.0,
+                                  ),
+                                  ),
+                                )
+                              ],
+                            ),
+                          )));
+                }
+              }
+              }
+            ),
           ],
     )));
   }
