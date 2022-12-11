@@ -26,7 +26,7 @@ class _AspirasiPageUserState extends State<AspirasiPageUser> {
         backgroundColor: Colors.green,
         centerTitle: true,
         title: const Text(
-          'Aspirasi',
+          'Aspirasi Saya',
         ),
       ),
       // backgroundColor: Colors.pink,
