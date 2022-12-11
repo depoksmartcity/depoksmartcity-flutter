@@ -60,8 +60,6 @@ class _BooksPageState extends State<BooksPage> {
                                 pages: snapshot.data![index].fields.pages,
                                 authorId: snapshot.data![index].fields.authorId,
                                 publisherId: snapshot.data![index].fields.publisherId,
-                                authorName: snapshot.data![index].fields.authorName,
-                                publisherName: snapshot.data![index].fields.publisherName,
                                 edition: snapshot.data![index].fields.edition,
                                 releaseDate: snapshot.data![index].fields.releaseDate,
                                 photoUrl: snapshot.data![index].fields.photoUrl,
@@ -70,10 +68,6 @@ class _BooksPageState extends State<BooksPage> {
                                 rate: snapshot.data![index].fields.rate,
                                 borrowedTimes: snapshot.data![index].fields.borrowedTimes,
                                 reviewedTimes: snapshot.data![index].fields.reviewedTimes,
-                                isBorrowable: snapshot.data![index].fields.isBorrowable,
-                                isReturnable: snapshot.data![index].fields.isReturnable,
-                                isReviewable: snapshot.data![index].fields.isReviewable,
-                                listReview: snapshot.data![index].fields.listReview
                               ))
                             );
                           },

@@ -4,6 +4,7 @@ import 'package:depoksmartcity/model/perpustakaan/fetchAuthorById.dart';
 import 'package:depoksmartcity/model/perpustakaan/fetchPublisherById.dart';
 import 'package:depoksmartcity/model/perpustakaan/fetchBookHistory.dart';
 import 'package:depoksmartcity/model/perpustakaan/fetchBookReview.dart';
+import 'package:depoksmartcity/page/perpustakaan/reviewForm.dart';
 import 'package:depoksmartcity/main.dart';
 import 'package:depoksmartcity/drawer/drawer.dart';
 import 'package:depoksmartcity/providers/userProvider.dart';
@@ -20,8 +21,6 @@ class BookDetailsPage extends StatelessWidget {
       required this.pages,
       required this.authorId,
       required this.publisherId,
-      required this.authorName,
-      required this.publisherName,
       required this.edition,
       required this.releaseDate,
       required this.photoUrl,
@@ -29,11 +28,7 @@ class BookDetailsPage extends StatelessWidget {
       required this.isAvailable,
       required this.rate,
       required this.borrowedTimes,
-      required this.reviewedTimes,
-      required this.isBorrowable,
-      required this.isReturnable,
-      required this.isReviewable,
-      required this.listReview});
+      required this.reviewedTimes});
 
   final int pk;
   final String title;
@@ -41,8 +36,6 @@ class BookDetailsPage extends StatelessWidget {
   final String synopsis;
   final int pages;
   final int authorId;
-  final String authorName;
-  final String publisherName;
   final int publisherId;
   final int edition;
   final DateTime releaseDate;
@@ -52,10 +45,6 @@ class BookDetailsPage extends StatelessWidget {
   final double rate;
   final int borrowedTimes;
   final int reviewedTimes;
-  final List<BookReview> listReview;
-  final bool isReturnable;
-  final bool isBorrowable;
-  final bool isReviewable;
 
   @override
   Widget build(BuildContext context) {
@@ -67,68 +56,7 @@ class BookDetailsPage extends StatelessWidget {
     // var reviewedTimesStr = reviewedTimes.toString();
     var date = releaseDate.toString().substring(0, 10);
     var rateStr = rate.toString();
-    var buttonBorrow;
-    var buttonReturn;
-    var buttonReview;
-    bool isBorrowableTest = false;
-
-    if (isBorrowable) {
-      buttonBorrow = Container(
-                      margin:
-                          const EdgeInsets.symmetric(horizontal: 16, vertical: 12),
-                      child: Align(
-                          alignment: Alignment.bottomCenter,
-                          child: TextButton(
-                            onPressed: (() {
-                            
-                            }),
-                            child: Text(
-                              'Borrow',
-                              style: TextStyle(color: Colors.white),
-                            ),
-                            style: ButtonStyle(
-                                backgroundColor:
-                                    MaterialStateProperty.all(Colors.blue)),
-                          )));
-    }
-    if (isReturnable) {
-      buttonReturn = Container(
-                      margin:
-                          const EdgeInsets.symmetric(horizontal: 16, vertical: 12),
-                      child: Align(
-                          alignment: Alignment.bottomCenter,
-                          child: TextButton(
-                            onPressed: (() {
-                           
-                            }),
-                            child: Text(
-                              'Return',
-                              style: TextStyle(color: Colors.white),
-                            ),
-                            style: ButtonStyle(
-                                backgroundColor:
-                                    MaterialStateProperty.all(Colors.blue)),
-                          )));
-    }
-    if (isReviewable) {
-      buttonReview = Container(
-                      margin:
-                          const EdgeInsets.symmetric(horizontal: 16, vertical: 12),
-                      child: Align(
-                          alignment: Alignment.bottomCenter,
-                          child: TextButton(
-                            onPressed: (() {
-                              
-                            }),
-                            child: Text(
-                              'Review',
-                              style: TextStyle(color: Colors.white),
-                            ),
-                            style: ButtonStyle(
-                                backgroundColor:
-                                    MaterialStateProperty.all(Colors.blue)),
-                          )));
-    }
+   
     return Scaffold(
         resizeToAvoidBottomInset: false,
         appBar: AppBar(
@@ -168,7 +96,7 @@ class BookDetailsPage extends StatelessWidget {
                 'Rating: ',
                 style: TextStyle(fontWeight: FontWeight.bold),
               ),
-              Text('$rateStr/5'),
+              Text('$rateStr/5.0'),
             ]),
             const SizedBox(height: 20.0),
             FutureBuilder(
@@ -221,16 +149,19 @@ class BookDetailsPage extends StatelessWidget {
               Text(editionStr),
             ]),
             const SizedBox(height: 20.0),
-            Row(children: [
-              Text(
-                'Stock: ',
-                style: TextStyle(fontWeight: FontWeight.bold),
-              ),
-              Text(stockStr),
-            ]),
-            const SizedBox(height: 20.0),
             Text('Synopsis:', style: TextStyle(fontWeight: FontWeight.bold)),
             Text(synopsis),
+            const SizedBox(height: 20.0),
+            Column(
+                    children: const [
+                      Text(
+                        "Review:",
+                        style:
+                            TextStyle(color: Colors.black, fontSize: 20),
+                      ),
+                      SizedBox(height: 8),
+                    ],
+                  ),
             const SizedBox(height: 20.0),
             FutureBuilder(
               future: fetchBookReview(pk),
@@ -251,6 +182,7 @@ class BookDetailsPage extends StatelessWidget {
                   );
                 } else {
                   return ListView.builder(
+                      shrinkWrap: true,
                       itemCount: snapshot.data!.length,
                       itemBuilder: (_, index) => GestureDetector(
                           child: Container(
@@ -270,9 +202,9 @@ class BookDetailsPage extends StatelessWidget {
                               children: [
                                 Center(
                                 child: Text(
-                                  "${snapshot.data![index].fields.rate}",
+                                  "Rate: ${snapshot.data![index].fields.rate}",
                                   style: const TextStyle(
-                                    fontSize: 18.0,
+                                    fontSize: 14.0,
                                     fontWeight: FontWeight.bold,
                                   ),
                                   ),
@@ -281,8 +213,7 @@ class BookDetailsPage extends StatelessWidget {
                                   child: Text(
                                   "${snapshot.data![index].fields.review}",
                                   style: const TextStyle(
-                                    fontSize: 18.0,
-                                    fontWeight: FontWeight.bold,
+                                    fontSize: 12.0,
                                   ),
                                   ),
                                 )
@@ -294,14 +225,15 @@ class BookDetailsPage extends StatelessWidget {
               }
             ),
             Visibility(
-              visible: true,
+              visible: request.loggedIn,
               child: FutureBuilder(
-                future: fetchBookHistoryActive(pk),
+                future: fetchBookHistoryActive(pk, context),
                 builder: (context, AsyncSnapshot snapshot) {
                 if (snapshot.data == null) {
                 return const Center(child: CircularProgressIndicator());
               } else {
                 if (!snapshot.data.isEmpty) {
+                  print("1");
                   return Container(
                 margin:
                     const EdgeInsets.symmetric(horizontal: 16, vertical: 12),
@@ -309,9 +241,17 @@ class BookDetailsPage extends StatelessWidget {
                     alignment: Alignment.bottomCenter,
                     child: TextButton(
                     onPressed: () async {
-                      final response = await request.post(
-                          "https://web-production-1710.up.railway.app/perpustakaan/book/return/$pk/",
-                          {});
+                      print("pk berapa $pk" );
+                      try {
+                        final response = await request.get(
+                            "https://web-production-1710.up.railway.app/perpustakaan/book/$pk/return",
+                            );
+                        print(response);
+                      }
+                      catch (error) {
+                        print(error);
+                      }
+                      Navigator.pop(context);
                     },
                       child: Text(
                         'Return',
@@ -322,6 +262,7 @@ class BookDetailsPage extends StatelessWidget {
                               MaterialStateProperty.all(Colors.blue)),
                     )));
                 } else {
+                  print("2");
                 return Container(
                 margin:
                     const EdgeInsets.symmetric(horizontal: 16, vertical: 12),
@@ -329,9 +270,17 @@ class BookDetailsPage extends StatelessWidget {
                     alignment: Alignment.bottomCenter,
                     child: TextButton(
                     onPressed: () async {
-                      final response = await request.post(
-                          "https://web-production-1710.up.railway.app/perpustakaan/book/borrow/$pk/",
-                          {});
+                      print("pk berapa $pk" );
+                      try {
+                      final response = await request.get(
+                          "https://web-production-1710.up.railway.app/perpustakaan/book/$pk/borrow",
+                          );
+                      print(response);
+                      }
+                      catch (error){
+                        print(error);
+                      }
+                      Navigator.pop(context);
                     },
                       child: Text(
                         'Borrow',
@@ -346,9 +295,9 @@ class BookDetailsPage extends StatelessWidget {
             ),
             ),
             Visibility(
-              visible: true,
+              visible: request.loggedIn,
               child: FutureBuilder(
-                future: fetchBookHistoryDone(pk),
+                future: fetchBookHistoryDone(pk, context),
                 builder: (context, AsyncSnapshot snapshot) {
                 if (snapshot.data == null) {
                 return const Center(child: CircularProgressIndicator());
@@ -362,11 +311,12 @@ class BookDetailsPage extends StatelessWidget {
                   child: Align(
                       alignment: Alignment.bottomCenter,
                       child: TextButton(
-                      onPressed: () async {
-                        final response = await request.post(
-                            "https://web-production-1710.up.railway.app/perpustakaan/book/review/$pk/",
-                            {});
-                      },
+                      onPressed: (() {
+                        Navigator.of(context).push(
+                              MaterialPageRoute(builder: (context) => AddBookReview(
+                                bookPk: pk,
+                              )));
+                      }),
                         child: Text(
                           'Review',
                           style: TextStyle(color: Colors.white),
