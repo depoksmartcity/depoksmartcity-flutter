@@ -1,6 +1,8 @@
 import 'package:depoksmartcity/drawer/drawer.dart';
 import 'package:flutter/material.dart';
 import 'package:depoksmartcity/model/restaurant/restaurant.dart';
+import 'package:depoksmartcity/page/restaurant/rev_resto.dart';
+
 
 
 class DetailRestaurantPage extends StatefulWidget{
@@ -100,7 +102,8 @@ class _DetailRestaurantPageState extends State<DetailRestaurantPage>{
               backgroundColor: MaterialStateProperty.all( Colors.blue),
               ),  
             onPressed:(){
-              Navigator.pop(context);
+              Navigator.push(context,
+              MaterialPageRoute(builder: (context) => MyRevPage()));
             }, 
             child: SizedBox(
               width: MediaQuery.of(context).size.width,
