@@ -5,7 +5,7 @@ import 'package:depoksmartcity/model/perpustakaan/publisher.dart';
 
 Future<List<Publisher>> fetchPublisherById(int publisherId) async {
   var url =
-      Uri.parse('http://tugas2pbpkiram.herokuapp.com/mywatchlist/json/$publisherId');
+      Uri.parse('https://web-production-1710.up.railway.app/publisher/$publisherId/json');
   var response = await http.get(
     url,
     headers: {

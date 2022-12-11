@@ -5,7 +5,7 @@ import 'package:depoksmartcity/model/perpustakaan/bookHistory.dart';
 
 Future<List<BookHistory>> fetchBookHistoryActive(int pkBook) async {
   var url =
-      Uri.parse('http://tugas2pbpkiram.herokuapp.com/mywatchlist/json/$pkBook');
+      Uri.parse('https://web-production-1710.up.railway.app/book/history/active/$pkBook');
   var response = await http.get(
     url,
     headers: {
@@ -30,7 +30,7 @@ Future<List<BookHistory>> fetchBookHistoryActive(int pkBook) async {
 
 Future<List<BookHistory>> fetchBookHistoryDone(int pkBook) async {
   var url =
-      Uri.parse('http://tugas2pbpkiram.herokuapp.com/mywatchlist/json/$pkBook');
+      Uri.parse('https://web-production-1710.up.railway.app/book/history/done/$pkBook');
   var response = await http.get(
     url,
     headers: {

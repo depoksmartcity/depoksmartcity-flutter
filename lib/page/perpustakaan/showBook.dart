@@ -53,6 +53,7 @@ class _BooksPageState extends State<BooksPage> {
                           onTap: () {
                             Navigator.of(context).push(
                               MaterialPageRoute(builder: (context) => BookDetailsPage(
+                                pk: snapshot.data![index].pk,
                                 title: snapshot.data![index].fields.title,
                                 isbn: snapshot.data![index].fields.isbn,
                                 synopsis: snapshot.data![index].fields.synopsis,

@@ -5,7 +5,7 @@ import 'package:depoksmartcity/model/perpustakaan/bookDetails.dart';
 
 Future<List<BookDetails>> fetchBookDetails() async {
   var url =
-      Uri.parse('http://tugas2pbpkiram.herokuapp.com/mywatchlist/json/');
+      Uri.parse('https://web-production-1710.up.railway.app/perpustakaan/json');
   var response = await http.get(
     url,
     headers: {
