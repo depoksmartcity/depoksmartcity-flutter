@@ -87,7 +87,8 @@ class _BooksPageState extends State<BooksPage> {
                               crossAxisAlignment: CrossAxisAlignment.start,
                               children: [
                                 Center(
-                                child: Image.network(snapshot.data![index].fields.photoUrl),
+                                child: Image.network(snapshot.data![index].fields.photoUrl,
+                                                     height: 200,),
                                 ),
                                 Center(
                                   child: Text(
