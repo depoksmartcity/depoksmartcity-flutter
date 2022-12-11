@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:depoksmartcity/drawer/drawer.dart';
 import 'package:depoksmartcity/page/kependudukan/request_ktp.dart';
-import 'package:depoksmartcity/utils/kependudukan/fetchKelurahan.dart';
+import 'package:depoksmartcity/utils/kependudukan/fetchRequests.dart';
 import 'package:provider/provider.dart';
 import 'package:pbp_django_auth/pbp_django_auth.dart';
 
@@ -60,7 +60,7 @@ class _RequestsPageState extends State<RequestsPage> {
                 ),
                 const SizedBox(height: 30),
                 FutureBuilder(
-                  future: fetchKelurahan(),
+                  future: fetchRequests(request.jsonData['username']),
                   builder: (context, AsyncSnapshot snapshot) {
                     if (snapshot.data == null) {
                       return const Center(child: CircularProgressIndicator());
@@ -69,7 +69,7 @@ class _RequestsPageState extends State<RequestsPage> {
                         return Column(
                           children: const [
                             Text(
-                              "Tidak ada kelurahan tercatat :(",
+                              "Belum ada request KTP",
                               style: TextStyle(
                                   color: Color(0xff59A5D8), fontSize: 20),
                             ),
@@ -101,14 +101,40 @@ class _RequestsPageState extends State<RequestsPage> {
                               crossAxisAlignment: CrossAxisAlignment.start,
                               children: [
                                 Text(
-                                  "${snapshot.data![index].fields.name}",
+                                  "Request ${snapshot.data![index].fields.requestedAt}",
                                   style: const TextStyle(
                                     fontSize: 18.0,
                                     fontWeight: FontWeight.bold,
                                   ),
                                 ),
                                 const SizedBox(height: 10),
-                                Text("${snapshot.data![index].fields.address}"),
+                                Text(
+                                    "Provinsi: ${snapshot.data![index].fields.provinsi}"),
+                                Text(
+                                    "Kota: ${snapshot.data![index].fields.kota}"),
+                                Text(
+                                    "Kecamatan: ${snapshot.data![index].fields.kecamatan}"),
+                                Text(
+                                    "Kelurahan: ${snapshot.data![index].fields.kelurahan}"),
+                                Text(
+                                    "Permohonan: ${snapshot.data![index].fields.permohonan}"),
+                                Text(
+                                    "Nama Lengkap: ${snapshot.data![index].fields.namaLengkap}"),
+                                Text(
+                                    "Nomor KK: ${snapshot.data![index].fields.nomorKk}"),
+                                Text(
+                                    "NIK: ${snapshot.data![index].fields.nik}"),
+                                Text(
+                                    "Alamat: ${snapshot.data![index].fields.alamat}"),
+                                Text("RT: ${snapshot.data![index].fields.rt}"),
+                                Text("RW: ${snapshot.data![index].fields.rw}"),
+                                Text(
+                                    "Kode Pos: ${snapshot.data![index].fields.kodePos}"),
+                                Text(
+                                    "Nomor HP: ${snapshot.data![index].fields.nomorHp}"),
+                                Text("Jadwal Pemotretan Foto"),
+                                Text(
+                                    "${snapshot.data![index].fields.scheduleDate} ${snapshot.data![index].fields.scheduleTime} WIB"),
                               ],
                             ),
 
