@@ -1,3 +1,4 @@
+import 'package:depoksmartcity/page/aspirasi/aspirasi_add.dart';
 import 'package:depoksmartcity/page/aspirasi/aspirasi_user.dart';
 import 'package:flutter/material.dart';
 import 'package:depoksmartcity/drawer/drawer.dart';
@@ -54,6 +55,21 @@ class _AspirasiPageState extends State<AspirasiPage> {
                   context,
                   MaterialPageRoute(
                       builder: (context) => const AspirasiPageUser()));
+                }
+              ),
+              TextButton(
+                child: const Text(
+                  "Tambah Aspirasi",
+                  style: TextStyle(color: Colors.white),
+                ),
+                style: ButtonStyle(
+                  backgroundColor: MaterialStateProperty.all(Colors.blue),
+                ),
+                onPressed: () {
+                  Navigator.push(
+                  context,
+                  MaterialPageRoute(
+                      builder: (context) => const AddAspirasiPage()));
                 }
               ),
               FutureBuilder(
