@@ -67,8 +67,8 @@ class _AddAspirasiPageState extends State<AddAspirasiPage> {
                     ),
                     onPressed: () async {
                       if (_formKey.currentState!.validate()) {
-                        final response = await request.login(
-                        "http://10.0.2.2:8000/aspirasi/add-aspirasi-flutter/",
+                        final response = await request.post(
+                        "https://web-production-1710.up.railway.app/aspirasi/add-aspirasi-flutter/",
                         jsonEncode(<String, String>{
                           'aspirasi': aspirasiAdded,
                         }));

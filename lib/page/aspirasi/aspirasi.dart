@@ -72,7 +72,10 @@ class _AspirasiPageState extends State<AspirasiPage> {
                       builder: (context) => const AddAspirasiPage()));
                 }
               ),
-              FutureBuilder(
+              Expanded(
+                flex: 2,
+                child:
+                  FutureBuilder(
               future: useAspirasi.fetchAspirasi(request),
               builder: (context, AsyncSnapshot snapshot) {
                 if (snapshot.data == null) {
@@ -122,6 +125,8 @@ class _AspirasiPageState extends State<AspirasiPage> {
                   }
                 }
               })
+              ),
+              
             ],
           )
           
