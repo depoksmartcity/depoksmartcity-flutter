@@ -152,17 +152,6 @@ class BookDetailsPage extends StatelessWidget {
             Text('Synopsis:', style: TextStyle(fontWeight: FontWeight.bold)),
             Text(synopsis),
             const SizedBox(height: 20.0),
-            Column(
-                    children: const [
-                      Text(
-                        "Review:",
-                        style:
-                            TextStyle(color: Colors.black, fontSize: 20),
-                      ),
-                      SizedBox(height: 8),
-                    ],
-                  ),
-            const SizedBox(height: 20.0),
             Visibility(
               visible: request.loggedIn,
               child: FutureBuilder(
@@ -285,6 +274,17 @@ class BookDetailsPage extends StatelessWidget {
                           backgroundColor:
                               MaterialStateProperty.all(Colors.blue)),
                     ))),
+            Column(
+                    children: const [
+                      Text(
+                        "Review:",
+                        style:
+                            TextStyle(color: Colors.black, fontSize: 20),
+                      ),
+                      SizedBox(height: 8),
+                    ],
+                  ),
+            const SizedBox(height: 20.0),
             FutureBuilder(
               future: fetchBookReview(pk),
               builder: (context, AsyncSnapshot snapshot) {
