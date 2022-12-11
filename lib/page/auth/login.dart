@@ -152,27 +152,11 @@ class _LoginPageState extends State<LoginPage> {
                                         'password': password
                                       }));
 
-                                  // final response2 = await request
-                                  //         .login("https://web-production-1710.up.railway.app/login-flutter/", {
-                                  //         'username': username,
-                                  //         'password': password,
-                                  //         });
-
                                   // print(response.body);
                                   bool status = response["status"];
                                   // print(jsonDecode(response.body));
 
                                   if (status) {
-                                    // Code here will run if the login succeeded.
-                                    // context
-                                    //     .read<UserProvider>()
-                                    //     .saveAdmin(response['admin']);
-                                    // context
-                                    //     .read<UserProvider>()
-                                    //     .saveLogin(true);
-                                    // context
-                                    //     .read<UserProvider>()
-                                    //     .saveUsername(response['username']);
                                     ScaffoldMessenger.of(context)
                                         .showSnackBar(SnackBar(
                                             content: Row(
