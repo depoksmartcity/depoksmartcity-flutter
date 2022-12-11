@@ -5,7 +5,7 @@ import 'package:flutter/material.dart';
 import 'package:depoksmartcity/main.dart';
 import 'package:depoksmartcity/drawer/drawer.dart';
 import 'package:depoksmartcity/page/perpustakaan/detailBook.dart';
-import 'package:depoksmartcity/model/perpustakaan/fetchBookDetails.dart';
+import 'package:depoksmartcity/utils/perpustakaan/fetchBookDetails.dart';
 
 class BooksPage extends StatefulWidget {
   const BooksPage(

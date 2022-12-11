@@ -1,9 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:depoksmartcity/model/perpustakaan/bookReview.dart';
-import 'package:depoksmartcity/model/perpustakaan/fetchAuthorById.dart';
-import 'package:depoksmartcity/model/perpustakaan/fetchPublisherById.dart';
-import 'package:depoksmartcity/model/perpustakaan/fetchBookHistory.dart';
-import 'package:depoksmartcity/model/perpustakaan/fetchBookReview.dart';
+import 'package:depoksmartcity/utils/perpustakaan/fetchAuthorById.dart';
+import 'package:depoksmartcity/utils/perpustakaan/fetchPublisherById.dart';
+import 'package:depoksmartcity/utils/perpustakaan/fetchBookHistory.dart';
+import 'package:depoksmartcity/utils/perpustakaan/fetchBookReview.dart';
 import 'package:depoksmartcity/page/perpustakaan/reviewForm.dart';
 import 'package:depoksmartcity/main.dart';
 import 'package:depoksmartcity/drawer/drawer.dart';
