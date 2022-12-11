@@ -39,7 +39,8 @@ class _LoginPageState extends State<LoginPage> {
               colorFilter: ColorFilter.mode(
                   Colors.black.withOpacity(0.5), BlendMode.dstATop),
             )),
-            child: Form(
+            child: 
+            Form(
                 key: _loginFormKey,
                 child: Center(
                   child: Container(
