@@ -134,7 +134,7 @@ class _RequestsPageState extends State<RequestsPage> {
                                     "Nomor HP: ${snapshot.data![index].fields.nomorHp}"),
                                 Text("Jadwal Pemotretan Foto"),
                                 Text(
-                                    "${snapshot.data![index].fields.scheduleDate} ${snapshot.data![index].fields.scheduleTime} WIB"),
+                                    "${snapshot.data![index]} ${snapshot.data![index].fields.scheduleTime} WIB"),
                               ],
                             ),
 
