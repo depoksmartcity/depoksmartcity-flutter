@@ -4,9 +4,9 @@ import 'package:http/http.dart' as http;
 import 'dart:convert';
 import 'package:depoksmartcity/drawer/drawer.dart';
 import 'package:depoksmartcity/main.dart';
-
 import 'package:provider/provider.dart';
 import 'package:pbp_django_auth/pbp_django_auth.dart';
+import 'package:depoksmartcity/providers/userProvider.dart';
 
 class LoginPage extends StatefulWidget {
   const LoginPage({Key? key}) : super(key: key);
@@ -22,7 +22,7 @@ class _LoginPageState extends State<LoginPage> {
 
   @override
   Widget build(BuildContext context) {
-    final request = context.watch<CookieRequest>();
+    final request = context.read<CookieRequest>();
 
     return Scaffold(
         appBar: AppBar(
@@ -145,17 +145,34 @@ class _LoginPageState extends State<LoginPage> {
                               ),
                               onPressed: () async {
                                 if (_loginFormKey.currentState!.validate()) {
-                                  final response = await request.post(
+                                  final response = await request.login(
                                       "https://web-production-1710.up.railway.app/login-flutter/",
                                       jsonEncode(<String, String>{
                                         'username': username,
                                         'password': password
                                       }));
+
+                                  // final response2 = await request
+                                  //         .login("https://web-production-1710.up.railway.app/login-flutter/", {
+                                  //         'username': username,
+                                  //         'password': password,
+                                  //         });
+
                                   // print(response.body);
                                   bool status = response["status"];
                                   // print(jsonDecode(response.body));
 
                                   if (status) {
+                                    // Code here will run if the login succeeded.
+                                    // context
+                                    //     .read<UserProvider>()
+                                    //     .saveAdmin(response['admin']);
+                                    // context
+                                    //     .read<UserProvider>()
+                                    //     .saveLogin(true);
+                                    // context
+                                    //     .read<UserProvider>()
+                                    //     .saveUsername(response['username']);
                                     ScaffoldMessenger.of(context)
                                         .showSnackBar(SnackBar(
                                             content: Row(
