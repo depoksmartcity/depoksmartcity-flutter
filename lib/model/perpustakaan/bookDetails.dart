@@ -45,8 +45,6 @@ class Fields {
         required this.pages,
         required this.authorId,
         required this.publisherId,
-        required this.authorName,
-        required this.publisherName,
         required this.edition,
         required this.releaseDate,
         required this.photoUrl,
@@ -55,10 +53,7 @@ class Fields {
         required this.rate,
         required this.borrowedTimes,
         required this.reviewedTimes,
-        required this.isBorrowable,
-        required this.isReturnable,
-        required this.isReviewable,
-        required this.listReview
+
     });
 
     String title;
@@ -66,8 +61,6 @@ class Fields {
     String synopsis;
     int pages;
     int authorId;
-    String authorName;
-    String publisherName;
     int publisherId;
     int edition;
     DateTime releaseDate;
@@ -77,46 +70,43 @@ class Fields {
     double rate;
     int borrowedTimes;
     int reviewedTimes;
-    List<BookReview> listReview;
-    bool isReturnable;
-    bool isBorrowable;
-    bool isReviewable;
+
 
     factory Fields.fromJson(Map<String, dynamic> json, int pk) {
-      String authorNameStr = "";
-      Future<List<Author>> listAuthorFuture = fetchAuthorById(json["author"]);
-      listAuthorFuture.then((value) => {
-        authorNameStr = value.elementAt(0).fields.firstName + " " + value.elementAt(0).fields.lastName
-        });
+      // String authorNameStr = "";
+      // Future<List<Author>> listAuthorFuture = fetchAuthorById(json["author"]);
+      // listAuthorFuture.then((value) => {
+      //   authorNameStr = value.elementAt(0).fields.firstName + " " + value.elementAt(0).fields.lastName
+      //   });
 
-      // Author author = listAuthor.elementAt(0);
-      // String authorName = author.fields.firstName + " " + author.fields.lastName;
+      // // Author author = listAuthor.elementAt(0);
+      // // String authorName = author.fields.firstName + " " + author.fields.lastName;
 
-      String publisherNameStr = "";
-      Future<List<Publisher>> listPublisher = fetchPublisherById(json["publisher"]);
-      listPublisher.then((value) => {publisherNameStr = value.elementAt(0).fields.name});
-      // print("test " + publisherNameStr);
+      // String publisherNameStr = "";
+      // Future<List<Publisher>> listPublisher = fetchPublisherById(json["publisher"]);
+      // listPublisher.then((value) => {publisherNameStr = value.elementAt(0).fields.name});
+      // // print("test " + publisherNameStr);
 
-      List<BookReview> listReview = [];
-      fetchBookReview(pk).then((value) => {listReview = value});
+      // List<BookReview> listReview = [];
+      // fetchBookReview(pk).then((value) => {listReview = value});
 
-      List<BookHistory> listBookHistoryActive = [];
-      fetchBookHistoryActive(pk).then((value) => {listBookHistoryActive = value});
+      // List<BookHistory> listBookHistoryActive = [];
+      // // fetchBookHistoryActive(pk).then((value) => {listBookHistoryActive = value});
 
-      List<BookHistory> listBookHistoryDone = [];
-      fetchBookHistoryDone(pk).then((value) => {listBookHistoryDone = value});
+      // List<BookHistory> listBookHistoryDone = [];
+      // fetchBookHistoryDone(pk).then((value) => {listBookHistoryDone = value});
 
-      bool isReturnable = false;
-      bool isBorrowable = true;
-      bool isReviewable = false;
+      // bool isReturnable = false;
+      // bool isBorrowable = true;
+      // bool isReviewable = false;
 
-      if (listBookHistoryActive.length != 0) {
-        isReturnable = true;
-        isBorrowable = false;
-      }
-      if (listBookHistoryDone != 0) {
-        isReviewable = true;
-      }
+      // if (listBookHistoryActive.length != 0) {
+      //   isReturnable = true;
+      //   isBorrowable = false;
+      // }
+      // if (listBookHistoryDone != 0) {
+      //   isReviewable = true;
+      // }
       return Fields(
           title: json["title"],
           isbn: json["isbn"],
@@ -124,8 +114,6 @@ class Fields {
           pages: json["pages"],
           authorId: json["author"],
           publisherId: json["publisher"],
-          authorName: authorNameStr,
-          publisherName: publisherNameStr,
           edition: json["edition"],
           stock: json["stock"],
           releaseDate: DateTime.parse(json["publication_date"]),
@@ -134,10 +122,6 @@ class Fields {
           rate: double.parse(json["rate"]),
           borrowedTimes: json["borrowed_times"],
           reviewedTimes: json["review_times"],
-          isBorrowable: isBorrowable,
-          isReturnable: isReturnable,
-          isReviewable: isReviewable,
-          listReview: listReview
       );
     }
 

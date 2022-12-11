@@ -18,6 +18,7 @@ class AddBookReview extends StatefulWidget {
 
 class _AddBookReviewState extends State<AddBookReview> {
   final _formKey = GlobalKey<FormState>();
+  final _rateController = TextEditingController();
   int _rate = 0;
   String _review = "";
 
@@ -46,8 +47,12 @@ class _AddBookReviewState extends State<AddBookReview> {
                   child: Column(
                     children: [
                       TextFormField(
+                        keyboardType: TextInputType.number,
+                        inputFormatters: <TextInputFormatter>[
+                          FilteringTextInputFormatter.digitsOnly
+                        ],
                         decoration: InputDecoration(
-                          hintText: "Rate (01 - 5)",
+                          hintText: "Rate (1 - 5)",
                           labelText: "Rate",
                           // Menambahkan icon agar lebih intuitif
                           icon: const Icon(Icons.numbers),
@@ -57,9 +62,42 @@ class _AddBookReviewState extends State<AddBookReview> {
                           ),
                         ),
                         // Menambahkan behavior saat nama diketik
-                        onChanged: (String? value) {},
+                        onChanged: (String? value) {
+                          if (value == null || value.isEmpty) {
+                            
+                          }
+                          else {
+                            try {
+                              int num = int.parse(value);
+                              setState(() => _rate = num);
+                            }
+                            on FormatException {
+                              
+                            }
+                            catch(error) {
+                              print(error);
+                            }
+                          }
+                        },
                         // Menambahkan behavior saat data disimpan
-                        onSaved: (String? value) {},
+                        onSaved: (String? value) {
+                          if (value == null || value.isEmpty) {
+                            
+                          }
+                          else {
+                            try {
+                              int num = int.parse(value);
+                              setState(() => _rate = num);
+                            }
+                            on FormatException {
+                              
+                            }
+                            catch(error) {
+                              print(error);
+                            }
+                          }
+                    
+                        },
                         // Validator sebagai validasi form
                         validator: (String? value) {
                           if (value == null || value.isEmpty) {
@@ -79,6 +117,9 @@ class _AddBookReviewState extends State<AddBookReview> {
                             }
                             on FormatException {
                               return 'Rate must be a positive integer.';
+                            }
+                            catch(error) {
+                              print(error);
                             }
                           }
                           return null;
@@ -148,16 +189,30 @@ class _AddBookReviewState extends State<AddBookReview> {
                             onPressed: () async {
                               String msg = "";
                               int bookPk = widget.bookPk;
+                              // try {
+                              print("ini pk $bookPk");
+                              print("ini review $_review");
+                              print("ini rate $_rate");
+                              try {
                               final response = await request.post(
-                                "https://web-production-1710.up.railway.app/perpustakaan/book/review/$bookPk",
+                                "https://web-production-1710.up.railway.app/perpustakaan/book/$bookPk/review",
                                 {
-                                  'rate': _rate,
                                   'review': _review,
+                                  'rate': _rate.toString(),
                                 },
                               );
+                              }
+                              catch (error) {
+                                print(error);
+                              }
+                              // }
+                              // catch (error) {
+                              //   print(error);
+                              // }
 
                               // Code here will run if the login succeeded.
-                              Navigator.pop(context);
+                              int count = 0;
+                              Navigator.of(context).popUntil((_) => count++ >= 2);
 
                               // Code here will run if the login failed (wrong username/password).
                             },

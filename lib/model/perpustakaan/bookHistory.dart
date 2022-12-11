@@ -39,8 +39,8 @@ class Fields {
 
     int userId;
     int bookId;
-    DateTime borrowDate;
-    DateTime returnDate;
+    String borrowDate;
+    String returnDate;
     bool isActive;
     
 
@@ -48,15 +48,15 @@ class Fields {
         userId: json["user"],
         bookId: json["book"],
         borrowDate: json["borrow_date"],
-        returnDate: json["return_date"],
+        returnDate: json["return_date"] ?? "",
         isActive: json["is_active"]
     );
 
     Map<String, dynamic> toJson() => {
         "user": userId,
         "book": bookId,
-        "borrow_date": "${borrowDate.year.toString().padLeft(4, '0')}-${borrowDate.month.toString().padLeft(2, '0')}-${borrowDate.day.toString().padLeft(2, '0')}",
-        "return_date": "${returnDate.year.toString().padLeft(4, '0')}-${returnDate.month.toString().padLeft(2, '0')}-${returnDate.day.toString().padLeft(2, '0')}",
+        "borrow_date": borrowDate,
+        "return_date": returnDate,
         "is_active": isActive,
     };
 }
