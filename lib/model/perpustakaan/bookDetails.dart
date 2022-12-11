@@ -83,15 +83,19 @@ class Fields {
     bool isReviewable;
 
     factory Fields.fromJson(Map<String, dynamic> json, int pk) {
-      List<Author> listAuthor = [];
-      fetchAuthorById(json["author_id"]).then((value) => {listAuthor = value});
-      Author author = listAuthor.elementAt(0);
-      String authorName = author.fields.firstName + " " + author.fields.lastName;
+      String authorNameStr = "";
+      Future<List<Author>> listAuthorFuture = fetchAuthorById(json["author"]);
+      listAuthorFuture.then((value) => {
+        authorNameStr = value.elementAt(0).fields.firstName + " " + value.elementAt(0).fields.lastName
+        });
 
-      List<Publisher> listPublisher = [];
-      fetchPublisherById(json["publisher_id"]).then((value) => {listPublisher = value});
-      Publisher publisher = listPublisher.elementAt(0);
-      String publisherName = publisher.fields.name;
+      // Author author = listAuthor.elementAt(0);
+      // String authorName = author.fields.firstName + " " + author.fields.lastName;
+
+      String publisherNameStr = "";
+      Future<List<Publisher>> listPublisher = fetchPublisherById(json["publisher"]);
+      listPublisher.then((value) => {publisherNameStr = value.elementAt(0).fields.name});
+      // print("test " + publisherNameStr);
 
       List<BookReview> listReview = [];
       fetchBookReview(pk).then((value) => {listReview = value});
@@ -118,10 +122,10 @@ class Fields {
           isbn: json["isbn"],
           synopsis: json["synopsis"],
           pages: json["pages"],
-          authorId: json["author_id"],
-          publisherId: json["publisher_id"],
-          authorName: authorName,
-          publisherName: publisherName,
+          authorId: json["author"],
+          publisherId: json["publisher"],
+          authorName: authorNameStr,
+          publisherName: publisherNameStr,
           edition: json["edition"],
           stock: json["stock"],
           releaseDate: DateTime.parse(json["publication_date"]),
@@ -129,7 +133,7 @@ class Fields {
           isAvailable: json["is_available"],
           rate: double.parse(json["rate"]),
           borrowedTimes: json["borrowed_times"],
-          reviewedTimes: json["reviewed_times"],
+          reviewedTimes: json["review_times"],
           isBorrowable: isBorrowable,
           isReturnable: isReturnable,
           isReviewable: isReviewable,

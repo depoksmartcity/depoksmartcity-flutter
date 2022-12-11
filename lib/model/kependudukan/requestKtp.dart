@@ -16,16 +16,6 @@ class RequestKtp {
     required this.fields,
   });
 
-  @override
-  String toString() {
-    // TODO: implement toString
-    return this.fields.scheduleDate.year.toString() +
-        "-" +
-        this.fields.scheduleDate.month.toString() +
-        "-" +
-        this.fields.scheduleDate.day.toString();
-  }
-
   int pk;
   Fields fields;
 

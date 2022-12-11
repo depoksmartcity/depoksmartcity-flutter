@@ -1,4 +1,3 @@
-import 'package:depoksmartcity/page/aspirasi/aspirasi_user.dart';
 import 'package:flutter/material.dart';
 import 'package:depoksmartcity/drawer/drawer.dart';
 import 'package:depoksmartcity/utils/aspirasi/aspirasiFunction.dart';
@@ -31,6 +30,7 @@ class _AspirasiPageState extends State<AspirasiPage> {
       // backgroundColor: Colors.pink,
       drawer: const DrawerClass(),
       body: Container(
+          width: double.infinity,
           decoration: BoxDecoration(
               image: DecorationImage(
             image: const AssetImage("lib/assets/kota-depok-aspirasi.jpg"),
@@ -38,24 +38,7 @@ class _AspirasiPageState extends State<AspirasiPage> {
             colorFilter: ColorFilter.mode(
                 Colors.black.withOpacity(0.5), BlendMode.dstATop),
           )),
-          child: Column(
-            children: [
-              TextButton(
-                child: const Text(
-                  "Lihat Aspirasi Saya",
-                  style: TextStyle(color: Colors.white),
-                ),
-                style: ButtonStyle(
-                  backgroundColor: MaterialStateProperty.all(Colors.blue),
-                ),
-                onPressed: () {
-                  Navigator.push(
-                  context,
-                  MaterialPageRoute(
-                      builder: (context) => const AspirasiPageUser()));
-                }
-              ),
-              FutureBuilder(
+          child: FutureBuilder(
               future: useAspirasi.fetchAspirasi(request),
               builder: (context, AsyncSnapshot snapshot) {
                 if (snapshot.data == null) {
@@ -74,7 +57,6 @@ class _AspirasiPageState extends State<AspirasiPage> {
                     );
                   } else {
                     return ListView.builder(
-                        shrinkWrap: true,
                         itemCount: snapshot.data!.length,
                         itemBuilder: (_, index) => Container(
                               margin: const EdgeInsets.symmetric(
@@ -104,13 +86,7 @@ class _AspirasiPageState extends State<AspirasiPage> {
                             ));
                   }
                 }
-              }),
-              
-            ],
-
-          )
-          
-              ),
+              })),
     );
   }
 }
