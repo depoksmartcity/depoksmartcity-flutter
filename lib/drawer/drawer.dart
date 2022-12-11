@@ -110,6 +110,7 @@ class _DrawerClassState extends State<DrawerClass> {
             },
           ),
           ListTile(
+            leading: Icon(Icons.menu_book),
             title: const Text("Perpustakaan"),
             onTap: () {
               Navigator.pushReplacement(

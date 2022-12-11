@@ -1,12 +1,12 @@
 import 'dart:convert';
 import 'package:depoksmartcity/model/perpustakaan/author.dart';
-import 'package:depoksmartcity/model/perpustakaan/fetchAuthorById.dart';
+import 'package:depoksmartcity/utils/perpustakaan/fetchAuthorById.dart';
 import 'package:depoksmartcity/model/perpustakaan/publisher.dart';
-import 'package:depoksmartcity/model/perpustakaan/fetchPublisherById.dart';
+import 'package:depoksmartcity/utils/perpustakaan/fetchPublisherById.dart';
 import 'package:depoksmartcity/model/perpustakaan/bookReview.dart';
-import 'package:depoksmartcity/model/perpustakaan/fetchBookReview.dart';
+import 'package:depoksmartcity/utils/perpustakaan/fetchBookReview.dart';
 import 'package:depoksmartcity/model/perpustakaan/bookHistory.dart';
-import 'package:depoksmartcity/model/perpustakaan/fetchBookHistory.dart';
+import 'package:depoksmartcity/utils/perpustakaan/fetchBookHistory.dart';
 import 'dart:async';
 
 List<BookDetails> bookJson(String str) => List<BookDetails>.from(json.decode(str).map((x) => BookDetails.fromJson(x)));

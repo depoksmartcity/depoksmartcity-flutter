@@ -5,7 +5,7 @@ import 'package:flutter/material.dart';
 import 'package:depoksmartcity/main.dart';
 import 'package:depoksmartcity/drawer/drawer.dart';
 import 'package:depoksmartcity/page/perpustakaan/detailBook.dart';
-import 'package:depoksmartcity/model/perpustakaan/fetchBookDetails.dart';
+import 'package:depoksmartcity/utils/perpustakaan/fetchBookDetails.dart';
 
 class BooksPage extends StatefulWidget {
   const BooksPage(
@@ -87,7 +87,8 @@ class _BooksPageState extends State<BooksPage> {
                               crossAxisAlignment: CrossAxisAlignment.start,
                               children: [
                                 Center(
-                                child: Image.network(snapshot.data![index].fields.photoUrl),
+                                child: Image.network(snapshot.data![index].fields.photoUrl,
+                                                     height: 200,),
                                 ),
                                 Center(
                                   child: Text(
