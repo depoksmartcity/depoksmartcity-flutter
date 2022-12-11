@@ -2,8 +2,6 @@ import 'package:depoksmartcity/drawer/drawer.dart';
 import 'package:flutter/material.dart';
 import 'package:http/http.dart' as http;
 import 'dart:convert';
-import 'package:provider/provider.dart';
-import 'package:pbp_django_auth/pbp_django_auth.dart';
 
 class RequestKTPPage extends StatefulWidget {
   const RequestKTPPage({super.key});
@@ -96,7 +94,6 @@ class _RequestKTPPageState extends State<RequestKTPPage> {
 
   @override
   Widget build(BuildContext context) {
-    final request = context.read<CookieRequest>();
     return Scaffold(
       appBar: AppBar(
         title: const Text('Kependudukan'),
@@ -515,7 +512,6 @@ class _RequestKTPPageState extends State<RequestKTPPage> {
                       onChanged: (String? newValue) {
                         setState(() {
                           timeslot = newValue!;
-                          _scheduleTime = timeslot;
                         });
                       },
                     ),
@@ -536,12 +532,10 @@ class _RequestKTPPageState extends State<RequestKTPPage> {
                       final response = await http.post(
                           Uri.parse(
                               "https://web-production-1710.up.railway.app/kependudukan/request-ktp/add-flutter"),
-                          // 'http://localhost:8000/kependudukan/request-ktp/add-flutter'),
                           headers: <String, String>{
                             'Content-Type': 'application/json;charset=UTF-8'
                           },
                           body: jsonEncode(<String, String>{
-                            'username': request.jsonData['username'],
                             'kecamatan': kecamatan,
                             'kelurahan': kelurahan,
                             'permohonan': permohonan,
@@ -553,11 +547,11 @@ class _RequestKTPPageState extends State<RequestKTPPage> {
                             'rw': _rw,
                             'kode_pos': _kodePos,
                             'nomor_hp': _noHp,
-                            'schedule_date': ("${_scheduleDate?.year}" +
+                            'schedule_date': ("${_scheduleDate?.day}" +
                                 "-" +
                                 "${_scheduleDate?.month}" +
                                 "-" +
-                                "${_scheduleDate?.day}"),
+                                "${_scheduleDate?.year}"),
                             'schedule_time': _scheduleTime,
                           }));
                       print(response.body);
