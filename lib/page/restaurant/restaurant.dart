@@ -47,7 +47,7 @@ class _RestaurantPageState extends State<RestaurantPage> {
                         Navigator.push(context,
                         MaterialPageRoute(builder: (context) => DetailRestaurantPage(data :snapshot.data![index])));
                       },
-                      child: Container(
+                    child: Container(
                     margin: const EdgeInsets.symmetric(horizontal: 6, vertical: 8),
                     padding: const EdgeInsets.all(10.0),
                     decoration: BoxDecoration(

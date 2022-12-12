@@ -1,14 +1,18 @@
+import 'package:depoksmartcity/model/restaurant/restaurant.dart';
 import 'package:depoksmartcity/page/restaurant/detail_restaurant.dart';
 import 'package:flutter/material.dart';
 import 'package:depoksmartcity/page/restaurant/rev_resto.dart';
 import 'package:flutter/services.dart';
 import 'package:depoksmartcity/drawer/drawer.dart';
+import 'package:depoksmartcity/model/restaurant/fetch_restaurant.dart';
+
 
 class Review {
   String review;
+  String namaResto; 
   DateTime date;
 
-  Review(this.review, this.date);
+  Review(this.review, this.date, this.namaResto);
 }
 
 class Add {
@@ -26,12 +30,28 @@ class _MyFormPageState extends State<MyFormPage> {
   final _formKey = GlobalKey<FormState>();
   String _review = "";
   DateTime date = DateTime.now();
+  String nama_resto = "KFC";
+  List<String> listNama = [];
+
+  @override
+  void initState() {
+    super.initState();
+
+    fetchRestaurant().then((data) => {
+        for (var element in data) {
+            setState(() {
+            listNama.add(element.fields.name);
+          })
+        }
+
+        });
+  }
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: Text("Form"),
+        title: Text("Review Form"),
       ),
       // Menambahkan drawer menu
       drawer: const DrawerClass(),
@@ -72,7 +92,31 @@ class _MyFormPageState extends State<MyFormPage> {
                     return null;
                   },
                 ),
+              ),  
+              
+            Padding(
+              padding: const EdgeInsets.all(8.0),
+              child: InputDecorator(
+                decoration: InputDecoration(
+                  labelText: "Pilih Restoran",
+                ),
+                child: DropdownButton<String>(
+                  value: nama_resto,
+                  items: listNama.map((String value) {
+                    return DropdownMenuItem<String>(
+                      value: value,
+                      child: Text(value),
+                    );
+                  }).toList(),
+                  onChanged: (String? value) {
+                    setState(() {
+                      nama_resto = value!;
+                    });
+                  },
+                ),
               ),
+            ),
+
               OutlinedButton.icon(
                   onPressed: () {
                     showDatePicker(
@@ -136,7 +180,7 @@ class _MyFormPageState extends State<MyFormPage> {
                         );
                       },
                     );
-                    Add.contain.add(Review(_review, date));
+                    Add.contain.add(Review(_review, date, nama_resto));
                   }
                 },
               ),
