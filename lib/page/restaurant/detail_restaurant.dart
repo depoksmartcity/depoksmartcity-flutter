@@ -24,6 +24,10 @@ class _DetailRestaurantPageState extends State<DetailRestaurantPage>{
       Scaffold(
         appBar: AppBar(
           title: const Text("Detail"),
+          flexibleSpace: Container(
+            decoration:
+                const BoxDecoration(color: Color.fromARGB(255, 11, 51, 74)),
+          ),
         ),
         drawer: const DrawerClass(),
         body: Container(
@@ -99,7 +103,7 @@ class _DetailRestaurantPageState extends State<DetailRestaurantPage>{
             const Spacer(),
             TextButton(
             style: ButtonStyle(
-              backgroundColor: MaterialStateProperty.all( Colors.blue),
+              backgroundColor: MaterialStateProperty.all( Color.fromARGB(255, 11, 51, 74)),
               ),  
             onPressed:(){
               Navigator.push(context,
@@ -117,7 +121,7 @@ class _DetailRestaurantPageState extends State<DetailRestaurantPage>{
             )),
             TextButton(
             style: ButtonStyle(
-              backgroundColor: MaterialStateProperty.all( Colors.blue),
+              backgroundColor: MaterialStateProperty.all( Color.fromARGB(255, 11, 51, 74)),
               ),  
             onPressed:(){
               Navigator.pop(context);
