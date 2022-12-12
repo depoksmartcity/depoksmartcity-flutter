@@ -18,6 +18,10 @@ class _RestaurantPageState extends State<RestaurantPage> {
       return Scaffold(
     appBar: AppBar(
         title: const Text('Restaurant'),
+        flexibleSpace: Container(
+          decoration:
+              const BoxDecoration(color: Color.fromARGB(255, 11, 51, 74)),
+        ),
     ),
     drawer: const DrawerClass(),
     body: FutureBuilder(
@@ -33,7 +37,7 @@ class _RestaurantPageState extends State<RestaurantPage> {
                     Text(
                     "Tidak ada restoran",
                     style: TextStyle(
-                        color: Color(0xff59A5D8),
+                        color: Color.fromARGB(255, 11, 51, 74),
                         fontSize: 20),
                     ),
                     SizedBox(height: 8),
@@ -54,7 +58,7 @@ class _RestaurantPageState extends State<RestaurantPage> {
                         color:Colors.white,
                         border: Border.all(
                           width: 1.0,
-                          color: Colors.blue,
+                          color: Color.fromARGB(255, 11, 51, 74),
                         ),
                         borderRadius: BorderRadius.circular(7.0),
                         boxShadow: const [
