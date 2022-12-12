@@ -1,17 +1,13 @@
 import 'dart:convert';
-
-import 'package:depoksmartcity/utils/kesehatan/fetchRegisteredPatient.dart';
-import 'package:depoksmartcity/model/kesehatan/patient.dart';
-
 import 'package:intl/intl.dart';
-import 'package:flutter/material.dart';
-import 'package:depoksmartcity/main.dart';
 import 'package:http/http.dart' as http;
-import 'package:flutter/services.dart';
-import 'package:depoksmartcity/drawer/drawer.dart';
 import 'package:provider/provider.dart';
-import 'package:pbp_django_auth/pbp_django_auth.dart';
+import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
 
+import 'package:pbp_django_auth/pbp_django_auth.dart';
+import 'package:depoksmartcity/drawer/drawer.dart';
+import 'package:depoksmartcity/model/kesehatan/patient.dart';
 
 class AddPatient extends StatefulWidget {
   const AddPatient({super.key, required this.userPk});
@@ -42,16 +38,18 @@ class _AddPatientState extends State<AddPatient> {
   @override
   Widget build(BuildContext context) {
     final request = context.read<CookieRequest>();
-    String userPkStr = widget.userPk.toString();
+    String userPkStr = widget.userPk.toString();      //Bentuk string dari id user
+    
     return Scaffold(
       appBar: AppBar(
         title: Text('Registrasi Pasien'),
         backgroundColor: Color(0xFF003320),
       ),
 
-      // Menambahkan drawer menu
+      // Menambahkan drawer 
       drawer: DrawerClass(),
 
+      // Menambahkan Form
       body: Form(
         key: _formKey,
         child: SingleChildScrollView(
@@ -59,35 +57,42 @@ class _AddPatientState extends State<AddPatient> {
             padding: const EdgeInsets.all(20.0),
             child: Column(
               children: [
+                
+
                 Padding(
                   // Menggunakan padding sebesar 8 pixels
                   padding: const EdgeInsets.all(8.0),
                   child: Column(
                     children: [
+
+                      // Nama Depan
                       Padding(
                         // Menggunakan padding sebesar 8 pixels
                         padding: const EdgeInsets.all(8.0),
                         child: TextFormField(
                           decoration: InputDecoration(
-                            hintText: "Contoh: Dek Depe",
+                            hintText: "Contoh: Cristiano",
                             labelText: "Nama Depan",
                             // Menambahkan circular border agar lebih rapi
                             border: OutlineInputBorder(
                               borderRadius: BorderRadius.circular(5.0),
                             ),
                           ),
+
                           // Menambahkan behavior saat nama diketik
                           onChanged: (String? value) {
                             setState(() {
                               _first_name = value!;
                             });
                           },
+
                           // Menambahkan behavior saat data disimpan
                           onSaved: (String? value) {
                             setState(() {
                               _first_name = value!;
                             });
                           },
+
                           // Validator sebagai validasi form
                           validator: (String? value) {
                             if (value == null || value.isEmpty) {
@@ -104,25 +109,29 @@ class _AddPatientState extends State<AddPatient> {
                         padding: const EdgeInsets.all(8.0),
                         child: TextFormField(
                           decoration: InputDecoration(
-                            hintText: "Contoh: Dek Depe",
+                            hintText: "Contoh: Ronaldo",
                             labelText: "Nama Belakang",
+
                             // Menambahkan circular border agar lebih rapi
                             border: OutlineInputBorder(
                               borderRadius: BorderRadius.circular(5.0),
                             ),
                           ),
+
                           // Menambahkan behavior saat nama diketik
                           onChanged: (String? value) {
                             setState(() {
                               _last_name = value!;
                             });
                           },
+
                           // Menambahkan behavior saat data disimpan
                           onSaved: (String? value) {
                             setState(() {
                               _last_name = value!;
                             });
                           },
+
                           // Validator sebagai validasi form
                           validator: (String? value) {
                             if (value == null || value.isEmpty) {
@@ -139,25 +148,29 @@ class _AddPatientState extends State<AddPatient> {
                         padding: const EdgeInsets.all(8.0),
                         child: TextFormField(
                           decoration: InputDecoration(
-                            hintText: "Contoh: Bu A",
+                            hintText: "Contoh: Lala",
                             labelText: "Nama Ibu",
+
                             // Menambahkan circular border agar lebih rapi
                             border: OutlineInputBorder(
                               borderRadius: BorderRadius.circular(5.0),
                             ),
                           ),
+
                           // Menambahkan behavior saat nama diketik
                           onChanged: (String? value) {
                             setState(() {
                               _mother_name = value!;
                             });
                           },
+
                           // Menambahkan behavior saat data disimpan
                           onSaved: (String? value) {
                             setState(() {
                               _mother_name = value!;
                             });
                           },
+
                           // Validator sebagai validasi form
                           validator: (String? value) {
                             if (value == null || value.isEmpty) {
@@ -170,41 +183,47 @@ class _AddPatientState extends State<AddPatient> {
 
                       // Email
                       Padding(
+
                         // Menggunakan padding sebesar 8 pixels
                         padding: const EdgeInsets.all(8.0),
                         child: TextFormField(
                           keyboardType: TextInputType.emailAddress,
                           decoration: InputDecoration(
-                            hintText: "Contoh: Email@email.com",
+                            hintText: "Contoh: akun@gmail.com",
                             labelText: "Email",
                             // Menambahkan circular border agar lebih rapi
                             border: OutlineInputBorder(
                               borderRadius: BorderRadius.circular(5.0),
                             ),
                           ),
+
                           // Menambahkan behavior saat nama diketik
                           onChanged: (String? value) {
                             setState(() {
                               _email = value!;
                             });
                           },
+
                           // Menambahkan behavior saat data disimpan
                           onSaved: (String? value) {
                             setState(() {
                               _email = value!;
                             });
                           },
+
                           // Validator sebagai validasi form
                           validator: (String? value) {
                             if (value == null || value.isEmpty) {
                               return 'Email tidak boleh kosong!';
+                            }else if ((value.contains('@') == false) & (value.contains('.') == false)){
+                              return 'Format email salah';
                             }
                             return null;
                           },
                         ),
                       ),
 
-                      // 
+                      // Umur
                       Padding(
                         // Menggunakan padding sebesar 8 pixels
                         padding: const EdgeInsets.all(8.0),
@@ -214,18 +233,19 @@ class _AddPatientState extends State<AddPatient> {
                             FilteringTextInputFormatter.digitsOnly
                           ],
                           decoration: InputDecoration(
-                            hintText: "Contoh: Dek Depe",
-                            labelText: "Nama Belakang",
+                            hintText: "Contoh: 20",
+                            labelText: "Umur",
+
                             // Menambahkan circular border agar lebih rapi
                             border: OutlineInputBorder(
                               borderRadius: BorderRadius.circular(5.0),
                             ),
                           ),
+
                           onChanged: (String? value) {
                           if (value == null || value.isEmpty) {
                             
-                          }
-                          else {
+                          } else {
                             try {
                               int num = int.parse(value);
                               setState(() => _ageStr = num.toString());
@@ -237,78 +257,82 @@ class _AddPatientState extends State<AddPatient> {
                             }
                           }
                         },
+
                         // Menambahkan behavior saat data disimpan
                         onSaved: (String? value) {
                           if (value == null || value.isEmpty) {
                             
-                          }
-                          else {
+                          } else {
                             try {
                               int num = int.parse(value);
                               setState(() => _ageStr = num.toString());
                             }
-                            on FormatException {
-                              
+                            on FormatException { 
                             }
                             catch(error) {
                               print(error);
                             }
                           }
-                    
                         },
                         ),
                       ),
-                  
-                  Padding(
-                  // Menggunakan padding sebesar 8 pixels
-                  padding: const EdgeInsets.all(8.0),
-                  child: ListTile(
-                    title: const Text(
-                      'Jenis Kelamin',
-                    ),
-                    trailing: DropdownButton(
-                      value: gender,
-                      icon: const Icon(Icons.keyboard_arrow_down),
-                      items: listGender.map((String items) {
-                        return DropdownMenuItem(
-                          value: items,
-                          child: Text(items),
-                        );
-                      }).toList(),
-                      onChanged: (String? newValue) {
-                        setState(() {
-                          gender = newValue!;
-                        });
-                      },
-                    ),
-                  ),
-                ),
-                 
-                 // Alamat
+
+                      // Gender
+                      Padding(
+                      // Menggunakan padding sebesar 8 pixels
+                        padding: const EdgeInsets.all(8.0),
+                        child: ListTile(
+                          title: const Text(
+                            'Jenis Kelamin',
+                          ),
+                          trailing: DropdownButton(
+                            value: gender,
+                            icon: const Icon(Icons.keyboard_arrow_down),
+                            items: listGender.map((String items) {
+                              return DropdownMenuItem(
+                                value: items,
+                                child: Text(items),
+                              );
+                            }).toList(),
+
+                            onChanged: (String? newValue) {
+                              setState(() {
+                                gender = newValue!;
+                              });
+                            },
+                          ),
+                        ),
+                      ),
+                    
+                      // Alamat
                       Padding(
                         // Menggunakan padding sebesar 8 pixels
                         padding: const EdgeInsets.all(8.0),
                         child: TextFormField(
                           decoration: InputDecoration(
-                            hintText: "Jln. Margonda",
+                            hintText: "Jln. Margonda Raya",
                             labelText: "Alamat",
+
                             // Menambahkan circular border agar lebih rapi
                             border: OutlineInputBorder(
                               borderRadius: BorderRadius.circular(5.0),
                             ),
                           ),
+
                           // Menambahkan behavior saat nama diketik
                           onChanged: (String? value) {
                             setState(() {
                               _address = value!;
                             });
                           },
+
                           // Menambahkan behavior saat data disimpan
                           onSaved: (String? value) {
                             setState(() {
                               _address = value!;
                             });
                           },
+
                           // Validator sebagai validasi form
                           validator: (String? value) {
                             if (value == null || value.isEmpty) {
@@ -319,7 +343,7 @@ class _AddPatientState extends State<AddPatient> {
                         ),
                       ),
 
-                      
+                      // Button Tambah Pasien
                       Padding(
                         padding: const EdgeInsets.symmetric(horizontal: 25),
                         child: Container(
@@ -328,38 +352,40 @@ class _AddPatientState extends State<AddPatient> {
                             color: Color(0xFF003320),
                             borderRadius: BorderRadius.circular(12),
                           ),
+
                           child: Center(
-                              child: TextButton(
+                            child: TextButton(
                             child: Text(
-                              "Tambah Pasien",
-                              style: TextStyle(
-                                color: Colors.white,
-                                fontWeight: FontWeight.bold,
-                                fontSize: 15,
+                                "Tambah Pasien",
+                                style: TextStyle(
+                                  color: Colors.white,
+                                  fontWeight: FontWeight.bold,
+                                  fontSize: 15,
+                                ),
                               ),
-                            ),
-                            style: ButtonStyle(
+                              style: ButtonStyle(
                               minimumSize: MaterialStateProperty.all(
-                                  Size.fromHeight(40)),
+                                Size.fromHeight(40)),
                             ),
-                            onPressed: () async {
+
+                            onPressed: () async {                       // jika ditekan, akan melakukan post data
                               if (_formKey.currentState!.validate()) {
                                 final response = await http.post(
-                                  Uri.parse("http://localhost:8000/kesehatan/registrasi-flutter/"),
+                                  Uri.parse("https://web-production-1710.up.railway.app/kesehatan/registrasi-flutter/"),
                                   headers: <String, String>{
                                  'Content-Type': 'application/json;charset=UTF-8'
                                 },
                                 
                                 body: jsonEncode(<String, String>{
-                                'user' : userPkStr,
-                                'first_name' : _first_name,
-                                'last_name' : _last_name,
-                                'mother_name' : _mother_name,
-                                'email' : _email,
-                                'gender' : gender,
-                                'age' : _ageStr,
-                                'address' : _address,
-                            }));
+                                  'user' : userPkStr,
+                                  'first_name' : _first_name,
+                                  'last_name' : _last_name,
+                                  'mother_name' : _mother_name,
+                                  'email' : _email,
+                                  'gender' : gender,
+                                  'age' : _ageStr,
+                                  'address' : _address,
+                                }));
                               
                               print(response.body);
                               var jsonData = jsonDecode(response.body);
@@ -367,60 +393,69 @@ class _AddPatientState extends State<AddPatient> {
 
                               if (status == "Success"){
                               ScaffoldMessenger.of(context)
-                                        .showSnackBar(SnackBar(
-                                            content: Row(
-                                      children: const [
-                                        Icon(Icons.info_outline_rounded,
-                                            size: 30, color: Colors.white),
-                                        Spacer(
-                                          flex: 1,
-                                        ),
-                                        Text("Registerasi Pasien Berhasil",
-                                            style: TextStyle(
-                                                color: Colors.white,
-                                                fontSize: 20))
-                                      ],
-                                    )));
-                              Navigator.pop(context);
-                            }
-                            else{
+                                .showSnackBar(SnackBar(
+                                content: Row(
+                                children: const [
+                                  Icon(Icons.info_outline_rounded,
+                                    size: 30, color: Colors.white),
+                                  Spacer(
+                                    flex: 1,
+                                  ),
+                                  
+                                  Text("Registrasi Pasien Berhasil",
+                                    style: TextStyle(
+                                      color: Colors.white,
+                                      fontSize: 20))
+                                ],    
+                              )
+                              )
+                              );
+                                Navigator.pop(context);
+                              
+                              } else {
                               ScaffoldMessenger.of(context)
-                                        .showSnackBar(SnackBar(
-                                            content: Row(
-                                      children: const [
-                                        Icon(Icons.info_outline_rounded,
-                                            size: 30, color: Colors.white),
-                                        Spacer(
-                                          flex: 1,
-                                        ),
-                                        Text("Anda sudah teregistrasi di database Faskes Depok",
-                                            style: TextStyle(
-                                                color: Colors.white,
-                                                fontSize: 20))
-                                      ],
-                                    )));
+                                .showSnackBar(SnackBar(
+                                  content: Row(
+                                children: const [
+                                Icon(Icons.info_outline_rounded,
+                                  size: 30, color: Colors.white),
+                                Spacer(
+                                  flex: 1,
+                                ),
+                                Text("Anda sudah teregistrasi di database Faskes Depok",
+                                  style: TextStyle(
+                                    color: Colors.white,
+                                    fontSize: 20))
+                                ],
+                              )));
                             }
-                    }
-                    
-                  },)))),
-                          
+                          }},
+                          )
+                        )
+                        )
+                      ),
+
+                      // Tombol Kembali
                       Container(
                         margin:
-                            const EdgeInsets.symmetric(horizontal: 16, vertical: 12),
+                          const EdgeInsets.symmetric(horizontal: 16, vertical: 12),
                         child: Align(
-                            alignment: Alignment.bottomCenter,
-                            child: TextButton(
-                              onPressed: (() {
-                                Navigator.pop(context);
-                              }),
-                              child: Text(
-                                'Back',
-                                style: TextStyle(color: Colors.white),
-                              ),
-                              style: ButtonStyle(
-                                  backgroundColor:
-                                      MaterialStateProperty.all(Colors.blue)),
-                            ))),
+                          alignment: Alignment.bottomCenter,
+                          child: TextButton(
+                            onPressed: (() {
+                              Navigator.pop(context);
+                            }),
+                            child: Text(
+                              'Kembali',
+                              style: TextStyle(color: Colors.white),
+                            ),
+                            style: ButtonStyle(
+                                backgroundColor: MaterialStateProperty.all(Colors.blue)),
+                            )
+                          )
+                        ),
+
+                        
                     ],
                   ),
                 ),

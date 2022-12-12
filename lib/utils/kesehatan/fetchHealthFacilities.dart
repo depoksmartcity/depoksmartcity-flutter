@@ -4,7 +4,7 @@ import 'package:depoksmartcity/model/kesehatan/healthFacility.dart';
 
 Future<List<HealthFacility>> fetchHealthFacilities() async {
   var url =
-      Uri.parse('https://web-production-1710.up.railway.app//kesehatan/health-facility/json/');
+    Uri.parse('https://web-production-1710.up.railway.app/kesehatan/health-facility/json/');
   var response = await http.get(
     url,
     headers: {

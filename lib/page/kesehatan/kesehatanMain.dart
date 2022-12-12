@@ -1,18 +1,16 @@
 import 'dart:convert';
+import 'package:flutter/material.dart';
+import 'package:carousel_slider/carousel_slider.dart';
+import 'package:provider/provider.dart';
+import 'package:pbp_django_auth/pbp_django_auth.dart';
+import 'package:http/http.dart' as http;
 
+import 'package:depoksmartcity/drawer/drawer.dart';
 import 'package:depoksmartcity/page/auth/login.dart';
 import 'package:depoksmartcity/page/kesehatan/createAppointment.dart';
 import 'package:depoksmartcity/page/kesehatan/patientRegistration.dart';
 import 'package:depoksmartcity/utils/kesehatan/fetchAppointment.dart';
-import 'package:depoksmartcity/utils/kesehatan/fetchRegisteredPatient.dart';
-import 'package:flutter/material.dart';
-import 'package:carousel_slider/carousel_slider.dart';
-import 'package:depoksmartcity/drawer/drawer.dart';
-import 'package:provider/provider.dart';
-import 'package:pbp_django_auth/pbp_django_auth.dart';
 import 'package:depoksmartcity/page/kesehatan/widgets/roundedBorderedContainer.dart';
-import 'package:http/http.dart' as http;
-import '../../model/kesehatan/patient.dart';
 
 class KesehatanPage extends StatefulWidget {
   const KesehatanPage({super.key});
@@ -22,23 +20,20 @@ class KesehatanPage extends StatefulWidget {
 }
 
 class _KesehatanPageState extends State<KesehatanPage> {
-    final TextStyle h1 = TextStyle(
-      fontSize: 24, fontWeight: FontWeight.w600, color: Colors.blueGrey);
-  final TextStyle h2 = TextStyle(
-      fontSize: 20, fontWeight: FontWeight.w600, color: Colors.blueGrey);
-  final TextStyle h3 = TextStyle(
-      fontSize: 14, fontWeight: FontWeight.w600, color: Colors.blueGrey);
-  final TextStyle boldText = TextStyle(
-      fontSize: 14, fontWeight: FontWeight.w600, color: Colors.blueGrey);
-  final TextStyle plainText = TextStyle(
-      fontSize: 14, fontWeight: FontWeight.w400, color: Colors.blueGrey);
-
+  final TextStyle h1 = const TextStyle(
+    fontSize: 24, fontWeight: FontWeight.w600, color: Colors.blueGrey);
+  final TextStyle h2 = const TextStyle(
+    fontSize: 20, fontWeight: FontWeight.w600, color: Colors.blueGrey);
+  final TextStyle h3 = const TextStyle(
+    fontSize: 14, fontWeight: FontWeight.w600, color: Colors.blueGrey);
+  final TextStyle boldText = const TextStyle(
+    fontSize: 14, fontWeight: FontWeight.w600, color: Colors.blueGrey);
+  final TextStyle plainText = const TextStyle(
+    fontSize: 14, fontWeight: FontWeight.w400, color: Colors.blueGrey);
+  
   @override
   Widget build(BuildContext context) {
     final request = context.read<CookieRequest>();
-    print(request.loggedIn);
-    print(request.jsonData);
-    
     return Scaffold(
       appBar: AppBar(
         title: Text('Layanan Kesehatan'),
@@ -55,21 +50,23 @@ class _KesehatanPageState extends State<KesehatanPage> {
           
           _buildHeading("Jenis Layanan"),
           
+          // Layanan registrasi pasien
           InkWell(
           onTap: () {
-                if (request.jsonData['id'] == null){
-                  Navigator.push(
-                    context,
-                    MaterialPageRoute(
-                        builder: (context) => LoginPage()));
-                  }else{
-                    int userId = request.jsonData['id'];
-                    print(userId);
-                    Navigator.push(context, 
-                    MaterialPageRoute(builder: (context) => AddPatient(
-                      userPk: userId)));
-                  }
+            if (request.jsonData['id'] == null){        // Jika user belum login, akan direct ke halaman login
+              Navigator.push(
+                context,
+                MaterialPageRoute(
+                  builder: (context) => LoginPage()));
+
+              } else {
+                int userId = request.jsonData['id'];
+                Navigator.push(
+                  context, 
+                  MaterialPageRoute(builder: (context) => AddPatient(userPk: userId)));
+              }
           },
+
           child: Padding(
             padding: const EdgeInsets.symmetric(horizontal: 8.0, vertical: 4.0),
             child: Row(
@@ -80,24 +77,24 @@ class _KesehatanPageState extends State<KesehatanPage> {
                   margin: const EdgeInsets.only(right: 10.0),
                   decoration: BoxDecoration(
                     borderRadius: BorderRadius.circular(10),
-                    color: Colors.green,
-                    image: DecorationImage(
-                      
+                    color: Colors.white,
+                    image: const DecorationImage(
                       image: NetworkImage("https://dinkes.depok.go.id/assets/img/icon/regis.png"),
-                      fit: BoxFit.cover,
-                      
-                      ),
+                      fit: BoxFit.contain,
+                    ),
                   ),
                 ),
+
                 Expanded(
                   child: Column(
-                    children: <Widget>[
+                    children: const <Widget>[
+
                       Text(
                         "Registrasi Pasien",
                         style: TextStyle(fontWeight: FontWeight.bold),
                       ),
-                      const SizedBox(height: 10.0),
-                      
+                      SizedBox(height: 10.0),
+
                       Text(
                         "Mempercepat kinerja pelayanan Puskesmas dan Rumah Sakit dalam segi Pendataan Pasien."),
                     ],
@@ -107,23 +104,21 @@ class _KesehatanPageState extends State<KesehatanPage> {
             ),
           ),
         ),
-          
+        
+        // Layanan Penjadwalan Konsultasi
         InkWell(
           onTap: () {
-                if (request.jsonData['id'] == null){
-                  Navigator.push(
-                    context,
-                    MaterialPageRoute(
-                        builder: (context) => LoginPage()));
-                  
-                  } else {
-                    int userId = request.jsonData['id'];
-                    print(userId);
-                      Navigator.push(context, 
-                      MaterialPageRoute(builder: (context) => AddAppointment(
-                        userPk: userId)));
-                    
-                  }
+            if (request.jsonData['id'] == null){
+              Navigator.push(
+                context,
+                MaterialPageRoute(
+                  builder: (context) => LoginPage()));
+              
+              } else {
+                int userId = request.jsonData['id'];
+                  Navigator.push(context, 
+                  MaterialPageRoute(builder: (context) => AddAppointment(userPk: userId)));
+              }
           },
           child: Padding(
             padding: const EdgeInsets.symmetric(horizontal: 8.0, vertical: 4.0),
@@ -135,17 +130,21 @@ class _KesehatanPageState extends State<KesehatanPage> {
                   margin: const EdgeInsets.only(right: 10.0),
                   decoration: BoxDecoration(
                     borderRadius: BorderRadius.circular(10),
-                    color: Colors.green,
+                    color: Colors.white,
+                    image: const DecorationImage(
+                      image: NetworkImage("https://dinkes.depok.go.id/assets/img/icon/dokter.png"),
+                      fit: BoxFit.contain,
+                    )
                   ),
                 ),
                 Expanded(
                   child: Column(
-                    children: <Widget>[
+                    children: const <Widget>[
                       Text(
                         "Jadwalkan Konsultasi",
                         style: TextStyle(fontWeight: FontWeight.bold),
                       ),
-                      const SizedBox(height: 10.0),
+                      SizedBox(height: 10.0),
                       
                       Text(
                         "Jadwalkan Konsultasi dan Cek Antrian RSUD dan Puskesmas."),
@@ -156,19 +155,58 @@ class _KesehatanPageState extends State<KesehatanPage> {
             ),
           ),
         ),
+        
 
-        _buildListLayanan(
-          Colors.green, 
-            "Daftar Fasilitas Kesehatan", 
-            "Cek daftar Puskesmas dan Rumah sakit tujuanmu dengan alamat lengkap dan narahubung.", "/kesehatan/health-facilities"),
-          
-          _buildHeading("Daftar Konsultasi Anda"),
-          
-        Padding(
-          padding: const EdgeInsets.symmetric(horizontal: 4.0),
-          child: Column(
+        // Tampilkan Fasilitas Kesehatan
+        InkWell(
+        onTap: () {
+          Navigator.pushNamed(context, "/kesehatan/health-facilities");
+        },
+
+        child: Padding(
+          padding: const EdgeInsets.symmetric(horizontal: 8.0, vertical: 4.0),
+          child: Row(
             children: <Widget>[
-              if (request.jsonData['id'] == null)...[
+              Container(
+                height: 100,
+                width: 100,
+                margin: const EdgeInsets.only(right: 10.0),
+                decoration: BoxDecoration(
+                  borderRadius: BorderRadius.circular(10),
+                  color: Colors.white,
+                    image: const DecorationImage(
+                      image: NetworkImage("https://dinkes.depok.go.id/assets/img/icon/hospital%20(4).png"),
+                      fit: BoxFit.contain,
+                  )
+                ),
+              ),
+              
+              Expanded(
+                child: Column(
+                  children: const <Widget>[
+                    Text(
+                      "Daftar Fasilitas Kesehatan",
+                      style: TextStyle(fontWeight: FontWeight.bold),
+                    ),
+                    SizedBox(height: 10.0),
+                    Text(
+                      "Cek daftar Puskesmas dan Rumah sakit tujuanmu dengan alamat lengkap dan narahubung."),
+                  ],
+                ),
+              ),
+            ],
+          ),
+        ),
+      ),
+
+          
+      _buildHeading("Daftar Konsultasi Anda"),
+          
+      Padding(
+        padding: const EdgeInsets.symmetric(horizontal: 4.0),
+        child: Column(
+          children: <Widget>[
+                if (request.jsonData['id'] == null)...[
                 Column(
                   children: const [
                     Text(
@@ -180,7 +218,7 @@ class _KesehatanPageState extends State<KesehatanPage> {
                   ],
                 ),
               ]else...[
-                
+                // Menampilkan appointment user
                 FutureBuilder(
                 future: fetchAppointment(request.jsonData['id']),
                 builder: (context, AsyncSnapshot snapshot) {
@@ -190,14 +228,14 @@ class _KesehatanPageState extends State<KesehatanPage> {
                             Text(
                               "Anda belum terdaftar sebagai pasien :( ",
                               style: TextStyle(
-                                  color: Color(0xFF003320), fontSize: 20),
-                            ),
+                                color: Color(0xFF003320), fontSize: 20),
+                              ),
                             SizedBox(height: 8),
                           ],
                         );
-                      
+
                     } else {
-                      if (!snapshot.hasData) {
+                      if (snapshot.data.isEmpty) {
                         return Column(
                           children: const [
                             Text(
@@ -208,6 +246,7 @@ class _KesehatanPageState extends State<KesehatanPage> {
                             SizedBox(height: 8),
                           ],
                         );
+
                       } else {
                         return ListView.builder(
                           shrinkWrap: true,
@@ -276,6 +315,8 @@ class _KesehatanPageState extends State<KesehatanPage> {
                                         fontWeight: FontWeight.bold,
                                       ),
                                     ),
+
+                                    // Tombol untuk menghapus appointment
                                     Container(
                                       margin:
                                       const EdgeInsets.symmetric(horizontal: 16, vertical: 12),
@@ -292,23 +333,20 @@ class _KesehatanPageState extends State<KesehatanPage> {
                                               
                                               body: jsonEncode(<String, String>{
                                               'appointmentId' : pkStr,
-        
-                                          }));
-                                          
-                                            print(response.body);
-                                            Navigator.pushNamed(context, '/kesehatan');
-                                            setState(() {
-                                            });
-                                            }),
+                                              }));
                                             
-                                            child: Text(
-                                              'Hapus',
-                                              style: TextStyle(color: Colors.white),
+                                            Navigator.pushNamed(context, '/kesehatan');
+                                            }
+                                          ),  
+                                          child: Text(
+                                            'Hapus',
+                                            style: TextStyle(color: Colors.white),
                                             ),
                                             style: ButtonStyle(
-                                                backgroundColor:
-                                                    MaterialStateProperty.all(Colors.red)),
-                                          ))),
+                                                backgroundColor: MaterialStateProperty.all(Colors.red)),
+                                      
+                                      )
+                                    )),
                                   ],
                                 ),
                               ),
@@ -316,10 +354,12 @@ class _KesehatanPageState extends State<KesehatanPage> {
                           ),
                         );
                       }
-
-  }})
-              ]
+                    }
+                  }
+                )
               ],
+              const SizedBox(height: 30),
+            ],
           ),
         ),
 
@@ -329,6 +369,7 @@ class _KesehatanPageState extends State<KesehatanPage> {
     );
   }
 
+  // Membuat heading 
   Padding _buildHeading(String title) {
     return Padding(
       padding: const EdgeInsets.all(8.0),
@@ -346,50 +387,13 @@ class _KesehatanPageState extends State<KesehatanPage> {
     );
   }
   
-  
-  Widget _buildListLayanan(Color color, String text1, String text2, String hyperlink) {
-    return InkWell(
-      onTap: () {
-        Navigator.pushNamed(context, hyperlink);
-      },
-      child: Padding(
-        padding: const EdgeInsets.symmetric(horizontal: 8.0, vertical: 4.0),
-        child: Row(
-          children: <Widget>[
-            Container(
-              height: 100,
-              width: 100,
-              margin: const EdgeInsets.only(right: 10.0),
-              decoration: BoxDecoration(
-                borderRadius: BorderRadius.circular(10),
-                color: color,
-              ),
-            ),
-            Expanded(
-              child: Column(
-                children: <Widget>[
-                  Text(
-                    text1,
-                    style: TextStyle(fontWeight: FontWeight.bold),
-                  ),
-                  const SizedBox(height: 10.0),
-                  
-                  Text(
-                    text2),
-                ],
-              ),
-            ),
-          ],
-        ),
-      ),
-    );
-  }
-
+  // Membuat carousel jenis-jenis layanan
   RoundedContainer _buildCarouselLayanan() {
     return RoundedContainer(
       height: 270,
       borderRadius: BorderRadius.circular(0),
       color: Color(0xFF003320),
+      
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
         children: <Widget>[
@@ -398,15 +402,15 @@ class _KesehatanPageState extends State<KesehatanPage> {
               options: CarouselOptions(
                 height: 400.0,
                 autoPlay: true,
-                 autoPlayInterval: Duration(seconds: 2)),
-              items: [1,2,3].map((i) {
-                return Builder(
-                  builder: (BuildContext context) {
-                    if (i == 1){
-                      return RoundedContainer(
-                        borderRadius: BorderRadius.circular(4.0),
-                        width: MediaQuery.of(context).size.width,
-                        margin: EdgeInsets.symmetric(horizontal: 5.0),
+                autoPlayInterval: Duration(seconds: 2)),
+                items: [1,2,3].map((i) {
+                  return Builder(
+                    builder: (BuildContext context) {
+                      if (i == 1){
+                          return RoundedContainer(
+                          borderRadius: BorderRadius.circular(4.0),
+                          width: MediaQuery.of(context).size.width,
+                          margin: EdgeInsets.symmetric(horizontal: 5.0),
                       child: Row(
                       children: <Widget>[
                         Expanded(
@@ -486,7 +490,6 @@ class _KesehatanPageState extends State<KesehatanPage> {
                         )
                     ]));
                     }
-
                   }
                 );
               }).toList(),

@@ -32,7 +32,10 @@ class MyApp extends StatelessWidget {
           ),
 
           home: const MyHomePage(title: 'Depok Smart City Mobile'),
-          routes: {},
+          routes: {
+            "/kesehatan" : (BuildContext context) => const KesehatanPage(),
+            "/kesehatan/health-facilities" : (BuildContext context) => const HealthFacilites(),
+          },
         ));
   }
 }

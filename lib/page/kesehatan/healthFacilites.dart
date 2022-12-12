@@ -1,7 +1,10 @@
+import 'dart:convert';
 import 'package:flutter/material.dart';
 import 'package:carousel_slider/carousel_slider.dart';
+import 'package:flutter/services.dart';
 import 'package:provider/provider.dart';
 import 'package:pbp_django_auth/pbp_django_auth.dart';
+
 import 'package:depoksmartcity/drawer/drawer.dart';
 import 'package:depoksmartcity/page/auth/login.dart';
 import 'package:depoksmartcity/model/kesehatan/healthFacility.dart';
@@ -15,22 +18,17 @@ class HealthFacilites extends StatefulWidget {
 }
 
 class _HealthFacilitesState extends State<HealthFacilites> {
-  final TextStyle h1 = TextStyle(
+  final TextStyle h1 = const TextStyle(
     fontSize: 24, fontWeight: FontWeight.w600, color: Colors.blueGrey);
-  final TextStyle h2 = TextStyle(
+  final TextStyle h2 = const TextStyle(
     fontSize: 20, fontWeight: FontWeight.w600, color: Colors.blueGrey);
-  final TextStyle h3 = TextStyle(
+  final TextStyle h3 = const TextStyle(
     fontSize: 14, fontWeight: FontWeight.w600, color: Colors.blueGrey);
-  final TextStyle boldText = TextStyle(
+  final TextStyle boldText = const TextStyle(
     fontSize: 14, fontWeight: FontWeight.w600, color: Colors.blueGrey);
-  final TextStyle plainText = TextStyle(
+  final TextStyle plainText = const TextStyle(
     fontSize: 14, fontWeight: FontWeight.w400, color: Colors.blueGrey);
   
-  // final primary = Color.fromARGB(255, 102, 103, 124);
-  // final secondary = Color.fromARGB(255, 56, 180, 229);
-  
-  // final List<Map> 
-
   @override
   Widget build(BuildContext context) {
     final request = context.watch<CookieRequest>();
@@ -66,7 +64,7 @@ class _HealthFacilitesState extends State<HealthFacilites> {
                       return const Center(child: CircularProgressIndicator());
                     
                     } else {
-                      if (!snapshot.hasData) {
+                      if (snapshot.data.isEmpty) {
                         return Column(
                           children: const [
                             Text(
@@ -114,12 +112,32 @@ class _HealthFacilitesState extends State<HealthFacilites> {
                                     ),
                                     const SizedBox(height: 10),
                                     Text(
-                                        "${snapshot.data![index].fields.address}"),
+                                        "Alamat : ${snapshot.data![index].fields.address}"),
+                                    Text(
+                                        "\nNo. Telp : ${snapshot.data![index].fields.phone_number}"),
+                                    Container(
+                                      margin:
+                                          const EdgeInsets.symmetric(horizontal: 16, vertical: 12),
+                                      child: Align(
+                                          alignment: Alignment.bottomCenter,
+                                          child: ElevatedButton(
+                                            onPressed: (() {
+                                                Clipboard.setData(
+                                                  ClipboardData(text: "${snapshot.data![index].fields.address_url}"));
+                                                }),
+                                            child: Text(
+                                              'Copy URL Peta',
+                                              style: TextStyle(color: Colors.white),
+                                            ),
+                                            
+                                            style: ButtonStyle(
+                                                backgroundColor:
+                                                    MaterialStateProperty.all(Colors.green)),
+                                          ))),
                                   ],
                                 ),
-
-                                // ),
                               ),
+                              const SizedBox(height: 10),
                             ],
                           ),
                         );
@@ -129,22 +147,23 @@ class _HealthFacilitesState extends State<HealthFacilites> {
                 ),
                 const SizedBox(height: 30),
                 Container(
-                        margin:
-                            const EdgeInsets.symmetric(horizontal: 16, vertical: 12),
-                        child: Align(
-                            alignment: Alignment.bottomCenter,
-                            child: TextButton(
-                              onPressed: (() {
-                                Navigator.pop(context);
-                              }),
-                              child: Text(
-                                'Kembali',
-                                style: TextStyle(color: Colors.white),
-                              ),
-                              style: ButtonStyle(
-                                  backgroundColor:
-                                      MaterialStateProperty.all(Colors.blue)),
-                            ))),
+                  margin:
+                    const EdgeInsets.symmetric(horizontal: 16, vertical: 12),
+                  child: Align(
+                    alignment: Alignment.bottomCenter,
+                    child: TextButton(
+                      onPressed: (() {
+                        Navigator.pop(context);
+                      }),
+                      child: Text(
+                        'Kembali',
+                        style: TextStyle(color: Colors.white),
+                      ),
+                      style: ButtonStyle(
+                        backgroundColor: MaterialStateProperty.all(Colors.blue)),
+                      )
+                    )
+                  ),
               ]
             ),
           )
