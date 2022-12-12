@@ -130,9 +130,9 @@ class _DrawerClassState extends State<DrawerClass> {
                     builder: (context) =>
                         const MyHomePage(title: 'Flutter Demo Home Page')),
               );
-              final response = await request
-                  // .logout('https://web-production-1710.up.railway.app/logout/');
-                  .logout('http://localhost:8000/logout-flutter/');
+              final response = await request.logout(
+                  'https://web-production-1710.up.railway.app/logout-flutter/');
+              // .logout('http://localhost:8000/logout-flutter/');
 
               ScaffoldMessenger.of(context).showSnackBar(
                 SnackBar(
