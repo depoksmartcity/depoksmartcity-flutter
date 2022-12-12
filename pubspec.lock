@@ -15,6 +15,16 @@ packages:
       url: "https://pub.dartlang.org"
     source: hosted
     version: "2.1.0"
+
+  carousel_slider:
+    dependency: "direct main"
+    description:
+      name: carousel_slider
+      sha256: d7256dca1ca9a4c9389126d57d70ce5d5e8fe25e7c81075b364f8a09dcba86ad
+      url: "https://pub.dev"
+    source: hosted
+    version: "4.2.0"
+    
   characters:
     dependency: transitive
     description:
@@ -76,6 +86,14 @@ packages:
       url: "https://pub.dartlang.org"
     source: hosted
     version: "2.0.1"
+  flutter_swiper_null_safety:
+    dependency: "direct main"
+    description:
+      name: flutter_swiper_null_safety
+      sha256: "5a855e0080d035c08e82f8b7fd2f106344943a30c9ab483b2584860a2f22eaaf"
+      url: "https://pub.dev"
+    source: hosted
+    version: "1.0.2"
   flutter_test:
     dependency: "direct dev"
     description: flutter

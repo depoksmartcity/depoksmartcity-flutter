@@ -3,7 +3,9 @@ import 'package:depoksmartcity/page/auth/login.dart';
 import 'package:depoksmartcity/page/auth/register.dart';
 import 'package:depoksmartcity/page/aspirasi/aspirasi.dart';
 import 'package:depoksmartcity/page/kependudukan/kependudukan.dart';
+import 'package:depoksmartcity/page/kesehatan/kesehatanMain.dart';
 import 'package:depoksmartcity/page/perpustakaan/showBook.dart';
+
 import 'package:depoksmartcity/page/restaurant/restaurant.dart';
 import 'package:flutter/material.dart';
 import 'package:pbp_django_auth/pbp_django_auth.dart';
@@ -107,7 +109,7 @@ class _DrawerClassState extends State<DrawerClass> {
               Navigator.pushReplacement(
                 context,
                 MaterialPageRoute(
-                    builder: (context) => const KependudukanPage()),
+                    builder: (context) => const KesehatanPage()),
               );
             },
           ),
@@ -127,6 +129,7 @@ class _DrawerClassState extends State<DrawerClass> {
               Navigator.pushReplacement(
                 context,
                 MaterialPageRoute(
+                
                     builder: (context) =>
                         const MyHomePage(title: 'Flutter Demo Home Page')),
               );
