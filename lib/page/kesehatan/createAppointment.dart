@@ -2,8 +2,8 @@ import 'dart:convert';
 
 import 'package:depoksmartcity/model/kesehatan/healthFacility.dart';
 import 'package:depoksmartcity/page/kesehatan/healthFacilites.dart';
+import 'package:depoksmartcity/page/kesehatan/patientRegistration.dart';
 import 'package:depoksmartcity/utils/kesehatan/fetchHealthFacilities.dart';
-import 'package:depoksmartcity/utils/kesehatan/fetchRegisteredPatient.dart';
 import 'package:depoksmartcity/model/kesehatan/patient.dart';
 
 import 'package:intl/intl.dart';
@@ -14,7 +14,6 @@ import 'package:flutter/services.dart';
 import 'package:depoksmartcity/drawer/drawer.dart';
 import 'package:provider/provider.dart';
 import 'package:pbp_django_auth/pbp_django_auth.dart';
-
 
 class AddAppointment extends StatefulWidget {
   const AddAppointment({super.key, required this.userPk});
@@ -63,7 +62,7 @@ class _AddAppointmentState extends State<AddAppointment> {
         backgroundColor: Color(0xFF003320),
       ),
 
-      // Menambahkan drawer menu
+      // Menambahkan drawer
       drawer: DrawerClass(),
 
       body: Form(
@@ -73,8 +72,9 @@ class _AddAppointmentState extends State<AddAppointment> {
             width: MediaQuery.of(context).size.width,
             padding: const EdgeInsets.all(20.0),
             child: Column(
-              
               children: [
+
+                // Pilih Fasilitas Kesehatan
                 Padding(
                   // Menggunakan padding sebesar 8 pixels
                   padding: const EdgeInsets.all(8.0),
@@ -88,30 +88,35 @@ class _AddAppointmentState extends State<AddAppointment> {
                       icon: const Icon(Icons.keyboard_arrow_down),
                       items: listFaskes.map((String items) {
                         return DropdownMenuItem(
-                          
                           value: items,
                           child: Text(items),
-                        );
-                        
+                        );   
                       }).toList(),
+
                       onChanged: (String? newValue) {
                         setState(() {
                           facility_name = newValue!;
                         });
                       },
-                    ),
-                    
+                    ),   
+                  ),
                 ),
-            ),
 
-             // schedule date
+
+                // Pilih Tanggal
                 Padding(
                   // Menggunakan padding sebesar 8 pixels
                   padding: const EdgeInsets.all(8.0),
-                  child: TextButton(
-                    child: Text(scheduled_date == null
-                        ? "Pilih Tanggal"
-                        : "${scheduled_date!.day}/${scheduled_date!.month}/${scheduled_date!.year}"),
+                  child: ListTile(
+                    title: const Text(
+                      'Pilih Tanggal',
+                    ),
+
+                    trailing: TextButton(
+                      child: Text(scheduled_date == null
+                          ? "Pilih"
+                          : "${scheduled_date!.day}/${scheduled_date!.month}/${scheduled_date!.year}"),
+                    
                     onPressed: () {
                       showDatePicker(
                         context: context,
@@ -126,14 +131,16 @@ class _AddAppointmentState extends State<AddAppointment> {
                     },
                   ),
                 ),
+                ),
 
-                // schedule time
+
+                // Pilih Waktu Konsultasi
                 Padding(
                   // Menggunakan padding sebesar 8 pixels
                   padding: const EdgeInsets.all(8.0),
                   child: ListTile(
                     title: const Text(
-                      'Pilih Waktu',
+                    'Pilih Waktu',
                     ),
                     trailing: DropdownButton(
                       value: scheduled_timeslot,
@@ -153,6 +160,8 @@ class _AddAppointmentState extends State<AddAppointment> {
                   ),
                 ),
 
+
+                // Tombol tambahkan konsultasi
                 Padding(
                   padding: const EdgeInsets.symmetric(horizontal: 25),
                   child: Container(
@@ -162,8 +171,8 @@ class _AddAppointmentState extends State<AddAppointment> {
                       borderRadius: BorderRadius.circular(12),
                     ),
                     child: Center(
-                        child: TextButton(
-                      child: Text(
+                      child: TextButton(
+                        child: Text(
                         "Tambah Konsultasi",
                         style: TextStyle(
                           color: Colors.white,
@@ -171,10 +180,12 @@ class _AddAppointmentState extends State<AddAppointment> {
                           fontSize: 15,
                         ),
                       ),
+                      
                       style: ButtonStyle(
                         minimumSize: MaterialStateProperty.all(
                             Size.fromHeight(40)),
                       ),
+
                       onPressed: () async {
                         if (_formKey.currentState!.validate()) {
                           final response = await http.post(
@@ -186,56 +197,63 @@ class _AddAppointmentState extends State<AddAppointment> {
                           body: jsonEncode(<String, String>{
                           'user' : userPkStr,
                           'facility' : facility_name,
-                          'date' : ("${scheduled_date?.year}" +
-                                "-" +
-                                "${scheduled_date?.month}" +
-                                "-" +
-                                "${scheduled_date?.day}"),
+                          'date' : ("${scheduled_date?.year}" + "-" + "${scheduled_date?.month}" + "-" + "${scheduled_date?.day}"),
                           'timeslot': scheduled_timeslot,
                       }));
                         
-                        print(response.body);
                         var jsonData = jsonDecode(response.body);
                         String status = jsonData['status'];
 
                         if (status == "Success"){
                         ScaffoldMessenger.of(context)
-                                  .showSnackBar(SnackBar(
-                                      content: Row(
-                                children: const [
-                                  Icon(Icons.info_outline_rounded,
-                                      size: 30, color: Colors.white),
-                                  Spacer(
-                                    flex: 1,
-                                  ),
-                                  Text("Penjadwalan Konsultasi Berhasil",
-                                      style: TextStyle(
-                                          color: Colors.white,
-                                          fontSize: 20))
-                                ],
-                              )));
+                          .showSnackBar(SnackBar(
+                            content: Row(
+                            children: const [
+                              Icon(Icons.info_outline_rounded,
+                                size: 30, color: Colors.white),
+                              Spacer(
+                                flex: 1,
+                              ),
+                              Text("Penjadwalan Konsultasi Berhasil",
+                                style: TextStyle(
+                                  color: Colors.white,
+                                  fontSize: 20))
+                          ],
+                          )
+                          )
+                        );
+                        
                         Navigator.pop(context);
-                      }
-                      else{
+
+                      } else {
                         ScaffoldMessenger.of(context)
-                                  .showSnackBar(SnackBar(
-                                      content: Row(
-                                children: const [
-                                  Icon(Icons.info_outline_rounded,
-                                      size: 30, color: Colors.white),
-                                  Spacer(
-                                    flex: 1,
-                                  ),
-                                  Text("Penjadwalan Konsultasi Berhasil",
-                                      style: TextStyle(
-                                          color: Colors.white,
-                                          fontSize: 20))
-                                ],
-                              )));
+                          .showSnackBar(SnackBar(
+                            content: Row(
+                            children: const [
+                              Icon(Icons.info_outline_rounded,
+                                size: 30, color: Colors.white),
+                              Spacer(
+                                flex: 1,
+                              ),
+                              Text("Silahkan melakukan registrasi terlebih dahulu",
+                                  style: TextStyle(
+                                    color: Colors.white,
+                                    fontSize: 20))
+                            ],
+                          )
+                        )
+                        );
                       }
+                      Navigator.push(
+                        context,
+                        MaterialPageRoute(
+                        builder: (context) => AddPatient(userPk: int.parse(userPkStr))));
                     }
-                    
-                  },)))),
+                  },
+                  ))
+                  )),
+
+
                   Container(
                         margin:
                             const EdgeInsets.symmetric(horizontal: 16, vertical: 12),
@@ -252,8 +270,9 @@ class _AddAppointmentState extends State<AddAppointment> {
                               style: ButtonStyle(
                                   backgroundColor:
                                       MaterialStateProperty.all(Colors.blue)),
-                            ))),
-            
+                          )
+                        )
+                  ),
             ]
             ),
           ),
@@ -261,6 +280,4 @@ class _AddAppointmentState extends State<AddAppointment> {
       ),
     );
   }
-
-
 }
