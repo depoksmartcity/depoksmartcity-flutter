@@ -28,13 +28,13 @@ class _AddAppointmentState extends State<AddAppointment> {
 
   String facility_pk_str = "";
   
-  String facility_name = '-----------------------';
+  String facility_name = '-------------------';
   List<String> listFaskes = [
-    '-----------------------',
-    'Rumah Sakit Mitra Keluarga Depok',
+    '-------------------',
+    'RS Mitra Keluarga',
     'RSU Hermina Depok',
-    'Rumah Sakit Universitas Indonesia (RSUI)',
-    'Rumah Sakit Grha Permata Ibu',
+    'RS UI',
+    'RS Grha Permata Ibu',
     'RSU Bunda Margonda'
   ];
 
@@ -81,7 +81,7 @@ class _AddAppointmentState extends State<AddAppointment> {
                   
                   child: ListTile(
                     title: const Text(
-                      'Fasilitas Kesehatan',
+                      'Faskes',
                     ),
                     trailing: DropdownButton(
                       value: facility_name,
