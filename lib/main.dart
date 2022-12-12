@@ -25,17 +25,14 @@ class MyApp extends StatelessWidget {
           return request;
         },
         child: MaterialApp(
-          title: 'Flutter Demo',
+          title: 'Depok Smart City Mobile',
           theme: ThemeData(
 
             primarySwatch: Colors.blue,
           ),
 
-          home: const MyHomePage(title: 'Flutter Demo Home Page'),
-          routes: {
-            "/kesehatan" : (BuildContext context) => const KesehatanPage(),
-            "/kesehatan/health-facilities" : (BuildContext context) => const HealthFacilites(),
-          },
+          home: const MyHomePage(title: 'Depok Smart City Mobile'),
+          routes: {},
         ));
   }
 }
@@ -50,14 +47,6 @@ class MyHomePage extends StatefulWidget {
 }
 
 class _MyHomePageState extends State<MyHomePage> {
-  int _counter = 0;
-
-  void _incrementCounter() {
-    setState(() {
-      _counter++;
-    });
-  }
-
   @override
   Widget build(BuildContext context) {
     // This method is rerun every time setState is called, for instance as done
@@ -94,20 +83,20 @@ class _MyHomePageState extends State<MyHomePage> {
           mainAxisAlignment: MainAxisAlignment.center,
           children: <Widget>[
             const Text(
-              'You have pushed the button this many times:',
+              'Selamat Datang di Depok Smart City Mobile',
+              style: TextStyle(fontWeight: FontWeight.bold, fontSize: 34)
             ),
             Text(
-              '$_counter',
-              style: Theme.of(context).textTheme.headline4,
+              "Depok Smart City Mobile adalah aplikasi mobile Kota Depok dengan berbagai fitur dalam satu aplikasi.",
+              style: TextStyle(fontSize: 24)
+            ),
+            Text(
+              "Fitur - fitur tersebut terdiri dari kependudukan, aspirasi, restoran, kesehatan, dan perpustakaan.",
+              style: TextStyle(fontSize: 24)
             ),
           ],
         ),
       ),
-      floatingActionButton: FloatingActionButton(
-        onPressed: _incrementCounter,
-        tooltip: 'Increment',
-        child: const Icon(Icons.add),
-      ), // This trailing comma makes auto-formatting nicer for build methods.
     );
   }
 }
