@@ -1,5 +1,6 @@
 import 'dart:convert';
 
+import 'package:depoksmartcity/page/aspirasi/aspirasi.dart';
 import 'package:flutter/material.dart';
 import 'package:depoksmartcity/drawer/drawer.dart';
 import 'package:provider/provider.dart';
@@ -104,6 +105,20 @@ class _AddAspirasiPageState extends State<AddAspirasiPage> {
                         );
                       }
                     }),
+                  TextButton(
+                  child: const Text(
+                    "Kembali",
+                    style: TextStyle(color: Colors.white),
+                  ),
+                  style: ButtonStyle(
+                    backgroundColor: MaterialStateProperty.all(Colors.blue),
+                  ),
+                  onPressed: () {
+                    Navigator.push(
+                        context,
+                        MaterialPageRoute(
+                            builder: (context) => const AspirasiPage()));
+                  }),
               ],
             ),
           ),

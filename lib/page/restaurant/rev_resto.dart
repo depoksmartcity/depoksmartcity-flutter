@@ -35,8 +35,9 @@ class _MyRevState extends State<MyRevPage> {
           itemBuilder: (context, index) {
             final item = Add.contain[index];
             return ListTile(
-              title:Text("Ulasan"),subtitle:Row(mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                children:[Text(item.review), Text("Tanggal : "+item.date.toString().substring(0,10))]),
+              title:Column(children: [Text(item.namaResto)],),
+              subtitle:Column(children: [Text(item.review, maxLines: 2, softWrap: false,), Text("Tanggal : "+item.date.toString().substring(0,10))],)
+              // subtitle:Text("Tanggal : "+item.date.toString().substring(0,10)),
 
             );
           },
