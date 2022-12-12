@@ -14,7 +14,9 @@ class RequestKTPPage extends StatefulWidget {
 
 class _RequestKTPPageState extends State<RequestKTPPage> {
   final TextStyle h1 = TextStyle(
-      fontSize: 24, fontWeight: FontWeight.w600, color: Colors.blueGrey);
+      fontSize: 24,
+      fontWeight: FontWeight.w600,
+      color: Color.fromARGB(255, 11, 51, 74));
 
   final _formKey = GlobalKey<FormState>();
   String _namaLengkap = "";
@@ -77,8 +79,11 @@ class _RequestKTPPageState extends State<RequestKTPPage> {
     "Sawangan",
     "Bojong Sari"
   ];
-  String kelurahan = "---------";
+  String kelurahan = "Pilih kecamatan terlebih dahulu";
   List<String> listKelurahan = [
+    "Pilih kecamatan terlebih dahulu",
+  ];
+  List<String> listKelurahanBeji = [
     "---------",
     "Beji",
     "Beji Timur",
@@ -86,12 +91,93 @@ class _RequestKTPPageState extends State<RequestKTPPage> {
     "Pondok Cina",
     "Kukusan",
     "Tanah Baru",
+  ];
+  List<String> listKelurahanPancoranMas = [
+    "---------",
     "Pancoran Mas",
     "Depok",
     "Depok Jaya",
     "Rangkapan Jaya",
     "Rangkapan Jaya Baru",
     "Mampang",
+  ];
+  List<String> listKelurahanCipayung = [
+    "---------",
+    "Cipayung",
+    "Cipayung Jaya",
+    "Ratu Jaya",
+    "Bojong Pondok Terong",
+    "Pondok Jaya",
+  ];
+  List<String> listKelurahanSukmajaya = [
+    "---------",
+    "Sukmajaya",
+    "Mekar Jaya",
+    "Bakti Jaya",
+    "Abadi Jaya",
+    "Tirta Jaya",
+    "Cisalak",
+  ];
+  List<String> listKelurahanCilodong = [
+    "---------",
+    "Sukamaju",
+    "Cilodong",
+    "Kalibaru",
+    "Kalimulya",
+    "Jatimulya",
+  ];
+  List<String> listKelurahanLimo = [
+    "---------",
+    "Limo",
+    "Meruyung",
+    "Grogol",
+    "Krukut",
+  ];
+  List<String> listKelurahanCinere = [
+    "---------",
+    "Cinere",
+    "Gandul",
+    "Pengkalan Jati",
+    "Pangkalan Jati Baru",
+  ];
+  List<String> listKelurahanCimanggis = [
+    "---------",
+    "Cisalak Pasar",
+    "Mekarsari",
+    "Tugu",
+    "Pasir Gunung Selatan",
+    "Harjamukti",
+    "Curug",
+  ];
+  List<String> listKelurahanTapos = [
+    "---------",
+    "Tapos",
+    "Leuwinanggung",
+    "Sukatani",
+    "Sukamaju Baru",
+    "Jatijajar",
+    "Cilangkap",
+    "Cimpaeun",
+  ];
+  List<String> listKelurahanSawangan = [
+    "---------",
+    "Sawangan",
+    "Kedaung",
+    "Cinangka",
+    "Sawangan Baru",
+    "Bedahan",
+    "Pengasinan",
+    "Pasir Putih",
+  ];
+  List<String> listKelurahanBojongSari = [
+    "---------",
+    "Bojong Sari",
+    "Bojongsari Baru",
+    "Serua",
+    "Pondok Petir",
+    "Curug",
+    "Duren Mekar",
+    "Duren Seribu",
   ];
 
   @override
@@ -100,6 +186,10 @@ class _RequestKTPPageState extends State<RequestKTPPage> {
     return Scaffold(
       appBar: AppBar(
         title: const Text('Kependudukan'),
+        flexibleSpace: Container(
+          decoration:
+              const BoxDecoration(color: Color.fromARGB(255, 11, 51, 74)),
+        ),
       ),
       // Menambahkan drawer menu
       drawer: const DrawerClass(),
@@ -134,6 +224,45 @@ class _RequestKTPPageState extends State<RequestKTPPage> {
                       onChanged: (String? newValue) {
                         setState(() {
                           kecamatan = newValue!;
+                          if (kecamatan == "---------") {
+                            kelurahan = "Pilih kecamatan terlebih dahulu";
+                            listKelurahan = [
+                              "Pilih kecamatan terlebih dahulu",
+                            ];
+                          } else if (kecamatan == 'Beji') {
+                            listKelurahan = listKelurahanBeji;
+                            kelurahan = listKelurahanBeji[0];
+                          } else if (kecamatan == 'Pancoran Mas') {
+                            listKelurahan = listKelurahanPancoranMas;
+                            kelurahan = listKelurahanPancoranMas[0];
+                          } else if (kecamatan == 'Cipayung') {
+                            listKelurahan = listKelurahanCipayung;
+                            kelurahan = listKelurahanCipayung[0];
+                          } else if (kecamatan == 'Sukmajaya') {
+                            listKelurahan = listKelurahanSukmajaya;
+                            kelurahan = listKelurahanSukmajaya[0];
+                          } else if (kecamatan == 'Cilodong') {
+                            listKelurahan = listKelurahanCilodong;
+                            kelurahan = listKelurahanCilodong[0];
+                          } else if (kecamatan == 'Limo') {
+                            listKelurahan = listKelurahanLimo;
+                            kelurahan = listKelurahanLimo[0];
+                          } else if (kecamatan == 'Cinere') {
+                            listKelurahan = listKelurahanCinere;
+                            kelurahan = listKelurahanCinere[0];
+                          } else if (kecamatan == 'Cimanggis') {
+                            listKelurahan = listKelurahanCimanggis;
+                            kelurahan = listKelurahanCimanggis[0];
+                          } else if (kecamatan == 'Tapos') {
+                            listKelurahan = listKelurahanTapos;
+                            kelurahan = listKelurahanTapos[0];
+                          } else if (kecamatan == 'Sawangan') {
+                            listKelurahan = listKelurahanSawangan;
+                            kelurahan = listKelurahanSawangan[0];
+                          } else if (kecamatan == 'Bojong Sari') {
+                            listKelurahan = listKelurahanBojongSari;
+                            kelurahan = listKelurahanBojongSari[0];
+                          }
                         });
                       },
                     ),
@@ -529,7 +658,8 @@ class _RequestKTPPageState extends State<RequestKTPPage> {
                     style: TextStyle(color: Colors.white),
                   ),
                   style: ButtonStyle(
-                    backgroundColor: MaterialStateProperty.all(Colors.blue),
+                    backgroundColor: MaterialStateProperty.all(
+                        Color.fromARGB(255, 11, 51, 74)),
                   ),
                   onPressed: () async {
                     if (_formKey.currentState!.validate()) {

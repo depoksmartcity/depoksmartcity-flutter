@@ -33,11 +33,13 @@ class RegisterPage extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-          title: const Text("Register Page"),
-          elevation: 5,
-          flexibleSpace: Container(
-            decoration: const BoxDecoration(color: Colors.blueGrey),
-          )),
+        title: const Text("Register Page"),
+        elevation: 5,
+        flexibleSpace: Container(
+          decoration:
+              const BoxDecoration(color: Color.fromARGB(255, 11, 51, 74)),
+        ),
+      ),
       drawer: const DrawerClass(),
       body: Form(
         key: _registFormKey,
@@ -227,6 +229,7 @@ class RegisterPage extends StatelessWidget {
                   ),
                 ),
 
+                const SizedBox(height: 30),
                 // go to login page
                 GestureDetector(
                   onTap: () => Navigator.pushReplacement(
