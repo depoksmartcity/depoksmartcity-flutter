@@ -161,7 +161,6 @@ class BookDetailsPage extends StatelessWidget {
                 return const Center(child: CircularProgressIndicator());
               } else {
                 if (!snapshot.data.isEmpty) {
-                  print("1");
                   return Container(
                 margin:
                     const EdgeInsets.symmetric(horizontal: 16, vertical: 12),
@@ -169,12 +168,10 @@ class BookDetailsPage extends StatelessWidget {
                     alignment: Alignment.bottomCenter,
                     child: TextButton(
                     onPressed: () async {
-                      print("pk berapa $pk" );
                       try {
                         final response = await request.get(
                             "https://web-production-1710.up.railway.app/perpustakaan/book/$pk/return",
                             );
-                        print(response);
                       }
                       catch (error) {
                         print(error);
@@ -190,7 +187,6 @@ class BookDetailsPage extends StatelessWidget {
                               MaterialStateProperty.all(Colors.blue)),
                     )));
                 } else {
-                  print("2");
                 return Container(
                 margin:
                     const EdgeInsets.symmetric(horizontal: 16, vertical: 12),
@@ -198,12 +194,11 @@ class BookDetailsPage extends StatelessWidget {
                     alignment: Alignment.bottomCenter,
                     child: TextButton(
                     onPressed: () async {
-                      print("pk berapa $pk" );
                       try {
                       final response = await request.get(
                           "https://web-production-1710.up.railway.app/perpustakaan/book/$pk/borrow",
                           );
-                      print(response);
+
                       }
                       catch (error){
                         print(error);

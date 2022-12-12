@@ -190,9 +190,6 @@ class _AddBookReviewState extends State<AddBookReview> {
                               String msg = "";
                               int bookPk = widget.bookPk;
                               // try {
-                              print("ini pk $bookPk");
-                              print("ini review $_review");
-                              print("ini rate $_rate");
                               try {
                               final response = await request.post(
                                 "https://web-production-1710.up.railway.app/perpustakaan/book/$bookPk/review",
@@ -205,10 +202,8 @@ class _AddBookReviewState extends State<AddBookReview> {
                               catch (error) {
                                 print(error);
                               }
-                              // }
-                              // catch (error) {
-                              //   print(error);
-                              // }
+
+
 
                               // Code here will run if the login succeeded.
                               int count = 0;
