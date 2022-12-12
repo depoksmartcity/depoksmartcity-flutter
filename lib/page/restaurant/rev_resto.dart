@@ -26,7 +26,7 @@ class _MyRevState extends State<MyRevPage> {
 
     return Scaffold(
         appBar: AppBar(
-          title: Text("Form"),
+          title: Text("Ulasan"),
           flexibleSpace: Container(
             decoration:
                 const BoxDecoration(color: Color.fromARGB(255, 11, 51, 74)),
