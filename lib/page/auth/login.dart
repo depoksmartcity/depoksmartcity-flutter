@@ -6,7 +6,6 @@ import 'package:depoksmartcity/drawer/drawer.dart';
 import 'package:depoksmartcity/main.dart';
 import 'package:provider/provider.dart';
 import 'package:pbp_django_auth/pbp_django_auth.dart';
-import 'package:depoksmartcity/providers/userProvider.dart';
 
 class LoginPage extends StatefulWidget {
   const LoginPage({Key? key}) : super(key: key);
@@ -151,6 +150,7 @@ class _LoginPageState extends State<LoginPage> {
                                         'username': username,
                                         'password': password
                                       }));
+
 
                                   // print(response.body);
                                   bool status = response["status"];

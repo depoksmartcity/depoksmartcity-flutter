@@ -41,6 +41,10 @@ dependencies:
   provider: ^6.0.4
   pbp_django_auth: ^0.3.0
   shared_preferences: ^2.0.15
+  pbp_django_auth: ^0.3.0
+  flutter_swiper_null_safety: ^1.0.2
+  carousel_slider: ^4.2.0
+  intl: ^0.17.0
 
 
 dev_dependencies:
