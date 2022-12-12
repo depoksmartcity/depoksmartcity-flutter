@@ -4,6 +4,7 @@ import 'package:depoksmartcity/page/auth/register.dart';
 import 'package:depoksmartcity/page/aspirasi.dart';
 import 'package:depoksmartcity/page/kependudukan/kependudukan.dart';
 import 'package:depoksmartcity/page/kesehatan/kesehatanMain.dart';
+import 'package:depoksmartcity/page/restaurant/restaurant.dart';
 import 'package:flutter/material.dart';
 
 class DrawerClass extends StatefulWidget {
@@ -37,6 +38,26 @@ class _DrawerClassState extends State<DrawerClass> {
               );
             },
           ),
+
+          ListTile(
+            title: const Text("Aspirasi"),
+            onTap: () {
+              Navigator.pushReplacement(
+                context,
+                MaterialPageRoute(builder: (context) => const AspirasiPage()),
+              );
+            },
+          ),
+          ListTile(
+            title: const Text("Kependudukan"),
+            onTap: () {
+              Navigator.pushReplacement(
+                context,
+                MaterialPageRoute(
+                    builder: (context) => const KependudukanPage()),
+              );
+            },
+          ),
           ListTile(
             title: const Text("Login"),
             onTap: () {
@@ -56,21 +77,12 @@ class _DrawerClassState extends State<DrawerClass> {
             },
           ),
           ListTile(
-            title: const Text("Aspirasi"),
-            onTap: () {
-              Navigator.pushReplacement(
-                context,
-                MaterialPageRoute(builder: (context) => const AspirasiPage()),
-              );
-            },
-          ),
-          ListTile(
-            title: const Text("Kependudukan"),
+            title: const Text("Restaurant"),
             onTap: () {
               Navigator.pushReplacement(
                 context,
                 MaterialPageRoute(
-                    builder: (context) => const KependudukanPage()),
+                    builder: (context) => const RestaurantPage()),
               );
             },
           ),

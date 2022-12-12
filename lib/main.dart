@@ -32,7 +32,6 @@ class MyApp extends StatelessWidget {
           routes: {
             "/kesehatan" : (BuildContext context) => const KesehatanPage(),
             "/kesehatan/health-facilities" : (BuildContext context) => const HealthFacilites(),
-            
           },
         ));
   }
