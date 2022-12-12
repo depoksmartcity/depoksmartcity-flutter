@@ -16,15 +16,25 @@ class KependudukanPage extends StatefulWidget {
 
 class _KependudukanPageState extends State<KependudukanPage> {
   final TextStyle h1 = TextStyle(
-      fontSize: 24, fontWeight: FontWeight.w600, color: Colors.blueGrey);
+      fontSize: 24,
+      fontWeight: FontWeight.w600,
+      color: Color.fromARGB(255, 11, 51, 74));
   final TextStyle h2 = TextStyle(
-      fontSize: 20, fontWeight: FontWeight.w600, color: Colors.blueGrey);
+      fontSize: 20,
+      fontWeight: FontWeight.w600,
+      color: Color.fromARGB(255, 11, 51, 74));
   final TextStyle h3 = TextStyle(
-      fontSize: 14, fontWeight: FontWeight.w600, color: Colors.blueGrey);
+      fontSize: 14,
+      fontWeight: FontWeight.w600,
+      color: Color.fromARGB(255, 11, 51, 74));
   final TextStyle boldText = TextStyle(
-      fontSize: 14, fontWeight: FontWeight.w600, color: Colors.blueGrey);
+      fontSize: 14,
+      fontWeight: FontWeight.w600,
+      color: Color.fromARGB(255, 11, 51, 74));
   final TextStyle plainText = TextStyle(
-      fontSize: 14, fontWeight: FontWeight.w400, color: Colors.blueGrey);
+      fontSize: 14,
+      fontWeight: FontWeight.w400,
+      color: Color.fromARGB(255, 11, 51, 74));
 
   @override
   Widget build(BuildContext context) {
@@ -36,6 +46,10 @@ class _KependudukanPageState extends State<KependudukanPage> {
     return Scaffold(
       appBar: AppBar(
         title: Text('Kependudukan'),
+        flexibleSpace: Container(
+          decoration:
+              const BoxDecoration(color: Color.fromARGB(255, 11, 51, 74)),
+        ),
       ),
       drawer: const DrawerClass(),
       body: Center(
@@ -51,6 +65,7 @@ class _KependudukanPageState extends State<KependudukanPage> {
                 ),
                 ElevatedButton(
                   style: ElevatedButton.styleFrom(
+                      primary: Color.fromARGB(255, 11, 51, 74),
                       textStyle: const TextStyle(fontSize: 20)),
                   onPressed: () {
                     if (request.loggedIn) {
@@ -144,11 +159,11 @@ class _KependudukanPageState extends State<KependudukanPage> {
                                     horizontal: 10, vertical: 2),
                                 padding: const EdgeInsets.all(20.0),
                                 decoration: BoxDecoration(
-                                    color: Colors.white,
+                                    color: Color.fromARGB(255, 235, 236, 235),
                                     borderRadius: BorderRadius.circular(15.0),
                                     border: Border.all(
-                                      color: Color.fromARGB(255, 76, 188, 165),
-                                      width: 3,
+                                      color: Color.fromARGB(255, 106, 110, 126),
+                                      width: 2,
                                     ),
                                     boxShadow: const [
                                       BoxShadow(
@@ -161,10 +176,7 @@ class _KependudukanPageState extends State<KependudukanPage> {
                                   children: [
                                     Text(
                                       "${snapshot.data![index].fields.name}",
-                                      style: const TextStyle(
-                                        fontSize: 18.0,
-                                        fontWeight: FontWeight.bold,
-                                      ),
+                                      style: h3,
                                     ),
                                     const SizedBox(height: 10),
                                     Text(

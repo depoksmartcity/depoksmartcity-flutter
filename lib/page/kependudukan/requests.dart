@@ -14,15 +14,25 @@ class RequestsPage extends StatefulWidget {
 
 class _RequestsPageState extends State<RequestsPage> {
   final TextStyle h1 = TextStyle(
-      fontSize: 24, fontWeight: FontWeight.w600, color: Colors.blueGrey);
+      fontSize: 24,
+      fontWeight: FontWeight.w600,
+      color: Color.fromARGB(255, 11, 51, 74));
   final TextStyle h2 = TextStyle(
-      fontSize: 20, fontWeight: FontWeight.w600, color: Colors.blueGrey);
+      fontSize: 20,
+      fontWeight: FontWeight.w600,
+      color: Color.fromARGB(255, 11, 51, 74));
   final TextStyle h3 = TextStyle(
-      fontSize: 14, fontWeight: FontWeight.w600, color: Colors.blueGrey);
+      fontSize: 14,
+      fontWeight: FontWeight.w600,
+      color: Color.fromARGB(255, 11, 51, 74));
   final TextStyle boldText = TextStyle(
-      fontSize: 14, fontWeight: FontWeight.w600, color: Colors.blueGrey);
+      fontSize: 14,
+      fontWeight: FontWeight.w600,
+      color: Color.fromARGB(255, 11, 51, 74));
   final TextStyle plainText = TextStyle(
-      fontSize: 14, fontWeight: FontWeight.w400, color: Colors.blueGrey);
+      fontSize: 14,
+      fontWeight: FontWeight.w400,
+      color: Color.fromARGB(255, 11, 51, 74));
 
   @override
   Widget build(BuildContext context) {
@@ -32,6 +42,10 @@ class _RequestsPageState extends State<RequestsPage> {
     return Scaffold(
       appBar: AppBar(
         title: Text('Kependudukan'),
+        flexibleSpace: Container(
+          decoration:
+              const BoxDecoration(color: Color.fromARGB(255, 11, 51, 74)),
+        ),
       ),
       drawer: const DrawerClass(),
       body: Center(
@@ -43,6 +57,7 @@ class _RequestsPageState extends State<RequestsPage> {
               children: <Widget>[
                 ElevatedButton(
                   style: ElevatedButton.styleFrom(
+                      primary: Color.fromARGB(255, 11, 51, 74),
                       textStyle: const TextStyle(fontSize: 20)),
                   onPressed: () {
                     Navigator.push(
@@ -78,6 +93,7 @@ class _RequestsPageState extends State<RequestsPage> {
                         );
                       } else {
                         return ListView.builder(
+                          reverse: true,
                           shrinkWrap: true,
                           itemCount: snapshot.data!.length,
                           itemBuilder: (_, index) => Container(
@@ -85,11 +101,11 @@ class _RequestsPageState extends State<RequestsPage> {
                                 horizontal: 16, vertical: 12),
                             padding: const EdgeInsets.all(20.0),
                             decoration: BoxDecoration(
-                                color: Colors.white,
+                                color: Color.fromARGB(255, 235, 236, 235),
                                 borderRadius: BorderRadius.circular(15.0),
                                 border: Border.all(
-                                  color: Color.fromARGB(255, 76, 188, 165),
-                                  width: 3,
+                                  color: Color.fromARGB(255, 106, 110, 126),
+                                  width: 2,
                                 ),
                                 boxShadow: const [
                                   BoxShadow(
