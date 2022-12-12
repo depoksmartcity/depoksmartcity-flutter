@@ -234,7 +234,7 @@ class RegisterPage extends StatelessWidget {
                       MaterialPageRoute(
                           builder: (context) => const LoginPage())),
                   child: const Text(
-                    "Sudah Punya Akun ?",
+                    "Login",
                     style: TextStyle(
                       decoration: TextDecoration.underline,
                     ),

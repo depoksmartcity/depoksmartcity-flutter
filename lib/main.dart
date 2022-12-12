@@ -1,11 +1,13 @@
 import 'package:depoksmartcity/page/kesehatan/patientRegistration.dart';
 import 'package:flutter/material.dart';
+
 import 'package:provider/provider.dart';
 import 'package:pbp_django_auth/pbp_django_auth.dart';
 import 'package:depoksmartcity/drawer/drawer.dart';
 import 'package:depoksmartcity/model/kesehatan/healthFacility.dart';
 import 'package:depoksmartcity/page/kesehatan/kesehatanMain.dart';
 import 'package:depoksmartcity/page/kesehatan/healthFacilites.dart';
+
 
 void main() {
   runApp(const MyApp());
@@ -25,6 +27,7 @@ class MyApp extends StatelessWidget {
         child: MaterialApp(
           title: 'Flutter Demo',
           theme: ThemeData(
+
             primarySwatch: Colors.blue,
           ),
 

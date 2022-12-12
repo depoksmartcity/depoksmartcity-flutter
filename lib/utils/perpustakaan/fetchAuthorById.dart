@@ -1,11 +1,11 @@
 import 'package:http/http.dart' as http;
 import 'dart:convert';
-import 'package:depoksmartcity/model/perpustakaan/book.dart';
+import 'package:depoksmartcity/model/perpustakaan/author.dart';
 
 
-Future<List<Book>> fetchMyWatchlist() async {
+Future<List<Author>> fetchAuthorById(int idAuthor) async {
   var url =
-      Uri.parse('http://tugas2pbpkiram.herokuapp.com/mywatchlist/json/');
+      Uri.parse('https://web-production-1710.up.railway.app/perpustakaan/author/$idAuthor/json');
   var response = await http.get(
     url,
     headers: {
@@ -18,12 +18,11 @@ Future<List<Book>> fetchMyWatchlist() async {
   var data = jsonDecode(utf8.decode(response.bodyBytes));
 
   // melakukan konversi data json menjadi object MyWatchlist
-  List<Book> listBook = [];
+  List<Author> listAuthor = [];
   for (var datum in data) {
     if (datum != null) {
-      listBook.add(Book.fromJson(datum));
+      listAuthor.add(Author.fromJson(datum));
     }
   }
-
-  return listBook;
+  return listAuthor;
 }

@@ -31,14 +31,15 @@ class _LoginPageState extends State<LoginPage> {
         drawer: const DrawerClass(),
         body: Container(
             width: double.infinity,
-            // decoration: BoxDecoration(
-            //     image: DecorationImage(
-            //   image: const AssetImage("lib/assets/kota-depok-login.jpg"),
-            //   fit: BoxFit.cover,
-            //   colorFilter: ColorFilter.mode(
-            //       Colors.black.withOpacity(0.5), BlendMode.dstATop),
-            // )),
-            child: Form(
+            decoration: BoxDecoration(
+                image: DecorationImage(
+              image: const AssetImage("lib/assets/kota-depok-login.jpg"),
+              fit: BoxFit.cover,
+              colorFilter: ColorFilter.mode(
+                  Colors.black.withOpacity(0.5), BlendMode.dstATop),
+            )),
+            child: 
+            Form(
                 key: _loginFormKey,
                 child: Center(
                   child: Container(
@@ -150,22 +151,12 @@ class _LoginPageState extends State<LoginPage> {
                                         'password': password
                                       }));
 
-                                  // final response2 = await request
-                                  //         .login("https://web-production-1710.up.railway.app/login-flutter/", {
-                                  //         'username': username,
-                                  //         'password': password,
-                                  //         });
-                                  
-                                  print(response);
-                                  bool status = response['status'];
-                                  //print(jsonDecode(response));
+
+                                  // print(response.body);
+                                  bool status = response["status"];
+                                  // print(jsonDecode(response.body));
 
                                   if (status) {
-                                    // Code here will run if the login succeeded.
-                                    // print("imhere");
-                                    // context.read<UserProvider>().saveAdmin(response['admin']);
-                                    // context.read<UserProvider>().saveLogin(true);
-                                    // context.read<UserProvider>().saveUsername(response['username']);
                                     ScaffoldMessenger.of(context)
                                         .showSnackBar(SnackBar(
                                             content: Row(
