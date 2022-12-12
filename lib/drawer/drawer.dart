@@ -3,6 +3,7 @@ import 'package:depoksmartcity/page/auth/login.dart';
 import 'package:depoksmartcity/page/auth/register.dart';
 import 'package:depoksmartcity/page/aspirasi.dart';
 import 'package:depoksmartcity/page/kependudukan/kependudukan.dart';
+import 'package:depoksmartcity/page/kesehatan/kesehatanMain.dart';
 import 'package:flutter/material.dart';
 
 class DrawerClass extends StatefulWidget {
@@ -79,7 +80,7 @@ class _DrawerClassState extends State<DrawerClass> {
               Navigator.pushReplacement(
                 context,
                 MaterialPageRoute(
-                    builder: (context) => const KependudukanPage()),
+                    builder: (context) => const KesehatanPage()),
               );
             },
           ),

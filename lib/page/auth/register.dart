@@ -1,9 +1,6 @@
-import 'dart:ui';
-
 import 'package:flutter/material.dart';
 import 'package:depoksmartcity/page/auth/login.dart';
 import 'package:depoksmartcity/drawer/drawer.dart';
-// import '../text_hyperlinks/login_hyperlink.dart';
 import 'package:http/http.dart' as http;
 import 'dart:convert';
 
@@ -79,7 +76,7 @@ class RegisterPage extends StatelessWidget {
                       }
                       return null;
                     },
-                    maxLength: 15,
+                    maxLength: 20,
                     decoration: InputDecoration(
                         prefixIcon: const Icon(
                           Icons.alternate_email_rounded,
@@ -237,7 +234,7 @@ class RegisterPage extends StatelessWidget {
                       MaterialPageRoute(
                           builder: (context) => const LoginPage())),
                   child: const Text(
-                    "Login",
+                    "Sudah Punya Akun ?",
                     style: TextStyle(
                       decoration: TextDecoration.underline,
                     ),
