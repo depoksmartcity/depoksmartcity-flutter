@@ -60,6 +60,10 @@ class _MyFormPageState extends State<MyFormPage> {
     return Scaffold(
       appBar: AppBar(
         title: Text("Review Form"),
+        flexibleSpace: Container(
+          decoration:
+              const BoxDecoration(color: Color.fromARGB(255, 11, 51, 74)),
+        ),
       ),
       // Menambahkan drawer menu
       drawer: const DrawerClass(),
@@ -153,7 +157,7 @@ class _MyFormPageState extends State<MyFormPage> {
                   style: TextStyle(color: Colors.white),
                 ),
                 style: ButtonStyle(
-                  backgroundColor: MaterialStateProperty.all(Colors.blue),
+                  backgroundColor: MaterialStateProperty.all(Color.fromARGB(255, 11, 51, 74)),
                 ),
                 onPressed: () {
                   if (_formKey.currentState!.validate()) {

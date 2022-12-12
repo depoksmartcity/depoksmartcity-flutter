@@ -26,7 +26,11 @@ class _MyRevState extends State<MyRevPage> {
 
     return Scaffold(
         appBar: AppBar(
-          title: Text("Form"),
+          title: Text("Ulasan"),
+          flexibleSpace: Container(
+            decoration:
+                const BoxDecoration(color: Color.fromARGB(255, 11, 51, 74)),
+          ),
         ),
         // Menambahkan drawer menu
         drawer: const DrawerClass(),
@@ -49,8 +53,8 @@ class _MyRevState extends State<MyRevPage> {
                 textDirection: TextDirection.rtl,
                 children: [
                 FloatingActionButton(
+                  backgroundColor: Color.fromARGB(255, 11, 51, 74),
                     child: const Icon(Icons.add),
-
                     onPressed: () 
                         {
                             if (request.loggedIn) {
