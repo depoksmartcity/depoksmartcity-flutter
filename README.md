@@ -1,7 +1,7 @@
 [![Build status](https://build.appcenter.ms/v0.1/apps/4cf1ad7a-0dda-49c5-8ec4-710fb735df88/branches/main/badge)](https://appcenter.ms)
 # Depok Smart City
 > Proyek ini dibuat untuk memenuhi tugas Proyek Akhir Semester pada mata kuliah Pemrograman Berbasis Platform (CSGE602022) yang diselenggarakan oleh Fakultas Ilmu Komputer, Universitas Indonesia pada Semester Gasal, Tahun Ajaran 2022/2023.
-
+https://install.appcenter.ms/orgs/depoksmartcity/apps/depoksmartcity-mobile/distribution_groups/public
 ## Pengembang
 ### Kelompok F04
 1.  Bagas Shalahuddin Wahid - 2106708904
